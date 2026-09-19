@@ -25,11 +25,11 @@ Durable copy of this plan: **`/Users/tuhin/RND/GPUTests/PLAN.md`**.
 | Kaggle CLI | **Working.** Use `.venv/bin/kaggle` (2.2.4). System pyenv still has legacy 1.7.4.5 — do not call that one |
 | `~/.kaggle/kaggle.json` | Not needed. 2026 UI "Generate New Token" does not download json |
 | `~/.kaggle/access_token` | **Works with CLI 2.2.4.** Authenticated as **emdadh** (Emdadul Hoque). No `kaggle auth login` required |
-| GPU / TPU quota (live) | GPU **0 / 30h** used, TPU **0 / 20h**, refresh 2026-09-26 |
+| GPU / TPU quota (live) | GPU **0.01 / 30h** used (Hello T4 ran), TPU **0 / 20h**, refresh 2026-09-26 |
 | Kaggle Benchmarks / Model Proxy | Account has $10/day + $100/month unused. CLI 2.2.4: `kaggle b auth` / `kaggle b init` (there is no `kaggle b quota` subcommand) |
-| `gcloud` | Missing |
-| `google-colab-cli` | Not installed |
-| Python | 3.10.6 via pyenv |
+| `gcloud` | **Missing, and not needed.** CLI 0.6.0 defaults to `--auth=oauth2`, not `adc`; the bundled skill says otherwise and is stale |
+| `google-colab-cli` | **Installed and authed** — v0.6.0 via `uv tool`, binary at `~/.local/bin/colab`, refresh token in `~/.config/colab-cli/token.json` |
+| Python | 3.10.6 via pyenv; lab venv is **3.12.13** |
 | Playwright | npx 1.63.0 (fallback only; not the Colab path) |
 | GitHub | Logged in as `KodeIsFun` |
 | One CLI | 42 connections; **no Twitter/X**; Resend + Google Drive + Browserless exist |
@@ -136,23 +136,43 @@ Documented / announced set (as of 2026, mixed sources — verify in W0):
 
 - Community default: **Gemini / Gemma, Anthropic Claude, Qwen, DeepSeek, Z.ai**
 - Kaggle (Apr 2026) announced **OpenAI** (e.g. GPT-5.4, GPT-OSS) on Benchmarks
-- **Grok** is named on the *Benchmarks Resource Grant* (higher quota, application), **not** promised on the $10/$100 community tier
+- ~~**Grok** is named on the *Benchmarks Resource Grant*~~ — **wrong as of 2026-09-19: Grok is live on the community tier.** Verified via `kaggle b t models`: `grok-4.5-0708`, `grok-4.6`, `grok-4.20-0309-reasoning`, `grok-4.20-0309-non-reasoning`. OpenAI is live too (`gpt-5.4` … `gpt-6-astra`). 42 models in the catalog.
+- **Warning: the catalog over-reports.** `kaggle b t models` (and the interactive menu) listed `gpt-5.4-nano`, but scheduling it returns *"Failed to schedule runs"*. Treat the catalog as candidates and confirm schedulability by attempting a run. The error message names **every** model you passed, not just the bad one — so bisect, don't trust the list in the error.
 - Docs page still says some models (historically OpenAI) may be missing — the live key list wins
 
 SDK can do: `llm.prompt()`, multi-turn, structured/Pydantic output, images/audio, YouTube-URL video on some Gemini, tool use, sandboxed Python, LLM-as-judge, pandas dataset evals, token/cost/latency metadata (`input_tokens_cost`, `output_tokens_cost`, `total_backend_latency`).
 
-### Cost shape (priors until W0 measures real `$` per call)
+### Cost shape — **measured 2026-09-19** (was: priors)
 
-These are planning priors, replaced by a `ledger/proxy_costs.jsonl` after the first week:
+W0 ran `hello-proxy`, 5 riddles × 4 cheap models = **20 items**, deterministic
+regex grading (no LLM judge). Source: `projects/2026-W38-hello-t4/results/eval_results.json`.
 
-- Short prompt, cheap model (Flash / Haiku / Qwen-small / DeepSeek-chat): **$0.002–$0.03** per item
-- Short prompt, expensive model (Sonnet / Pro / GPT-class): **$0.02–$0.20** per item
-- 50-item dataset × 1 cheap model ≈ **$0.20–$1.50**
-- 50-item × 1 expensive model ≈ **$2–$8**
-- 50-item × 5 models in one day **can exceed $10**
-- LLM-as-judge ≈ **2×** tokens; always judge with the cheapest capable model
+| Model | $/item | in tok/item | out tok/item | latency/item |
+|---|---|---|---|---|
+| `gemini-3.1-flash-lite-preview` | **$0.0000069** | 20 | 1.2 | 0.30 s |
+| `gemini-3.5-flash-lite` | $0.0000091 | 20 | 1.2 | 0.40 s |
+| `gpt-oss-20b` | $0.0000258 | 86 | 79 | 0.59 s |
+| `gemini-3.7-flash` | **$0.0004293** | 20 | 110 | 1.27 s |
 
-W0 smoke (budget **$2**): 5 riddles × 3 cheap models. Record actual `$` and tokens. That calibration drives every later `estimated_usd` in the run manifest.
+**Total for all 20 items: $0.00235534** — 1/850th of the $2 W0 budget.
+
+The priors below were wrong by **200–3000×**. Two findings that matter more than
+the absolute numbers:
+
+1. **Reasoning tokens dominate, not prompt length.** `gemini-3.7-flash` cost
+   47× more than `gemini-3.5-flash-lite` on an identical prompt, purely from
+   emitting 110 output tokens/item instead of 1.2. Model *choice* moves the bill
+   far more than item count — so the cheap model must be the default and the
+   expensive one a deliberate exception.
+2. **These are a floor, not a representative number.** Prompts were 20–86 tokens
+   with 1-token answers. Real items that write a `kernel-metadata.json` will be
+   10–100× larger. Even scaling 100×, a 50-item single-model eval stays in the
+   cents.
+
+Superseded priors, kept only to show the size of the error: short prompt on a
+cheap model was estimated at $0.002–$0.03/item (actual: $0.0000069); 50-item ×
+1 cheap model was estimated at $0.20–$1.50 (actual: ≈$0.0003). Every
+`estimated_usd` from here on is derived from the measured table, not the priors.
 
 ### Spend policy (hard rules I will enforce in `lab/quota.py`)
 
@@ -200,9 +220,25 @@ Task file rules I will not violate: `# %%` cells, `@kbench.task(name=slug)`, a r
 
 Local `python task.py` still burns the **same** quota (it uses the Model Proxy). Use it only for a 1-item validation, not for the full sweep.
 
+**Measured W0 operational facts:**
+
+- **`kaggle b t push` is not free — creating the task runs it once against the
+  default model.** W0's `gemini-3.7-flash` run (started 10:24:56, before any
+  explicit `run`) came from task creation. Budget for the push itself.
+- **`kaggle b t auth -y` writes `.env` with a 1-hour key.** It is not optional
+  before the first `run`; `.gitignore` already covers `.env` and
+  `**/MODEL_PROXY*`.
+- **Two models per `kaggle b t run` works** (`-m a -m b`), matching
+  `MAX_MODELS_PER_RUN`. But if *one* name is unschedulable the whole invocation
+  is refused, and the error names all of them — so validate new model slugs one
+  at a time before batching.
+- **The tweet gate needs a space between a number and its unit.**
+  `"0.64s"` tokenizes as `0` (the trailing letter breaks the match) and is
+  rejected; `"0.64 s"` verifies. Same for `"15360MB"` → write `"15360 MB"`.
+
 ## Locks (confirm or change)
 
-1. **Public face:** GitHub repo `KodeIsFun/GPUTests` (or `free-gpu-lab`) + every kernel and every Benchmarks **task** public.
+1. **Public face:** GitHub repo `KodeIsFun/GPUTests` (or `free-gpu-lab`) + every kernel and every Benchmarks **task** public. — **DONE 2026-09-19:** <https://github.com/KodeIsFun/GPUTests> (public, default branch `main`), kernel <https://www.kaggle.com/code/emdadh/hello-t4>, task <https://www.kaggle.com/benchmarks/tasks/emdadh/hello-proxy>. **Open decision:** `.gitignore` excludes `projects/**/results/`, so `timings.json` / `eval_results.json` are *not* in the repo — a reader cannot verify a tweet's digits from GitHub alone. Either un-ignore those two files or state that Kaggle hosts the evidence.
 2. **X account:** tweetauto's EN hero (`ghumaidotcom`) unless you name another aged account. Do not spin a new handle.
 3. **Posting:** drafts for 14 days, then auto-post if the verify gate stays clean.
 4. **Thesis:** "What actually runs on free Colab/Kaggle this week" **and** "which hosted models can write a free-GPU job that would work". Not AI-news remix, not H3 product marketing.
@@ -392,7 +428,7 @@ If X is still 402, drafts continue. Lab does not stall.
 |---|---|---|
 | Burning $100 by day 10 | High | $3/day default, $90/month hard stop in code |
 | Colab free tier refuses T4 | High | Colab = public notebook; numbers from Kaggle GPU |
-| Kaggle API gives P100 not T4 | Medium | Label the GPU we actually got |
+| Kaggle API gives P100 not T4 | ~~Medium~~ **Closed** | W0 got a real **Tesla T4** (15360 MB, 21162 GFLOP/s fp16) with `--accelerator NvidiaTeslaT4` |
 | GPU phone-verify / queue | High | Phase 0; overnight; eval lane still tweets |
 | Downloads eat 30 h | High | Dataset-pin weights |
 | Proxy key expires mid-run | Medium | `kaggle b auth -y` on 401 |
