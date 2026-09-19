@@ -18,8 +18,15 @@ EVIDENCE_KEYS = frozenset(
         "score",
         "passed",
         "models",
+        "items",
+        "input_tokens",
+        "output_tokens",
+        "output_tokens_per_item",
         "input_tokens_cost",
         "output_tokens_cost",
+        "usd_per_item",
+        "usd_per_item_min",
+        "usd_per_item_max",
         "latency_s",
     }
 )
