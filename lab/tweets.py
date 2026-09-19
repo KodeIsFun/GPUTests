@@ -62,13 +62,15 @@ def verify_tweet_numbers(tweet: str, evidence: dict[str, Any]) -> None:
         raise TweetRejected(f"numbers not in evidence: {missing}")
 
 
-def verify_from_files(
-    tweet: str,
-    timings_path: Path | None = None,
-    eval_path: Path | None = None,
-) -> None:
+def verify_from_files(tweet: str, *paths: Path | None) -> None:
+    """Verify against any number of evidence files, merged.
+
+    Takes *paths rather than two fixed slots because a post that compares two
+    models cites a number from each model's own eval_results file — no single
+    file can witness such a claim.
+    """
     evidence: dict[str, Any] = {}
-    for path in (timings_path, eval_path):
+    for path in paths:
         if path is None or not path.exists():
             continue
         loaded = json.loads(path.read_text())

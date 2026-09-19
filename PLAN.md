@@ -241,7 +241,7 @@ Local `python task.py` still burns the **same** quota (it uses the Model Proxy).
 1. **Public face:** GitHub repo `KodeIsFun/GPUTests` (or `free-gpu-lab`) + every kernel and every Benchmarks **task** public. — **DONE 2026-09-19:** <https://github.com/KodeIsFun/GPUTests> (public, default branch `main`), kernel <https://www.kaggle.com/code/emdadh/hello-t4>, task <https://www.kaggle.com/benchmarks/tasks/emdadh/hello-proxy>. **Open decision:** `.gitignore` excludes `projects/**/results/`, so `timings.json` / `eval_results.json` are *not* in the repo — a reader cannot verify a tweet's digits from GitHub alone. Either un-ignore those two files or state that Kaggle hosts the evidence.
 2. **X account:** tweetauto's EN hero (`ghumaidotcom`) unless you name another aged account. Do not spin a new handle.
 3. **Posting:** drafts for 14 days, then auto-post if the verify gate stays clean.
-4. **Thesis:** "What actually runs on free Colab/Kaggle this week" **and** "which hosted models can write a free-GPU job that would work". Not AI-news remix, not H3 product marketing.
+4. **Thesis:** "What actually runs on free Colab/Kaggle this week" **and** "which hosted models can write a free-GPU job that would work" — told as **what broke, what it cost, and what I'd do differently**. Not AI-news remix, not H3 product marketing, and not a spec sheet. Measurements are the evidence, never the headline (see Phase 4).
 5. **Human time after Week 0:** ~10 min Sunday + one ~2 min Kaggle UI click when a Benchmark *collection* needs creating. Optional 5 min draft glance during warm-up.
 6. **Compute policy:** never pay. GPU hours and Proxy dollars are separate budgets; exhausting one does not unlock the other.
 7. **Proxy is eval-only.** No production LLM traffic through Kaggle.
@@ -404,14 +404,51 @@ Backlog substitutes: TPU v5e vs GPU; ONNX vs llama.cpp; community-requested eval
 
 ### Phase 4 — X authority system
 
-- Two legal number sources: `timings.json` (GPU) and `eval_results.json` (Proxy).
-- Gain-first. Example shapes:
-  - "Whisper large-v3 on a free Kaggle T4: 0.18× realtime. Kernel: … Colab: …"
-  - "5 models, $1.40 of Kaggle Benchmarks quota: only 2 emitted a kernel-metadata.json Kaggle would accept. Leaderboard: …"
+**Rewritten 2026-09-19.** The first drafts were spec-sheet posts ("15360 MB VRAM,
+21162.1 GFLOP/s fp16"). They were true, verified, and useless: no reader has a
+reason to care, and it reads as a nerd reciting numbers. A measurement is not a
+story. The interesting thing is never the number — it is the **friction, the
+surprise, or the fix**.
+
+**Lead with the thing that costs the reader something if they don't know it.**
+
+Three post shapes, in priority order:
+
+1. **The gotcha** — an undocumented behaviour that wastes an afternoon.
+   *"Kaggle's model list is a catalogue, not a promise: it lists a model as
+   available, then refuses to schedule it — and the error blames every model you
+   passed, not the broken one."* This is the highest-value content and it needs
+   no number at all.
+2. **The surprise** — what we expected vs what we measured.
+   *"Budgeted a couple of dollars to find out what evals cost. Cheapest
+   $0.0000069 a question, dearest $0.0004293. I was off by three orders of
+   magnitude."* The number is evidence for the surprise, never the headline.
+3. **The receipt** — the public kernel or task, offered rarely, so readers can
+   check the work. Credibility, not content.
+
+**Voice rules:**
+
+- No units the reader has to decode. GFLOP/s, token counts, and nanodollars are
+  evidence, not copy.
+- Every post must survive "so what?" and "says who?". The "so what" is the
+  lesson; the "says who" is the public artifact.
+- Prefer plain constructions. "Two models, same question, one cost 62× more" beats
+  "we observe significant cost heterogeneity across model families".
+- Own the mistakes. Being wrong by 3000× and saying so is more credible than
+  never being wrong.
+
+**The gate stays.** Two legal number sources: `timings.json` (GPU) and
+`eval_results.json` / `eval_results.<model>.json` (Proxy), merged via
+`verify_from_files(tweet, *paths)`. Every digit must still come from a real
+artifact — that constraint is what makes the "check my work" claim honest, and it
+does not limit the voice above, which is deliberately number-light.
+
 - Warm-up 1/day week 1, 1–2/day from week 2.
-- Replies: 1/day on large GPU/ML or "which model is best" posts, using **this week's** GPU number or leaderboard delta.
+- Replies: 1/day on large GPU/ML threads, answering with this week's gotcha or
+  measured surprise — not with a spec sheet.
 - Pin: W2 bake-off, then W3 public task, then W11/W13.
-- Bio: "Weekly free-GPU measurements + public model evals. Every number has a kernel or a Benchmarks task."
+- Bio: "Weekly notes from a free-GPU lab. What broke, what it cost, what I'd do
+  differently. Everything reproducible."
 
 If X is still 402, drafts continue. Lab does not stall.
 
