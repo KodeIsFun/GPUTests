@@ -17,7 +17,7 @@ import time
 from pathlib import Path
 
 # Stamped at push time with the commit this job was built from.
-GIT_SHA: str | None = None
+GIT_SHA: str | None = "eb16cb3"
 
 MATMUL_SIZE = 4096
 MATMUL_ITERS = 20

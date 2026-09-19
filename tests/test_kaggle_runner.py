@@ -38,7 +38,14 @@ def test_push_command_requests_t4(tmp_path: Path) -> None:
         str(tmp_path),
         "--accelerator",
         "NvidiaTeslaT4",
+        "-t",
+        "3600",
     ]
+
+
+def test_push_timeout_encodes_budget_hours(tmp_path: Path) -> None:
+    cmd = build_push_command(tmp_path, "/opt/kaggle", AMPLE, 2.5)
+    assert cmd[cmd.index("-t") + 1] == "9000"
 
 
 def test_push_refuses_when_week_hard_stop_would_trip(tmp_path: Path) -> None:

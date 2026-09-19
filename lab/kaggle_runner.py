@@ -61,6 +61,9 @@ def build_push_command(
     budget_hours: float,
 ) -> list[str]:
     require_gpu_job(quota, budget_hours)
+    # -t makes budget_hours binding at the platform level instead of merely
+    # advisory: Kaggle kills the run at the cap the same way it would at its
+    # own session limit.
     return [
         kaggle_bin,
         "kernels",
@@ -69,6 +72,8 @@ def build_push_command(
         str(folder),
         "--accelerator",
         DEFAULT_ACCELERATOR,
+        "-t",
+        str(int(budget_hours * 3600)),
     ]
 
 
