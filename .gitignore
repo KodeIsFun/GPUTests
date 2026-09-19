@@ -1,0 +1,26 @@
+.venv/
+.env
+.env.*
+kaggle.json
+access_token
+**/MODEL_PROXY*
+__pycache__/
+*.pyc
+.pytest_cache/
+.colab-session.json
+*.egg-info/
+dist/
+build/
+ledger/*.jsonl
+!ledger/.gitkeep
+projects/**/results/
+projects/**/tweets/
+.DS_Store
+
+# editor/plugin scratch dirs
+.v2c/
+.video_agent/
+
+# kbench writes these next to wherever a task is imported
+*.run.json
+*.task.json

@@ -1,0 +1,8 @@
+{
+  "title": "Hello T4",
+  "slug": "hello-t4",
+  "budget_hours": 1,
+  "estimated_usd": 0,
+  "hypothesis": "Kaggle CLI 2.2.4 can start a public GPU script kernel.",
+  "success_metric": "timings.json with a GPU name"
+}

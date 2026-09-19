@@ -1,0 +1,27 @@
+{
+  "title": "Hello T4",
+  "slug": "hello-t4",
+  "budget_hours": 1,
+  "estimated_usd": 2.0,
+  "hypothesis": "A token-only Kaggle kernel can start a public GPU run and hand back a real hardware card: the accelerator Kaggle actually assigns, its VRAM and driver, a CUDA version, and an fp16 matmul throughput we can quote as a measured number.",
+  "success_metric": "results/timings.json containing a non-null gpu name, vram_mb and metric, harvested with no browser.",
+  "gpu": {
+    "kernel_slug": "hello-t4",
+    "accelerator_requested": "NvidiaTeslaT4",
+    "script": "job.py",
+    "gate": "lab.quota.decide_gpu_job -- 1h of an 8h session cap, week reads 0.00h/30.00h"
+  },
+  "eval": {
+    "task_slug": "hello-proxy",
+    "task_file": "task.py",
+    "budget_usd": 2.0,
+    "dataset": "5 riddles, deterministic regex grading (no LLM judge)",
+    "models": [
+      "gemini-3.5-flash-lite",
+      "gpt-5.4-nano",
+      "gpt-oss-20b"
+    ],
+    "why": "W0 calibration: the first real $/call and tokens/call priors. Every later estimated_usd in a run manifest depends on this number.",
+    "limit": "two models per kaggle b t run (AGENTS.md), so 3 models is 2 invocations"
+  }
+}

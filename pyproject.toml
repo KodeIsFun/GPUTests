@@ -1,0 +1,19 @@
+[project]
+name = "gputests"
+version = "0.1.0"
+description = "Free GPU lab: unattended Kaggle + Colab runners"
+requires-python = ">=3.12"
+dependencies = [
+  "kaggle>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+# Needed only by `python -m lab.task_check`, the offline task-file pre-flight.
+# Install with --only-binary=:all: — a transitive dep (argon2-cffi-bindings via
+# jupyter) otherwise tries to build from source and needs CMake >= 3.20.
+check = ["kaggle-benchmarks"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
