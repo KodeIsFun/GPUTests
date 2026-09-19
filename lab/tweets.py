@@ -46,9 +46,29 @@ def _allowed_numbers(evidence: dict[str, Any]) -> list[float]:
         value = evidence.get(key)
         if isinstance(value, bool) or value is None:
             continue
-        if isinstance(value, (int, float)):
-            allowed.append(float(value))
+        values = value if isinstance(value, list) else [value]
+        for item in values:
+            if isinstance(item, bool) or item is None:
+                continue
+            if isinstance(item, (int, float)):
+                allowed.append(float(item))
     return allowed
+
+
+def _collect_evidence(payload: dict[str, Any], into: dict[str, Any]) -> None:
+    """Index every whitelisted key found at ANY depth, never overwriting.
+
+    Two timings files share one schema (`metric`, `wall_s`...); a plain dict
+    merge let the second file clobber the first, which silently made
+    cross-lane claims unverifiable. Same-key values accumulate in a list.
+    """
+    for key, value in payload.items():
+        if key in EVIDENCE_KEYS and isinstance(value, (int, float)):
+            into.setdefault(key, [])
+            if value not in into[key]:
+                into[key].append(value)
+        elif isinstance(value, dict):
+            _collect_evidence(value, into)
 
 
 def verify_tweet_numbers(tweet: str, evidence: dict[str, Any]) -> None:
@@ -67,7 +87,9 @@ def verify_from_files(tweet: str, *paths: Path | None) -> None:
 
     Takes *paths rather than two fixed slots because a post that compares two
     models cites a number from each model's own eval_results file — no single
-    file can witness such a claim.
+    file can witness such a claim. Whitelisted keys are indexed at any depth
+    (a timings file's rtf lives at details.whisper.rtf), and same-key values
+    from different files accumulate instead of overwriting.
     """
     evidence: dict[str, Any] = {}
     for path in paths:
@@ -75,7 +97,7 @@ def verify_from_files(tweet: str, *paths: Path | None) -> None:
             continue
         loaded = json.loads(path.read_text())
         if isinstance(loaded, dict):
-            evidence = {**evidence, **loaded}
+            _collect_evidence(loaded, evidence)
     verify_tweet_numbers(tweet, evidence)
 
 

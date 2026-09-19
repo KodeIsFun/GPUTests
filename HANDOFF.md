@@ -1,4 +1,4 @@
-# Handoff — W0/1 complete, 2026-09-19
+# Handoff — W2 complete, 2026-09-19
 
 Both lanes ran end to end. Nothing is in flight; nothing left a VM or job running.
 
@@ -7,138 +7,155 @@ Both lanes ran end to end. Nothing is in flight; nothing left a VM or job runnin
 | Artifact | URL |
 |---|---|
 | Repo (public, branch `main`) | <https://github.com/KodeIsFun/GPUTests> |
-| W0/1 kernel | <https://www.kaggle.com/code/emdadh/hello-t4> |
-| W0/1 task (published) | <https://www.kaggle.com/benchmarks/tasks/emdadh/hello-proxy/1> |
+| W2 kernel — Kaggle T4 | <https://www.kaggle.com/code/emdadh/free-gpu-bake-off> |
+| W2 kernel — P100 requested (got T4) | <https://www.kaggle.com/code/emdadh/bake-off-p100> |
+| W2 kernel — slug-mess twin (superseded, kept for provenance) | <https://www.kaggle.com/code/emdadh/free-gpu-bake-off-p100> |
+| W2 task (published) | <https://www.kaggle.com/benchmarks/tasks/emdadh/emit-kernel-metadata/1> |
 
-## Live meters
+## Live meters (end of W2)
 
 ```
-GPU       0.01h  29.99h  30.00h  refresh 2026-09-26
+GPU       0.05h  29.95h  30.00h  refresh 2026-09-26
 TPU       0.00h  20.00h  20.00h  refresh 2026-09-26
-Proxy     $0.00235534 total (4 model runs, 20 items)
-Colab     no active sessions (verified)
+Proxy     ~$0.0116 total (W0 $0.00235534 + W2 $0.00928147)
+Colab     no active sessions (verified after run)
 ```
 
-Proxy is at **0.0026% of the $90/month cap** ($0.00235534 of $90).
+## W2 results
 
-## W0/1 results
+### GPU lane — the bake-off (`projects/2026-W38-bakeoff-t4/results/`)
 
-### GPU lane — free T4 hardware card
+Same platform-agnostic `job.py` (torch fp16 matmul + whisper-tiny cold load +
+30 s synthetic-audio transcribe) on all three lanes:
 
-`projects/2026-W38-hello-t4/results/timings.json`
+| Lane | Card delivered | fp16 matmul | whisper RTF | torch |
+|---|---|---|---|---|
+| Kaggle T4 (`timings-kaggle-t4.json`) | Tesla T4, 15360 MB | 23150.9 | 7.75 | 2.10.0+cu128 |
+| Kaggle P100-requested (`timings-kaggle-p100-requested.json`) | **Tesla T4 anyway** | 24358.0 | 9.8 | 2.10.0+cu128 |
+| Colab T4 (`timings-colab-t4.json`) | Tesla T4, 15360 MB | **24307.6** | 6.07 | 2.11.0+cu128 (py 3.13) |
 
-| Field | Measured |
-|---|---|
-| GPU | Tesla T4 (T4 stuck, not the P100 fallback) |
-| VRAM | 15360 MB |
-| fp16 matmul | 21162.1 GFLOP/s |
-| Driver / CUDA | 580.159.04 / 13.0 |
-| torch | 2.10.0+cu128 |
-| pip install | 4.39 s |
-| git_sha | `eb16cb3` |
+1. **Kaggle has no P100 anymore and the CLI does not say so.** A fresh kernel
+   whose *first* push carries `--accelerator NvidiaTeslaP100` completes
+   silently on a T4. Verified on two kernels (one re-push, one first-push).
+2. **Colab free-tier T4 entitlement: VERIFIED** — the open High risk from
+   PLAN.md is closed. Real T4, allocation instant at ~21:00 UTC Saturday,
+   `colab run` self-cleaned the VM (checked `colab sessions` after).
 
-### Proxy lane — cost calibration
+Known artifact wart: `wall_s` in all three W2 files was measured *before* the
+whisper block (dict-literal ordering bug), so it is pre-whisper wall time.
+Comparable across lanes, not a whole-job number. Fixed in `job.py` for future
+weeks; not re-run (the whisper block carries its own timings).
 
-`projects/2026-W38-hello-t4/results/eval_results.json` — 5 riddles × 4 models,
-20 items, all 20 passed, regex-graded (no LLM judge).
+### Proxy lane — emit-kernel-metadata (`results/eval_results.json`)
 
-| Model | $/item | out tok/item | latency/item |
+5 items × 4 models (same four as W0), deterministic JSON/regex grading: emit a
+valid `kernel-metadata.json` for a T4 script kernel, private flip, GPU key
+name, 1.5 h / 8 h budgets as `-t` seconds.
+
+| Model | Score | $/item | out tok/item |
 |---|---|---|---|
-| `gemini-3.1-flash-lite-preview` | **$0.0000069** | 1.2 | 0.30 s |
-| `gemini-3.5-flash-lite` | $0.0000091 | 1.2 | 0.40 s |
-| `gpt-oss-20b` | $0.0000258 | 79 | 0.59 s |
-| `gemini-3.7-flash` | **$0.0004293** | 110 | 1.27 s |
+| `gemini-3.5-flash-lite` | **5/5** | $0.00013016 | 46.4 |
+| `gemini-3.7-flash` | 5/5 | $0.00142215 | 369.8 |
+| `gemini-3.1-flash-lite-preview` | 4/5 | $0.0000778 | 44.0 |
+| `gpt-oss-20b` | **3/5** | $0.000226184 | **873.6** |
 
-**Total $0.00235534.** PLAN.md's priors were wrong by 200–3000×.
-
-Two findings that matter more than the absolute numbers:
-
-1. **Reasoning tokens dominate cost, not prompt length.** `gemini-3.7-flash`
-   cost 47× more than `gemini-3.5-flash-lite` on an *identical* prompt, purely
-   by emitting 110 output tokens/item instead of 1.2. Model choice moves the
-   bill far more than item count.
-2. **This is a floor, not a representative number.** Prompts were 20–86 tokens
-   with 1-token answers. Real items that emit `kernel-metadata.json` will be
-   10–100× larger. Even at 100× it stays in the cents.
+**17/20, $0.0093 total.** The findings: (a) the schema is common knowledge —
+the "literacy" floor is higher than W0's riddle floor suggested; (b) the
+*cheapest* model is also the most correct; (c) `gpt-oss-20b` burns 8× the
+tokens reasoning and then invents a schema Kaggle never shipped
+(`username`+`slug` keys instead of `id`). For W3's `free-gpu-literacy` task:
+this item set no longer discriminates at the top — harder items needed (quota
+arithmetic, T4-vs-P100 choice, refusal cases).
 
 ## Commits
 
 ```
-e7cb66d  W0/1 GPU lane complete: Hello T4 measured on a free T4
-b002b42  Enforce budget_hours at the platform level; stamp W0 job provenance
-eb16cb3  Lab OS: W0/1 scaffold, Colab timeout fix, offline task pre-flight
+(this commit)   W2 bake-off: three free lanes measured, emit-kernel-metadata published
+1da4ed4         Reframe the content strategy: friction over spec sheets
+e7cb66d..5c6f7be  W0/1
 ```
 
-48 tests pass. Ledgers: `ledger/runs.jsonl` (1 entry), `ledger/proxy.jsonl` (4 entries).
-Both gitignored by design.
+75 tests pass. Ledgers: `ledger/runs.jsonl` (6 entries: 4 Kaggle runs + 1
+Colab + W0), `ledger/proxy.jsonl` (+4 entries). Both gitignored by design.
 
-## Next: W2 — the bake-off
+## Tweet drafts (gate-verified, unposted — X still unwired)
 
-Per PLAN.md Phase 3. GPU: same torch/whisper-tiny on Colab T4 vs Kaggle T4 vs
-P100. Eval sibling: "emit a valid `kernel-metadata.json` for a T4 script kernel",
-graded against the metadata this lab already writes via
-`lab.kaggle_runner.write_kernel_metadata`.
+`projects/2026-W38-bakeoff-t4/tweets/` — wait, `tweets/` is gitignored; the
+files live locally: `01-p100-gotcha`, `02-colab-kaggle-bakeoff`,
+`03-cheapest-model-wins`. Each passed `verify_from_files` against its cited
+evidence files.
+
+## Next: W3 — the 30-hour week
+
+Per PLAN.md Phase 3: public GPU budget template (GPU lane); publish
+`free-gpu-literacy` v1 as a public task, then the human clicks "create
+Benchmark collection" in the web UI once ≥2 tasks exist (we now have 2:
+hello-proxy, emit-kernel-metadata).
 
 ```bash
 # GPU lane
 .venv/bin/python -c "from lab.project import WeekProject, scaffold; ..."
 .venv/bin/python -m pytest
-.venv/bin/kaggle kernels push -p projects/<wk> --accelerator NvidiaTeslaT4 -t <hours*3600>
+# push with the slug guard in force: title must slugify to the metadata id
 
 # Eval lane — always in this order
-.venv/bin/python -m lab.task_check              # free, must pass first
-.venv/bin/kaggle b t auth -y                    # 1-hour key; re-run on 401
-.venv/bin/kaggle b t run <slug> -m <one-model>  # validate the slug ALONE first
-.venv/bin/kaggle b t run <slug> -m <a> -m <b>   # then batch two
+set -a && source .env && set +a   # kaggle b init -y if LLM_DEFAULT is gone; b auth -y on 401
+.venv/bin/python -m lab.task_check
+.venv/bin/kaggle b t run <slug> -m <one-model>   # validate solo first
+.venv/bin/kaggle b t run <slug> -m <a> -m <b>    # then batch two
 .venv/bin/kaggle b t download <slug> -o projects/<wk>/results/
+.venv/bin/python -m lab.harvest <dl-dir> <results-dir> <task> <git_sha>
 ```
 
-**Colab T4 entitlement is still unverified.** W0 never allocated a GPU session —
-every Colab call so far used `accelerator=NONE`. This is the one High risk from
-PLAN.md that remains open, and W2 is the week that depends on it.
+## Open decisions for you (unchanged + one new)
 
-## Open decisions for you
+1. **`.gitignore` still excludes `projects/**/results/`** — tweet digits are
+   verifiable locally but not from GitHub alone. Un-ignore the two canonical
+   JSONs per week, or keep pointing readers at Kaggle's public run pages.
+   Still not changed unilaterally.
+2. **Benchmark collection** now has 2 published tasks — the one web-UI click
+   is due whenever you want it (W3).
+3. **X posting still unwired** — drafts accumulate in `tweets/`.
 
-1. **`.gitignore` excludes `projects/**/results/`**, so `timings.json` and
-   `eval_results.json` are not in the public repo — a reader cannot check a
-   tweet's digits from GitHub alone. Either un-ignore those two files or state
-   that Kaggle hosts the evidence. Not changed unilaterally.
-2. **Benchmark *collections* need one web-UI click.** `kaggle b leaderboard`
-   returns 403 for a bare task; that is expected, not a bug. You have 1 published
-   task; PLAN.md W3 wants a collection once there are ≥2.
-3. **X posting is still unwired.** `gh`/Kaggle/Colab are all authed, but the
-   tweetauto lane was last recorded 402. Drafts are the fallback.
+## Gotchas — learned in W2, do not re-learn
 
-## Gotchas — do not re-learn these
+Carried from W0/1: colab run --timeout default 30 s; `b t push` runs the task
+once against the default model; unschedulable model slugs fail the whole `-m`
+list; 1-hour proxy keys; `dont_inherit=True` in task_check; kbench
+PassFail-vs-Boolean annotations; tweet-gate "0.64 s" spacing; no `kaggle b
+quota` in CLI 2.2.4; week folder = GPU kernel, task slug independent;
+`free-gpu-lab` tag invalid; `colab new` does not self-clean.
 
-1. **`colab run --timeout` defaults to 30 s.** Kills any real job.
-   `lab.colab_runner` always passes it now; raw CLI use still needs it.
-2. **`kaggle b t push` is not free** — creating the task runs it once against the
-   default model. W0's `gemini-3.7-flash` run came from task creation, before any
-   explicit `run`. Budget for the push.
-3. **`kaggle b t models` over-reports.** `gpt-5.4-nano` is in the catalog *and*
-   the interactive menu but returns *"Failed to schedule runs"*. The error names
-   **every** model you passed, not just the bad one — so validate new slugs one at
-   a time, never trust the list in the error.
-4. **`kaggle b t auth -y` writes a 1-hour key** to `.env`. Required before the
-   first `run`; re-run on 401. Already gitignored.
-5. **`compile()` inherits `from __future__ import annotations`** from the calling
-   module unless `dont_inherit=True`. That silently turned a task's `-> bool` into
-   the string `"bool"`, which kbench rejects. Fixed in `lab/task_check.py` — do not
-   remove that flag.
-6. **kbench writes `<task>-*.run.json` into the CWD** on import. Gitignored, and
-   `task_check` runs inside a temp dir.
-7. **Default kbench result type is `PassFail`, which expects `-> None`.**
-   Annotate `-> bool` for `Boolean`; an unregistered annotation raises at
-   decoration time.
-8. **The tweet gate needs a space between a number and its unit.** `"0.64s"`
-   tokenizes as `0` and is rejected; `"0.64 s"` verifies. Same for `"15360MB"`.
-9. **`kaggle b quota` does not exist** in CLI 2.2.4. Track Proxy spend via
-   `ledger/proxy.jsonl`.
-10. **A week folder is named for its GPU kernel, its task carries its own slug.**
-11. **`free-gpu-lab` is not a valid Kaggle kernel tag** — push warns and drops it.
-12. **Colab: `colab new` does not self-clean.** An idle session was found burning
-    compute units and stopped. Use `colab run` (self-cleaning) with an explicit `-s`.
+New:
+
+1. **Kaggle derives the kernel slug from the TITLE, not the metadata id.**
+   `title: "Free GPU bake-off (P100)"` + `id: emdadh/bakeoff-p100` creates
+   `free-gpu-bake-off-p100`, then every later push of that id 409s. The lab
+   now guards this: `write_kernel_metadata` raises `SlugMismatch` unless
+   `kaggle_slugify(title) == slug`. Fixed in metadata, not renamed (URLs stay).
+2. **`--accelerator` on a re-push does not change the card** — and on W2
+   evidence it does not matter even on first push: P100 is gone, silently.
+   `build_push_command(accelerator=...)` exists, but verify the delivered card
+   in `timings.json` (`gpu` field), never trust the flag.
+3. **`kernels status`/`kernels output` need the title-derived slug**
+   (`emdadh/free-gpu-bake-off`), not the metadata id slug.
+4. **`kernels output` skips download when a local file is newer** — use
+   `--force` when re-harvesting a newer version over an old local copy.
+5. **Boolean-result tasks record `results[].booleanResult` with null
+   `assertions`.** `lab.harvest` now reads both; a scorer that does
+   `all([])` on empty assertions will call every item a pass — that bug made
+   my first W2 read "20/20" when the truth was 17/20.
+6. **`colab` broke between weeks**: uv upgraded `jupyter_kernel_client` to
+   1.0.2, which renamed `KernelClient`; colab-cli 0.6.0 dies with
+   AttributeError *before* allocating a VM. Fix:
+   `uv pip install --python ~/.local/share/uv/tools/google-colab-cli/bin/python 'jupyter_kernel_client<1'`.
+7. **`kaggle b auth -y` no longer writes `LLM_DEFAULT`** — after a refresh,
+   task_check/import fails with KeyError until `kaggle b init -y` restores it.
+8. **The tweet gate cannot verify model names that contain digits**
+   ("gemini-3.5" tokenizes as 3.5). Write "Gemini Flash-Lite", or spell the
+   number so it traces (46.4, not "about 46").
+9. **`job.py` dict-literal ordering**: `wall_s` was computed before
+   `details.whisper_block()` ran. Put any "total wall" field last.
 
 ## Standing rules still in force
 

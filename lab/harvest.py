@@ -26,6 +26,12 @@ def _metrics_of(run: dict) -> dict | None:
 
 
 def _passed_of(run: dict) -> bool:
+    """A Boolean-result task records results[].booleanResult and leaves
+    assertions null; an assertion-graded task (W0's regex riddles) records the
+    assertion statuses. Support both — and never let an empty list pass."""
+    for record in run.get("results") or []:
+        if "booleanResult" in record:
+            return record.get("booleanResult") is True
     assertions = run.get("assertions") or []
     if not assertions:
         return False

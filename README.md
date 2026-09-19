@@ -2,13 +2,13 @@
 
 Unattended measurements on **Kaggle GPU** (~30h/week) and **Kaggle Benchmarks** (Model Proxy), with Colab as the public notebook surface. Every number below is measured, not estimated.
 
-**W0/1 is complete** — both lanes ran end to end with no browser.
+**W0/1 and W2 are complete** — both lanes ran end to end with no browser.
 
 | Meter | Live (2026-09-19) |
 |---|---|
-| Kaggle GPU | **0.01 / 30h** (refresh 2026-09-26) |
+| Kaggle GPU | **0.05 / 30h** (refresh 2026-09-26) |
 | Kaggle TPU | 0 / 20h |
-| Benchmarks Proxy | **$0.00235534** spent of a $90/month hard stop |
+| Benchmarks Proxy | **$0.0116** spent of a $90/month hard stop |
 | Colab | no active sessions |
 
 ## W0/1 results
@@ -42,6 +42,38 @@ All 20 items passed. Total: **$0.00235534**.
 
 Evidence: `projects/2026-W38-hello-t4/results/{timings.json,eval_results.json}` (gitignored — see open decisions in [HANDOFF.md](HANDOFF.md)).
 
+## W2 results — the bake-off
+
+### GPU lanes: same torch + whisper-tiny, three free surfaces
+
+Kernels: [emdadh/free-gpu-bake-off](https://www.kaggle.com/code/emdadh/free-gpu-bake-off) (Kaggle T4), [emdadh/bake-off-p100](https://www.kaggle.com/code/emdadh/bake-off-p100) (P100 requested), Colab `colab run --gpu T4`.
+
+| Lane | Card delivered | fp16 matmul | whisper-tiny RTF | torch |
+|---|---|---|---|---|
+| Kaggle, T4 requested | Tesla T4 (15360 MB) | 23150.9 GFLOP/s | 7.75 | 2.10.0+cu128 |
+| Kaggle, **P100 requested** | **Tesla T4 anyway** | 24358.0 GFLOP/s | 9.8 | 2.10.0+cu128 |
+| Colab, T4 requested | Tesla T4 (15360 MB) | **24307.6 GFLOP/s** | 6.07 | 2.11.0+cu128 |
+
+Two findings:
+
+1. **There is no P100 anymore.** A brand-new kernel whose *first* push carries `--accelerator NvidiaTeslaP100` completes silently on a Tesla T4. No warning, no error — the CLI accepts the flag and Kaggle hands you different silicon. Any 2023 recipe tuned on P100 quirks is running on a T4 now.
+2. **Colab's free T4 entitlement is real** (verified 2026-09-19, was W0's one open High risk). Same card name as Kaggle, slightly *faster* on the same matmul, newer torch — and the VM self-cleans after `colab run`.
+
+### Eval sibling: emit-kernel-metadata
+
+Task: [emdadh/emit-kernel-metadata](https://www.kaggle.com/benchmarks/tasks/emdadh/emit-kernel-metadata/1) — 5 items × 4 models (same four as W0), deterministic JSON/regex grading: emit a valid `kernel-metadata.json` for a T4 script kernel, flip `is_private`, name the GPU key, convert 1.5 h and 8 h budgets to `-t` seconds.
+
+| Model | Score | $/item | out tok/item |
+|---|---|---|---|
+| `gemini-3.5-flash-lite` | **5/5** | $0.00013016 | 46.4 |
+| `gemini-3.7-flash` | 5/5 | $0.00142215 | 369.8 |
+| `gemini-3.1-flash-lite-preview` | 4/5 | $0.0000778 | 44.0 |
+| `gpt-oss-20b` | **3/5** | $0.000226184 | **873.6** |
+
+17/20 overall, **$0.0093 total**. The cheap model that wins: `gemini-3.5-flash-lite` — perfect schema, 46 output tokens/item. The loser is the open-weights model: `gpt-oss-20b` emitted 873.6 tokens/item of reasoning and still "remembers" a schema Kaggle never shipped (`username`+`slug` keys instead of `id`), failing both metadata items.
+
+Evidence: `projects/2026-W38-bakeoff-t4/results/` (gitignored — see open decisions in [HANDOFF.md](HANDOFF.md)).
+
 ## Documentation
 
 - [PLAN.md](PLAN.md) — the 13-week plan
@@ -52,7 +84,7 @@ Evidence: `projects/2026-W38-hello-t4/results/{timings.json,eval_results.json}` 
 
 ```bash
 source .venv/bin/activate                # Python 3.12 + kaggle 2.2.4
-pytest                                   # 48 tests
+pytest                                   # 75 tests
 
 .venv/bin/kaggle quota                   # GPU/TPU hours
 .venv/bin/python -m lab.task_check       # free pre-flight for a Benchmarks task file

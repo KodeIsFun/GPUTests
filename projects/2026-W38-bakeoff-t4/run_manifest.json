@@ -1,0 +1,31 @@
+{
+  "title": "Free GPU bake-off",
+  "slug": "bakeoff-t4",
+  "budget_hours": 1.0,
+  "estimated_usd": 0.5,
+  "hypothesis": "The same torch + whisper-tiny script gets different cards, cold-start times, and throughput from each free surface — so 'free GPU' is not one thing. Kaggle hands out T4 or P100 by accelerator request; Colab's T4 entitlement is the open High risk this week either confirms or kills.",
+  "success_metric": "One timings.json per lane (Kaggle T4, Kaggle P100, Colab T4-or-CPU) with a non-null gpu name, comparable fp16 matmul metric, and a whisper block (pip_s, load_s, transcribe_s, rtf) — harvested with no browser.",
+  "gpu": {
+    "kernel_slug": "bakeoff-t4",
+    "p100_twin_slug": "bakeoff-p100",
+    "accelerator_requested": "NvidiaTeslaT4",
+    "p100_accelerator_requested": "NvidiaTeslaP100",
+    "script": "job.py",
+    "gate": "lab.quota.decide_gpu_job -- 1h of an 8h session cap; week reads 0.01h/30.00h at W2 start",
+    "colab": "colab run --gpu T4 (entitlement unverified; fallback CPU lane keeps the table at three rows)"
+  },
+  "eval": {
+    "task_slug": "emit-kernel-metadata",
+    "task_file": "task.py",
+    "budget_usd": 0.5,
+    "dataset": "5 items: emit a valid kernel-metadata.json for a T4 script kernel, flip is_private, name the GPU key, convert 1.5h and 8h budgets to -t seconds. Deterministic JSON/regex grading (no LLM judge).",
+    "models": [
+      "gpt-oss-20b",
+      "gemini-3.5-flash-lite",
+      "gemini-3.7-flash",
+      "gemini-3.1-flash-lite-preview"
+    ],
+    "why": "Same four models as W0's hello-proxy so the harder structured-output task is comparable against the riddle floor. A hosted model either writes metadata that would actually push, or it does not.",
+    "limit": "two models per kaggle b t run (AGENTS.md); solo gpt-oss-20b first to validate the task, then 2 + 1. estimated_usd uses W0's measured $/item x 5 items x ~50x JSON-output headroom"
+  }
+}

@@ -3,11 +3,26 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import json
+import re
 
 from lab.quota import GPU_JOB_MAX_HOURS, BudgetError, GpuQuota, require_gpu_job
 
 DEFAULT_ACCELERATOR = "NvidiaTeslaT4"
 ROOT = Path(__file__).resolve().parent.parent
+
+
+class SlugMismatch(ValueError):
+    pass
+
+
+def kaggle_slugify(title: str) -> str:
+    """Kaggle derives the kernel slug from the title, not from the metadata id.
+
+    'Free GPU bake-off (P100)' -> 'free-gpu-bake-off-p100'. Pushing with an id
+    that disagrees creates the kernel under the title slug and then 409s on
+    every later push of that id (W2, learned 2026-09-19).
+    """
+    return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
 
 
 @dataclass(frozen=True)
@@ -28,6 +43,13 @@ def default_kaggle_bin() -> Path:
 def write_kernel_metadata(
     folder: Path, spec: KernelSpec, quota: GpuQuota | None = None
 ) -> Path:
+    derived = kaggle_slugify(spec.title)
+    if derived != spec.slug:
+        raise SlugMismatch(
+            f"slug {spec.slug!r} does not resolve from title {spec.title!r} "
+            f"(expected {derived!r}); Kaggle names the kernel after the title "
+            "and a mismatched id makes every later push 409"
+        )
     if quota is not None:
         require_gpu_job(quota, spec.budget_hours)
     elif spec.budget_hours > GPU_JOB_MAX_HOURS:
@@ -59,6 +81,7 @@ def build_push_command(
     kaggle_bin: str,
     quota: GpuQuota,
     budget_hours: float,
+    accelerator: str = DEFAULT_ACCELERATOR,
 ) -> list[str]:
     require_gpu_job(quota, budget_hours)
     # -t makes budget_hours binding at the platform level instead of merely
@@ -71,7 +94,7 @@ def build_push_command(
         "-p",
         str(folder),
         "--accelerator",
-        DEFAULT_ACCELERATOR,
+        accelerator,
         "-t",
         str(int(budget_hours * 3600)),
     ]

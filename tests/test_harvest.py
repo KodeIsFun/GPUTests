@@ -66,6 +66,40 @@ def test_failed_assertion_is_not_a_pass(tmp_path: Path) -> None:
     assert summary["score"] == 0.0
 
 
+def _bool_run(in_tok, out_tok, in_nano, out_nano, latency_ms, passed: bool):
+    """W2 shape: a Boolean-result task has null assertions and an aggregated
+    results[].booleanResult instead."""
+    run = _run(in_tok, out_tok, in_nano, out_nano, latency_ms, passed=True)
+    run["assertions"] = None
+    run["results"] = [{"type": "AGGREGATED", "booleanResult": passed}]
+    return run
+
+
+def test_boolean_result_task_is_scored(tmp_path: Path) -> None:
+    d = tmp_path / "t" / "1" / "m" / "9"
+    d.mkdir(parents=True)
+    (d / "y.run.json").write_text(
+        json.dumps(_bool_run(100, 300, 1, 2, 700, passed=True))
+    )
+    (d / "n.run.json").write_text(
+        json.dumps(_bool_run(100, 300, 1, 2, 700, passed=False))
+    )
+    summary = summarize(read_runs(tmp_path / "t"))
+    assert summary["passed"] == 1
+    assert summary["score"] == 0.5
+
+
+def test_boolean_result_false_is_not_vacuously_true(tmp_path: Path) -> None:
+    # The W2 scorer bug: all([]) on null assertions called every item a pass.
+    d = tmp_path / "t" / "1" / "m" / "9"
+    d.mkdir(parents=True)
+    (d / "n.run.json").write_text(
+        json.dumps(_bool_run(1, 1, 1, 1, 1, passed=False))
+    )
+    summary = summarize(read_runs(tmp_path / "t"))
+    assert summary["passed"] == 0
+
+
 def test_aggregate_exposes_the_spread_for_tweet_verification(tmp_path: Path) -> None:
     out = tmp_path / "out"
     aggregate = write_eval_results(

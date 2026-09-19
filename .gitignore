@@ -24,3 +24,7 @@ projects/**/tweets/
 # kbench writes these next to wherever a task is imported
 *.run.json
 *.task.json
+
+# kaggle b init litter
+example_task.py
+kaggle_benchmarks_reference.md
