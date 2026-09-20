@@ -4,6 +4,19 @@ The Month-2 pivot question: everyone with a free Colab/Kaggle GPU asks
 "can I run a 7B/14B/open-weights model locally, and at what speed?" Nobody
 publishes a measured table, so this week produces one.
 
+v3 protocol (v2 lessons, all paid for on the same kernel's version history):
+  - v1: source build of llama-cpp-python died in 28 s (no usable nvcc in the
+    runtime image). v2+ installs the prebuilt CUDA wheel from the project's
+    own cu124 index and refuses to measure if llama.cpp reports no offload.
+  - v2 skipped gpt-oss-20b on over-fat VRAM margins (3500 MB) without even
+    attempting the load. v3 attempts with an honest 1500 MB reserve; an OOM
+    is caught and recorded as a result, not an exit.
+  - v2 measured prompt processing on a context full of chat history and got
+    pp numbers that violate physics. v3 runs pp first, on a clean context,
+    twice (untimed pass pays CUDA graph capture, reset, then the timed pass).
+  - v2 read VRAM right after load, before weights were resident. v3 reads
+    after a warm chat turn and keeps llama.cpp's own offload log lines.
+
 One deliberately self-contained file (no lab/ imports), pushed to a Kaggle T4
 with a 2 h platform budget (-t 7200). Plan-week W5, month 2.
 
@@ -50,8 +63,10 @@ N_CTX = 4096
 TG_MAX_TOKENS = 640
 PP_TOKENS = 512
 QUESTION = "Name three planets in the solar system and one fact about each."
-VRAM_SAFETY_MARGIN_MB = 2500  # weights + this must fit in free VRAM to attempt a load
-KV_RESERVE_MB = 1000  # rough KV-cache + CUDA context headroom
+# v3: v2's fat margins (3500 MB) skipped gpt-oss-20b without even trying, and
+# MoE KV at 4k ctx is ~200 MB. Honest budget: weights + 1500 MB for context,
+# CUDA context and buffers — then an OOM is caught and recorded as a result.
+VRAM_ATTEMPT_RESERVE_MB = 1500
 
 MODELS: list[dict] = [
     {
@@ -241,15 +256,24 @@ def download(entry: dict) -> tuple[str, float, float]:
     return path, time.time() - t0, size_gb
 
 
-def load_model(path: str):
+def load_model(path: str) -> tuple[object, str]:
+    """Load with llama.cpp's own init log captured — the offload line is the
+    evidence that the weights actually went to the GPU (v2's nvidia-smi
+    reading right after load under-reported vs the file size)."""
+    import io
+    from contextlib import redirect_stderr
+
     from llama_cpp import Llama
 
-    return Llama(
-        model_path=path,
-        n_gpu_layers=-1,
-        n_ctx=N_CTX,
-        verbose=False,
-    )
+    captured = io.StringIO()
+    with redirect_stderr(captured):
+        llm = Llama(
+            model_path=path,
+            n_gpu_layers=-1,
+            n_ctx=N_CTX,
+            verbose=True,
+        )
+    return llm, captured.getvalue()
 
 
 def chat(llm, entry: dict, messages: list, max_tokens: int):
@@ -280,25 +304,49 @@ def measure(entry: dict, baseline_used_mb: float) -> dict:
     free_mb = (
         gpu_rows[0]["vram_total_mb"] - gpu_rows[0]["vram_used_mb"] if gpu_rows else 0.0
     )
+    rec["free_mb_before_load"] = round(free_mb, 1)
 
     path, download_s, size_gb = download(entry)
     rec["file_gb"] = round(size_gb, 3)
     rec["download_s"] = round(download_s, 2)
 
-    if gpu_rows and size_gb * 1024 + KV_RESERVE_MB + VRAM_SAFETY_MARGIN_MB > free_mb:
+    if gpu_rows and size_gb * 1024 + VRAM_ATTEMPT_RESERVE_MB > free_mb:
         rec["status"] = "skipped_vram"
-        rec["free_mb_before_load"] = round(free_mb, 1)
         return rec
 
     t0 = time.time()
-    llm = load_model(path)
+    llm, init_log = load_model(path)
     rec["load_s"] = round(time.time() - t0, 2)
+    offload_lines = [
+        line.strip()
+        for line in init_log.splitlines()
+        if ("offloaded" in line.lower())
+        or ("cuda" in line.lower() and "error" in line.lower())
+    ]
+    if offload_lines:
+        rec["offload_log"] = offload_lines[:4]
 
-    rows = query_gpu()
-    rec["vram_after_load_mb"] = rows[0]["vram_used_mb"] if rows else None
-    peak = rec["vram_after_load_mb"] or 0.0
+    # Prompt processing on a CLEAN context, twice: v2 measured eval() on a
+    # context already full of chat history and got pp numbers that violated
+    # physics (27890 tok/s for 8B). First pass pays one-time CUDA graph
+    # capture; the second pass on a reset context is the honest number.
+    tokens: list[int] = []
+    while len(tokens) < PP_TOKENS:
+        tokens.extend(llm.tokenize(FILLER.encode("utf-8")))
+    tokens = tokens[:PP_TOKENS]
+    llm.eval(tokens)
+    llm.reset()
+    t0 = time.time()
+    llm.eval(tokens)
+    pp_wall = time.time() - t0
+    llm.reset()
+    rec["pp512_tok_s"] = round(PP_TOKENS / pp_wall, 2) if pp_wall > 0 else None
 
+    # Warmup chat turn, then VRAM with weights fully resident.
     chat(llm, entry, [{"role": "user", "content": "Say OK."}], 8)
+    rows = query_gpu()
+    rec["vram_after_warmup_mb"] = rows[0]["vram_used_mb"] if rows else None
+    peak = rec["vram_after_warmup_mb"] or 0.0
 
     # Generation throughput: tiny prompt, greedy, so wall time is ~pure decode.
     t0 = time.time()
@@ -323,16 +371,6 @@ def measure(entry: dict, baseline_used_mb: float) -> dict:
         rec["tg_tok_s"] = round(completion_tokens / tg_wall, 2)
     rec["answer_head"] = strip_thinking(content)[:160]
     rec["answer_ok"] = answer_ok(content)
-
-    # Prompt processing: exactly PP_TOKENS tokens through llm.eval.
-    tokens: list[int] = []
-    while len(tokens) < PP_TOKENS:
-        tokens.extend(llm.tokenize(FILLER.encode("utf-8")))
-    llm.eval(tokens[:16])  # warm the eval path (CUDA graph capture etc.)
-    t0 = time.time()
-    llm.eval(tokens[:PP_TOKENS])
-    pp_wall = time.time() - t0
-    rec["pp512_tok_s"] = round(PP_TOKENS / pp_wall, 2) if pp_wall > 0 else None
     rec["vram_peak_mb"] = peak
 
     del llm
