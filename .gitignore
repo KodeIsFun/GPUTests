@@ -11,12 +11,12 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-ledger/*.jsonl
-!ledger/.gitkeep
-projects/**/results/
-projects/**/tweets/
 .DS_Store
 
+# Evidence, drafts, and ledgers are tracked since 2026-09-19 (the repo is the
+# lab's portable state — "commit and push everything so we can continue on
+# other devices"). Secrets above stay excluded. kbench's global *.run.json
+# litter rule below gets a narrow exception for harvested run trees.
 # editor/plugin scratch dirs
 .v2c/
 .video_agent/
@@ -24,6 +24,7 @@ projects/**/tweets/
 # kbench writes these next to wherever a task is imported
 *.run.json
 *.task.json
+!projects/**/results/raw-eval/**/*.run.json
 
 # kaggle b init litter
 example_task.py

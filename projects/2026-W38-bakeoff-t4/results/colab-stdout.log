@@ -1,0 +1,29 @@
+###TIMINGS###
+{
+  "gpu": "Tesla T4",
+  "vram_mb": 15360,
+  "wall_s": 0.209,
+  "metric": 24307.6,
+  "git_sha": "1da4ed4",
+  "platform": "colab",
+  "details": {
+    "driver": "580.82.07",
+    "compute_cap": "7.5",
+    "cuda_version": "13.0",
+    "torch": "2.11.0+cu128",
+    "python": "3.13.15",
+    "matmul": "fp16 4096x4096 x20",
+    "metric_unit": "GFLOP/s",
+    "whisper": {
+      "pip_install_s": 7.52,
+      "pip_package": "openai-whisper",
+      "model": "tiny",
+      "load_s": 1.98,
+      "transcribe_s": 4.94,
+      "rtf": 6.07,
+      "transcript_chars": 0,
+      "transcript_head": ""
+    }
+  }
+}
+###TIMINGS###

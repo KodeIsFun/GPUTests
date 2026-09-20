@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "emit-kernel-metadata",
+    "description": "One item: prompt the model, grade the reply deterministically.",
+    "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.5-flash-lite"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-09-19T15:02:45.184761Z",
+  "endTime": "2026-09-19T15:02:46.812773Z",
+  "conversations": [
+    {
+      "id": "emit-kernel-metadata-89b4282e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "Write a Kaggle kernel-metadata.json as a single JSON object and nothing else. Requirements: a Python script kernel for user emdadh, slug t4-demo, title 'T4 Demo', GPU enabled, internet enabled, code file job.py."
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"id\": \"emdadh/t4-demo\",\n  \"title\": \"T4 Demo\",\n  \"code_file\": \"job.py\",\n  \"language\": \"python\",\n  \"kernel_type\": \"script\",\n  \"is_private\": false,\n  \"enable_gpu\": true,\n  \"enable_internet\": true,\n  \"dataset_sources\": [],\n  \"competition_sources\": [],\n  \"kernel_sources\": []\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.5-flash-lite"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 55,
+            "outputTokens": 108,
+            "inputTokensCostNanodollars": "16500",
+            "outputTokensCostNanodollars": "270000",
+            "totalBackendLatencyMs": "672"
+          },
+          "id": "emit-kernel-metadata-89b4282e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 55,
+        "outputTokens": 108,
+        "inputTokensCostNanodollars": "16500",
+        "outputTokensCostNanodollars": "270000",
+        "totalBackendLatencyMs": "672"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "booleanResult": true
+    }
+  ],
+  "pyRunId": "emit-kernel-metadata-Run #1"
+}

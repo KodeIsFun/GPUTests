@@ -1,0 +1,33 @@
+{
+  "task_name": "hello-proxy",
+  "trial_name": "hello-proxy-Run #5",
+  "trial_uri": "kbench://not-a-harbor-trial",
+  "task_id": {
+    "path": "kbench://not-a-harbor-task"
+  },
+  "task_checksum": "unknown (kbench)",
+  "config": {
+    "task": {
+      "path": "kbench://not-a-harbor-task"
+    }
+  },
+  "agent_info": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_info": {
+      "name": "google/gemini-3.1-flash-lite-preview"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 14,
+    "n_output_tokens": 1,
+    "cost_usd": 5e-06
+  },
+  "verifier_result": {
+    "rewards": {
+      "score": 1.0
+    }
+  },
+  "started_at": "2026-09-19T10:28:43.747022Z",
+  "finished_at": "2026-09-19T10:28:44.187830Z"
+}

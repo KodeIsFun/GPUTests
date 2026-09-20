@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "emit-kernel-metadata-Run #4",
+  "trajectory_id": "emit-kernel-metadata-Run #4",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "openai/gpt-oss-20b"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A Kaggle kernel push accepts a session timeout as a whole number of seconds. A script kernel job needs 1.5 hours. What exact number of seconds is that? Reply with only the number.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-19T15:01:00.506527Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "5400",
+      "extra": {
+        "sender_name": "openai/gpt-oss-20b"
+      },
+      "model_name": "openai/gpt-oss-20b",
+      "metrics": {
+        "prompt_tokens": 108,
+        "completion_tokens": 105,
+        "cost_usd": 3.381e-05,
+        "extra": {
+          "total_backend_latency_ms": 465
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'emit-kernel-metadata'.",
+  "final_metrics": {
+    "total_prompt_tokens": 108,
+    "total_completion_tokens": 105,
+    "total_cost_usd": 3.381e-05,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "emit-kernel-metadata",
+        "description": "One item: prompt the model, grade the reply deterministically.",
+        "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-19T15:01:01.119548Z"
+    }
+  }
+}

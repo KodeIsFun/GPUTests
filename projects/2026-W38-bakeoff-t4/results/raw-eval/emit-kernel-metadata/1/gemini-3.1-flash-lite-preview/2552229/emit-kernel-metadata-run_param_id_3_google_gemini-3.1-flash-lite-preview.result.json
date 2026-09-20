@@ -1,0 +1,33 @@
+{
+  "task_name": "emit-kernel-metadata",
+  "trial_name": "emit-kernel-metadata-Run #4",
+  "trial_uri": "kbench://not-a-harbor-trial",
+  "task_id": {
+    "path": "kbench://not-a-harbor-task"
+  },
+  "task_checksum": "unknown (kbench)",
+  "config": {
+    "task": {
+      "path": "kbench://not-a-harbor-task"
+    }
+  },
+  "agent_info": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_info": {
+      "name": "google/gemini-3.1-flash-lite-preview"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 42,
+    "n_output_tokens": 4,
+    "cost_usd": 1.65e-05
+  },
+  "verifier_result": {
+    "rewards": {
+      "score": 1.0
+    }
+  },
+  "started_at": "2026-09-19T15:02:40.084694Z",
+  "finished_at": "2026-09-19T15:02:40.512920Z"
+}

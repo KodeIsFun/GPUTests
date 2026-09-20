@@ -1,0 +1,16 @@
+{
+  "task": "emit-kernel-metadata",
+  "model": "gemini-3.1-flash-lite-preview",
+  "git_sha": "1da4ed4",
+  "models": 1,
+  "items": 5,
+  "passed": 4,
+  "score": 0.8,
+  "input_tokens": 236,
+  "output_tokens": 220,
+  "output_tokens_per_item": 44.0,
+  "input_tokens_cost": 5.9e-05,
+  "output_tokens_cost": 0.00033,
+  "usd_per_item": 7.78e-05,
+  "latency_s": 0.5844
+}

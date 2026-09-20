@@ -1,0 +1,7 @@
+I asked 4 hosted models to write kernel-metadata.json that would actually push to Kaggle. 20 items, graded by code, no judge.
+
+The winner: Gemini Flash-Lite — 5 of 5, 46.4 output tokens per item, $0.00013016 each.
+
+The loser: gpt-oss-20b. It burned 873.6 tokens per item reasoning, then 'remembered' a schema Kaggle never shipped — username and slug keys instead of id. 3 of 5.
+
+Price buys speed, not correctness. The cheapest model knew the schema cold.

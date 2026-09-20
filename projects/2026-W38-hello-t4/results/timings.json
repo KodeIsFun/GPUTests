@@ -1,0 +1,19 @@
+{
+  "gpu": "Tesla T4",
+  "vram_mb": 15360,
+  "wall_s": 0.454,
+  "metric": 21162.1,
+  "git_sha": "eb16cb3",
+  "platform": "kaggle",
+  "details": {
+    "driver": "580.159.04",
+    "compute_cap": "7.5",
+    "cuda_version": "13.0",
+    "torch": "2.10.0+cu128",
+    "python": "3.12.13",
+    "pip_install_s": 4.39,
+    "pip_package": "tabulate",
+    "matmul": "fp16 4096x4096 x20",
+    "metric_unit": "GFLOP/s"
+  }
+}

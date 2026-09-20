@@ -1,0 +1,16 @@
+{
+  "task": "hello-proxy",
+  "model": "gemini-3.1-flash-lite-preview",
+  "git_sha": "eb16cb3",
+  "models": 1,
+  "items": 5,
+  "passed": 5,
+  "score": 1.0,
+  "input_tokens": 102,
+  "output_tokens": 6,
+  "output_tokens_per_item": 1.2,
+  "input_tokens_cost": 2.55e-05,
+  "output_tokens_cost": 9e-06,
+  "usd_per_item": 6.9e-06,
+  "latency_s": 0.3
+}

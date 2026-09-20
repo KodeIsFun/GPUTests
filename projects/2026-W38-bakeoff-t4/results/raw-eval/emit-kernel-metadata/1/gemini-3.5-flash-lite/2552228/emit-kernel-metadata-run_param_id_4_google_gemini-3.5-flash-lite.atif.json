@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "emit-kernel-metadata-Run #5",
+  "trajectory_id": "emit-kernel-metadata-Run #5",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "google/gemini-3.5-flash-lite"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A Kaggle kernel push accepts a session timeout as a whole number of seconds. A script kernel job needs the maximum allowed 8 hours. What exact number of seconds is that? Reply with only the number.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-19T15:02:49.063478Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "28800",
+      "extra": {
+        "sender_name": "google/gemini-3.5-flash-lite"
+      },
+      "model_name": "google/gemini-3.5-flash-lite",
+      "metrics": {
+        "prompt_tokens": 43,
+        "completion_tokens": 5,
+        "cost_usd": 2.54e-05,
+        "extra": {
+          "total_backend_latency_ms": 443
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'emit-kernel-metadata'.",
+  "final_metrics": {
+    "total_prompt_tokens": 43,
+    "total_completion_tokens": 5,
+    "total_cost_usd": 2.54e-05,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "emit-kernel-metadata",
+        "description": "One item: prompt the model, grade the reply deterministically.",
+        "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-19T15:02:49.643694Z"
+    }
+  }
+}

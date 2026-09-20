@@ -1,0 +1,8 @@
+{"utc": "2026-09-19T10:27:00Z", "task": "hello-proxy", "model": "gemini-3.1-flash-lite-preview", "items": 5, "usd": 3.45e-05, "tokens": {"input": 102, "output": 6}, "passed": 5, "git_sha": "eb16cb3"}
+{"utc": "2026-09-19T10:27:00Z", "task": "hello-proxy", "model": "gemini-3.5-flash-lite", "items": 5, "usd": 4.56e-05, "tokens": {"input": 102, "output": 6}, "passed": 5, "git_sha": "eb16cb3"}
+{"utc": "2026-09-19T10:27:00Z", "task": "hello-proxy", "model": "gemini-3.7-flash", "items": 5, "usd": 0.0021465, "tokens": {"input": 102, "output": 552}, "passed": 5, "git_sha": "eb16cb3"}
+{"utc": "2026-09-19T10:27:00Z", "task": "hello-proxy", "model": "gpt-oss-20b", "items": 5, "usd": 0.00012874, "tokens": {"input": 432, "output": 394}, "passed": 5, "git_sha": "eb16cb3"}
+{"utc": "2026-09-19T15:10:19Z", "task": "emit-kernel-metadata", "model": "gemini-3.1-flash-lite-preview", "items": 5, "usd": 0.000389, "tokens": {"input": 236, "output": 220}, "passed": 4, "git_sha": "1da4ed4"}
+{"utc": "2026-09-19T15:10:19Z", "task": "emit-kernel-metadata", "model": "gemini-3.5-flash-lite", "items": 5, "usd": 0.0006508, "tokens": {"input": 236, "output": 232}, "passed": 5, "git_sha": "1da4ed4"}
+{"utc": "2026-09-19T15:10:19Z", "task": "emit-kernel-metadata", "model": "gemini-3.7-flash", "items": 5, "usd": 0.00711075, "tokens": {"input": 236, "output": 1849}, "passed": 5, "git_sha": "1da4ed4"}
+{"utc": "2026-09-19T15:10:19Z", "task": "emit-kernel-metadata", "model": "gpt-oss-20b", "items": 5, "usd": 0.00113092, "tokens": {"input": 556, "output": 4368}, "passed": 3, "git_sha": "1da4ed4"}

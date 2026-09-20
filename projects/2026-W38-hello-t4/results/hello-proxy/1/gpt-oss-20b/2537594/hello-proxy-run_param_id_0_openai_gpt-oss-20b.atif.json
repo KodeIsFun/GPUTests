@@ -1,0 +1,76 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "hello-proxy-Run #1",
+  "trajectory_id": "hello-proxy-Run #1",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "openai/gpt-oss-20b"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "I have cities but no houses, forests but no trees, and water but no fish. What am I? Answer with one word.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-19T10:28:38.900557Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "map",
+      "extra": {
+        "sender_name": "openai/gpt-oss-20b"
+      },
+      "model_name": "openai/gpt-oss-20b",
+      "metrics": {
+        "prompt_tokens": 94,
+        "completion_tokens": 98,
+        "cost_usd": 3.108e-05,
+        "extra": {
+          "total_backend_latency_ms": 1475
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'hello-proxy'.",
+  "final_metrics": {
+    "total_prompt_tokens": 94,
+    "total_completion_tokens": 98,
+    "total_cost_usd": 3.108e-05,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "hello-proxy",
+        "description": "Ask one riddle; True when the reply contains the expected word.",
+        "definition": "@kbench.task(name=\"hello-proxy\")\ndef hello_proxy(llm, riddle: str, answer: str) -> bool:\n    \"\"\"Ask one riddle; True when the reply contains the expected word.\"\"\"\n    response = llm.prompt(riddle)\n    verdict = kbench.assertions.assert_contains_regex(\n        rf\"\\b{re.escape(answer)}\\b\",\n        response,\n        expectation=f\"reply names '{answer}'\",\n        flags=re.IGNORECASE,\n    )\n    return bool(verdict.passed)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-19T10:28:41.285500Z",
+      "assertions": [
+        {
+          "expectation": "reply names 'map'",
+          "status": "BENCHMARK_TASK_RUN_ASSERTION_STATUS_PASSED",
+          "line_number": 5,
+          "definition": "verdict = kbench.assertions.assert_contains_regex(",
+          "conversation_request_ids": [
+            {
+              "conversation_id": "hello-proxy-a3eb0fa2",
+              "request_id": "hello-proxy-a3eb0fa2-req-1"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

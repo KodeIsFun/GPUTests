@@ -1,0 +1,16 @@
+{
+  "task": "hello-proxy",
+  "model": "gpt-oss-20b",
+  "git_sha": "eb16cb3",
+  "models": 1,
+  "items": 5,
+  "passed": 5,
+  "score": 1.0,
+  "input_tokens": 432,
+  "output_tokens": 394,
+  "output_tokens_per_item": 78.8,
+  "input_tokens_cost": 3.024e-05,
+  "output_tokens_cost": 9.85e-05,
+  "usd_per_item": 2.5748e-05,
+  "latency_s": 0.586
+}

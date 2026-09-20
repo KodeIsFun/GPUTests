@@ -40,7 +40,7 @@ All 20 items passed. Total: **$0.00235534**.
 
 **Reasoning tokens dominate cost, not prompt length** — `gemini-3.7-flash` cost 47× more than `gemini-3.5-flash-lite` on an identical prompt, purely by emitting 110 output tokens per item instead of 1.2. These are short-prompt numbers and therefore a *floor*: real items that emit `kernel-metadata.json` will be 10–100× larger.
 
-Evidence: `projects/2026-W38-hello-t4/results/{timings.json,eval_results.json}` (gitignored — see open decisions in [HANDOFF.md](HANDOFF.md)).
+Evidence: `projects/2026-W38-hello-t4/results/{timings.json,eval_results.json}` (committed — every digit above is checkable in-repo).
 
 ## W2 results — the bake-off
 
@@ -72,7 +72,7 @@ Task: [emdadh/emit-kernel-metadata](https://www.kaggle.com/benchmarks/tasks/emda
 
 17/20 overall, **$0.0093 total**. The cheap model that wins: `gemini-3.5-flash-lite` — perfect schema, 46 output tokens/item. The loser is the open-weights model: `gpt-oss-20b` emitted 873.6 tokens/item of reasoning and still "remembers" a schema Kaggle never shipped (`username`+`slug` keys instead of `id`), failing both metadata items.
 
-Evidence: `projects/2026-W38-bakeoff-t4/results/` (gitignored — see open decisions in [HANDOFF.md](HANDOFF.md)).
+Evidence: `projects/2026-W38-bakeoff-t4/results/` (committed — raw per-item run files included).
 
 ## Documentation
 

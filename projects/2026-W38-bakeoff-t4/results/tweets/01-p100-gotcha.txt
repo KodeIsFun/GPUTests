@@ -1,0 +1,7 @@
+There is no P100 on Kaggle anymore, and nobody told the CLI.
+
+I asked for an NvidiaTeslaP100 on a brand-new kernel. The push succeeded, the run completed, the log said nothing — and the hardware card read Tesla T4.
+
+No warning. No error. If your recipe was tuned on P100 quirks, it is quietly running on different silicon now.
+
+Full receipt in the repo — same script on all three free lanes.

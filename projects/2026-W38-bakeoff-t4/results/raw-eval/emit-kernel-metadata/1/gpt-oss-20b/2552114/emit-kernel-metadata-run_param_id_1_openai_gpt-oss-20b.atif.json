@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "emit-kernel-metadata-Run #2",
+  "trajectory_id": "emit-kernel-metadata-Run #2",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "openai/gpt-oss-20b"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "Write a Kaggle kernel-metadata.json as a single JSON object and nothing else. Requirements: a Python script kernel for user emdadh, slug t4-demo-private, title 'T4 Demo (private)', GPU enabled, internet enabled, code file job.py. The kernel must be private (not publicly visible).",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-19T15:00:53.398403Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "{\"kernel_type\":\"script\",\"kernel_name\":\"t4-demo-private\",\"title\":\"T4 Demo (private)\",\"slug\":\"t4-demo-private\",\"language\":\"python\",\"gpu\":true,\"internet\":true,\"private\":true,\"files\":[{\"name\":\"job.py\",\"type\":\"source\",\"path\":\"job.py\"}]}",
+      "extra": {
+        "sender_name": "openai/gpt-oss-20b"
+      },
+      "model_name": "openai/gpt-oss-20b",
+      "metrics": {
+        "prompt_tokens": 130,
+        "completion_tokens": 1505,
+        "cost_usd": 0.00038535,
+        "extra": {
+          "total_backend_latency_ms": 5777
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'emit-kernel-metadata'.",
+  "final_metrics": {
+    "total_prompt_tokens": 130,
+    "total_completion_tokens": 1505,
+    "total_cost_usd": 0.00038535,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 0.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "emit-kernel-metadata",
+        "description": "One item: prompt the model, grade the reply deterministically.",
+        "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-19T15:00:59.334464Z"
+    }
+  }
+}

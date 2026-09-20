@@ -1,0 +1,5 @@
+Same script, same whisper-tiny workload, both free tiers.
+
+Colab handed me a Tesla T4 with 15360 MB and beat Kaggle's T4 on the same fp16 matmul: 24307.6 vs 23150.9. Transcription went to Colab too: 6.07 vs 7.75 RTF.
+
+The card name is identical. The behaviour is not. 'Free GPU' is not one thing — check what you actually got.

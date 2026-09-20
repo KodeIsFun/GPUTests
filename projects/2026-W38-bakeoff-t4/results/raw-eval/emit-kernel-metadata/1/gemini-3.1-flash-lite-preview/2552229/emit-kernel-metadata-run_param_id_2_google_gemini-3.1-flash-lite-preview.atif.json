@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "emit-kernel-metadata-Run #3",
+  "trajectory_id": "emit-kernel-metadata-Run #3",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "google/gemini-3.1-flash-lite-preview"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "In a Kaggle kernel-metadata.json file, which single key enables the GPU? Reply with only the exact key name.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-19T15:02:39.540747Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "enable_gpu",
+      "extra": {
+        "sender_name": "google/gemini-3.1-flash-lite-preview"
+      },
+      "model_name": "google/gemini-3.1-flash-lite-preview",
+      "metrics": {
+        "prompt_tokens": 27,
+        "completion_tokens": 3,
+        "cost_usd": 1.125e-05,
+        "extra": {
+          "total_backend_latency_ms": 460
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'emit-kernel-metadata'.",
+  "final_metrics": {
+    "total_prompt_tokens": 27,
+    "total_completion_tokens": 3,
+    "total_cost_usd": 1.125e-05,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "emit-kernel-metadata",
+        "description": "One item: prompt the model, grade the reply deterministically.",
+        "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-19T15:02:40.080781Z"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "emit-kernel-metadata",
+    "description": "One item: prompt the model, grade the reply deterministically.",
+    "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-flash-lite-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-09-19T15:02:39.540747Z",
+  "endTime": "2026-09-19T15:02:40.080781Z",
+  "conversations": [
+    {
+      "id": "emit-kernel-metadata-9412ecf2",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "In a Kaggle kernel-metadata.json file, which single key enables the GPU? Reply with only the exact key name."
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "enable_gpu"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-flash-lite-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 27,
+            "outputTokens": 3,
+            "inputTokensCostNanodollars": "6750",
+            "outputTokensCostNanodollars": "4500",
+            "totalBackendLatencyMs": "460"
+          },
+          "id": "emit-kernel-metadata-9412ecf2-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 27,
+        "outputTokens": 3,
+        "inputTokensCostNanodollars": "6750",
+        "outputTokensCostNanodollars": "4500",
+        "totalBackendLatencyMs": "460"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "booleanResult": true
+    }
+  ],
+  "pyRunId": "emit-kernel-metadata-Run #3"
+}

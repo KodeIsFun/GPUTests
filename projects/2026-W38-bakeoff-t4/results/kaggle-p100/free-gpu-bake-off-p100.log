@@ -1,0 +1,37 @@
+[{"stream_name":"stderr","time":30.139247218,"data":"\r  0%|                                              | 0.00/72.1M [00:00\u003c?, ?iB/s]\r  1%|▎                                     | 656k/72.1M [00:00\u003c00:11, 6.70MiB/s]\r 11%|████▏                                | 8.08M/72.1M [00:00\u003c00:01, 48.0MiB/s]\r 26%|█████████▋                           | 18.9M/72.1M [00:00\u003c00:00, 77.7MiB/s]\r 50%|██████████████████▊                   | 35.8M/72.1M [00:00\u003c00:00, 117MiB/s]\r 70%|██████████████████████████▊           | 50.7M/72.1M [00:00\u003c00:00, 131MiB/s]\r 88%|█████████████████████████████████▎    | 63.3M/72.1M [00:00\u003c00:00, 123MiB/s]\r100%|██████████████████████████████████████| 72.1M/72.1M [00:00\u003c00:00, 104MiB/s]\n"}
+,{"stream_name":"stdout","time":35.990991136,"data":"###TIMINGS###\n"}
+,{"stream_name":"stdout","time":35.991055028,"data":"{\n"}
+,{"stream_name":"stdout","time":35.991063919,"data":"  \"gpu\": \"Tesla T4\",\n"}
+,{"stream_name":"stdout","time":35.99106948,"data":"  \"vram_mb\": 15360,\n"}
+,{"stream_name":"stdout","time":35.991105388,"data":"  \"wall_s\": 0.488,\n"}
+,{"stream_name":"stdout","time":35.991112067,"data":"  \"metric\": 20982.2,\n"}
+,{"stream_name":"stdout","time":35.991117328,"data":"  \"git_sha\": \"1da4ed4\",\n"}
+,{"stream_name":"stdout","time":35.991122088,"data":"  \"platform\": \"kaggle\",\n"}
+,{"stream_name":"stdout","time":35.991126911,"data":"  \"details\": {\n"}
+,{"stream_name":"stdout","time":35.991131491,"data":"    \"driver\": \"580.159.04\",\n"}
+,{"stream_name":"stdout","time":35.991136449,"data":"    \"compute_cap\": \"7.5\",\n"}
+,{"stream_name":"stdout","time":35.991141344,"data":"    \"cuda_version\": \"13.0\",\n"}
+,{"stream_name":"stdout","time":35.991146346,"data":"    \"torch\": \"2.10.0+cu128\",\n"}
+,{"stream_name":"stdout","time":35.991151745,"data":"    \"python\": \"3.12.13\",\n"}
+,{"stream_name":"stdout","time":35.991156881,"data":"    \"matmul\": \"fp16 4096x4096 x20\",\n"}
+,{"stream_name":"stdout","time":35.991163211,"data":"    \"metric_unit\": \"GFLOP/s\",\n"}
+,{"stream_name":"stdout","time":35.991168415,"data":"    \"whisper\": {\n"}
+,{"stream_name":"stdout","time":35.991173731,"data":"      \"pip_install_s\": 12.42,\n"}
+,{"stream_name":"stdout","time":35.991180222,"data":"      \"pip_package\": \"openai-whisper\",\n"}
+,{"stream_name":"stdout","time":35.991186304,"data":"      \"model\": \"tiny\",\n"}
+,{"stream_name":"stdout","time":35.991191751,"data":"      \"load_s\": 2.13,\n"}
+,{"stream_name":"stdout","time":35.991197402,"data":"      \"transcribe_s\": 4.51,\n"}
+,{"stream_name":"stdout","time":35.991203175,"data":"      \"rtf\": 6.65,\n"}
+,{"stream_name":"stdout","time":35.991208362,"data":"      \"transcript_chars\": 0,\n"}
+,{"stream_name":"stdout","time":35.991214224,"data":"      \"transcript_head\": \"\"\n"}
+,{"stream_name":"stdout","time":35.991219928,"data":"    }\n"}
+,{"stream_name":"stdout","time":35.991226451,"data":"  }\n"}
+,{"stream_name":"stdout","time":35.991231964,"data":"}\n"}
+,{"stream_name":"stdout","time":35.991236885,"data":"###TIMINGS###\n"}
+,{"stream_name":"stderr","time":43.864102339,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":43.864147407,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":44.325651547,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":44.325692212,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":45.162528991,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":47.176153123,"data":"[NbConvertApp] Writing 312641 bytes to __results__.html\n"}
+]

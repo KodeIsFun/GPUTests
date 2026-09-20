@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "emit-kernel-metadata",
+    "description": "One item: prompt the model, grade the reply deterministically.",
+    "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.5-flash-lite"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-09-19T15:02:49.063478Z",
+  "endTime": "2026-09-19T15:02:49.643694Z",
+  "conversations": [
+    {
+      "id": "emit-kernel-metadata-2930ca92",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "A Kaggle kernel push accepts a session timeout as a whole number of seconds. A script kernel job needs the maximum allowed 8 hours. What exact number of seconds is that? Reply with only the number."
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "28800"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.5-flash-lite"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 43,
+            "outputTokens": 5,
+            "inputTokensCostNanodollars": "12900",
+            "outputTokensCostNanodollars": "12500",
+            "totalBackendLatencyMs": "443"
+          },
+          "id": "emit-kernel-metadata-2930ca92-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 43,
+        "outputTokens": 5,
+        "inputTokensCostNanodollars": "12900",
+        "outputTokensCostNanodollars": "12500",
+        "totalBackendLatencyMs": "443"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "booleanResult": true
+    }
+  ],
+  "pyRunId": "emit-kernel-metadata-Run #5"
+}

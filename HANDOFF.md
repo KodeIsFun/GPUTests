@@ -76,14 +76,15 @@ e7cb66d..5c6f7be  W0/1
 ```
 
 75 tests pass. Ledgers: `ledger/runs.jsonl` (6 entries: 4 Kaggle runs + 1
-Colab + W0), `ledger/proxy.jsonl` (+4 entries). Both gitignored by design.
+Colab + W0), `ledger/proxy.jsonl` (+4 entries). Committed since 2026-09-19 —
+evidence, drafts, and ledgers now travel with the repo (that was open decision
+#1, resolved by "commit and push everything").
 
 ## Tweet drafts (gate-verified, unposted — X still unwired)
 
-`projects/2026-W38-bakeoff-t4/tweets/` — wait, `tweets/` is gitignored; the
-files live locally: `01-p100-gotcha`, `02-colab-kaggle-bakeoff`,
-`03-cheapest-model-wins`. Each passed `verify_from_files` against its cited
-evidence files.
+`projects/2026-W38-bakeoff-t4/results/tweets/` — `01-p100-gotcha`,
+`02-colab-kaggle-bakeoff`, `03-cheapest-model-wins`, all committed, each
+passed `verify_from_files` against its cited evidence files.
 
 ## Next: W3 — the 30-hour week
 
@@ -107,15 +108,14 @@ set -a && source .env && set +a   # kaggle b init -y if LLM_DEFAULT is gone; b a
 .venv/bin/python -m lab.harvest <dl-dir> <results-dir> <task> <git_sha>
 ```
 
-## Open decisions for you (unchanged + one new)
+## Open decisions for you (one resolved, two live)
 
-1. **`.gitignore` still excludes `projects/**/results/`** — tweet digits are
-   verifiable locally but not from GitHub alone. Un-ignore the two canonical
-   JSONs per week, or keep pointing readers at Kaggle's public run pages.
-   Still not changed unilaterally.
+1. ~~`.gitignore` excludes `projects/**/results/`~~ — **RESOLVED 2026-09-19:**
+   evidence JSONs, raw eval records, tweet drafts, and both ledgers are now
+   committed; a reader can check any tweet's digits from GitHub alone.
 2. **Benchmark collection** now has 2 published tasks — the one web-UI click
    is due whenever you want it (W3).
-3. **X posting still unwired** — drafts accumulate in `tweets/`.
+3. **X posting still unwired** — drafts accumulate in-repo.
 
 ## Gotchas — learned in W2, do not re-learn
 

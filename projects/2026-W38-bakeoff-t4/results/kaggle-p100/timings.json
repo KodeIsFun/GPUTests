@@ -1,0 +1,27 @@
+{
+  "gpu": "Tesla T4",
+  "vram_mb": 15360,
+  "wall_s": 0.488,
+  "metric": 20982.2,
+  "git_sha": "1da4ed4",
+  "platform": "kaggle",
+  "details": {
+    "driver": "580.159.04",
+    "compute_cap": "7.5",
+    "cuda_version": "13.0",
+    "torch": "2.10.0+cu128",
+    "python": "3.12.13",
+    "matmul": "fp16 4096x4096 x20",
+    "metric_unit": "GFLOP/s",
+    "whisper": {
+      "pip_install_s": 12.42,
+      "pip_package": "openai-whisper",
+      "model": "tiny",
+      "load_s": 2.13,
+      "transcribe_s": 4.51,
+      "rtf": 6.65,
+      "transcript_chars": 0,
+      "transcript_head": ""
+    }
+  }
+}

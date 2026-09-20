@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "emit-kernel-metadata",
+    "description": "One item: prompt the model, grade the reply deterministically.",
+    "definition": "@kbench.task(name=\"emit-kernel-metadata\")\ndef emit_kernel_metadata(llm, prompt: str, kind: str, expect: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply deterministically.\"\"\"\n    response = llm.prompt(prompt)\n    return grade(kind, expect, response)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-oss-20b"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-09-19T15:01:01.123445Z",
+  "endTime": "2026-09-19T15:01:01.548699Z",
+  "conversations": [
+    {
+      "id": "emit-kernel-metadata-ccd98585",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "A Kaggle kernel push accepts a session timeout as a whole number of seconds. A script kernel job needs the maximum allowed 8 hours. What exact number of seconds is that? Reply with only the number."
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "28800"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-oss-20b"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 109,
+            "outputTokens": 70,
+            "inputTokensCostNanodollars": "7630",
+            "outputTokensCostNanodollars": "17500",
+            "totalBackendLatencyMs": "354"
+          },
+          "id": "emit-kernel-metadata-ccd98585-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 109,
+        "outputTokens": 70,
+        "inputTokensCostNanodollars": "7630",
+        "outputTokensCostNanodollars": "17500",
+        "totalBackendLatencyMs": "354"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "booleanResult": true
+    }
+  ],
+  "pyRunId": "emit-kernel-metadata-Run #5"
+}

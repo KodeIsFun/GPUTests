@@ -1,0 +1,16 @@
+{
+  "task": "emit-kernel-metadata",
+  "model": "gpt-oss-20b",
+  "git_sha": "1da4ed4",
+  "models": 1,
+  "items": 5,
+  "passed": 3,
+  "score": 0.6,
+  "input_tokens": 556,
+  "output_tokens": 4368,
+  "output_tokens_per_item": 873.6,
+  "input_tokens_cost": 3.892e-05,
+  "output_tokens_cost": 0.001092,
+  "usd_per_item": 0.000226184,
+  "latency_s": 2.94
+}

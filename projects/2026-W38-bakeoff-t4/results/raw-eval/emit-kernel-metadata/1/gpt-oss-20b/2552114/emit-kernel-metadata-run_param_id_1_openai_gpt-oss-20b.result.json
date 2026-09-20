@@ -1,0 +1,33 @@
+{
+  "task_name": "emit-kernel-metadata",
+  "trial_name": "emit-kernel-metadata-Run #2",
+  "trial_uri": "kbench://not-a-harbor-trial",
+  "task_id": {
+    "path": "kbench://not-a-harbor-task"
+  },
+  "task_checksum": "unknown (kbench)",
+  "config": {
+    "task": {
+      "path": "kbench://not-a-harbor-task"
+    }
+  },
+  "agent_info": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_info": {
+      "name": "openai/gpt-oss-20b"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 130,
+    "n_output_tokens": 1505,
+    "cost_usd": 0.00038535
+  },
+  "verifier_result": {
+    "rewards": {
+      "score": 0.0
+    }
+  },
+  "started_at": "2026-09-19T15:00:53.398403Z",
+  "finished_at": "2026-09-19T15:00:59.334464Z"
+}
