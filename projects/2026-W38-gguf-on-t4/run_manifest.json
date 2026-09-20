@@ -1,0 +1,20 @@
+{
+  "title": "GGUF on T4",
+  "slug": "gguf-on-t4",
+  "plan_week": "W5 (month 2 — the marketability pivot; month 1 was calibration)",
+  "budget_hours": 2.0,
+  "estimated_usd": 0.0,
+  "hypothesis": "The single most-asked question by people holding a free T4: which LLM actually runs locally on it, and how fast? Our claim: Qwen3-8B Q4_K_M is the sweet spot (fast, small enough to leave VRAM headroom), 14B fits but crawls by comparison, and gpt-oss-20b — the open model everyone wants — is borderline on 15 GB and either barely fits or OOMs. Nobody publishes this table; we measure it.",
+  "success_metric": "For each of qwen3-4b/8b/14b Q4_K_M and gpt-oss-20b MXFP4: download_s, load_s, tg_tok_s (greedy decode), pp512_tok_s, VRAM after load and peak, and answer_ok sanity — harvested from timings.json with no browser. A skipped/OOM record on the two big models is an acceptable outcome and gets published as such.",
+  "gpu": {
+    "kernel_slug": "gguf-on-t4",
+    "accelerator_requested": "NvidiaTeslaT4",
+    "script": "job.py",
+    "gate": "lab.quota.decide_gpu_job — 2h of an 8h cap; week reads 0.05h/30.00h at W5 start",
+    "llama_cpp_build": "pip sdist, CMAKE_ARGS=-DGGML_CUDA=on, CMAKE_CUDA_ARCHITECTURES=75 (T4 sm_75)"
+  },
+  "eval": {
+    "task_slug": "recommend-quant-15gb",
+    "status": "drafted this week, pushed after the measured table exists so grading thresholds come from timings.json, not guesses"
+  }
+}
