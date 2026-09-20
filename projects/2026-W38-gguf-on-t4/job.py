@@ -34,7 +34,6 @@ Writes timings.json incrementally after every stage, and echoes it between
 from __future__ import annotations
 
 import gc
-import importlib.metadata
 import json
 import os
 import re
@@ -138,21 +137,87 @@ def flush() -> None:
         RESULTS_PATH.write_text(json.dumps(RESULTS, indent=2) + "\n")
 
 
+WHEEL_INDEX = "https://abetlen.github.io/llama-cpp-python/whl/cu124"
+
+
+def _nvcc_probe() -> dict:
+    """Where is a CUDA compiler, if anywhere? Recorded either way so a build
+    failure is diagnosable from the harvested json alone."""
+    probe = {"nvcc_on_path": None, "nvcc_in_usr_local_cuda": None, "nvcc_version": None}
+    code, out = run(["which", "nvcc"], timeout=30)
+    probe["nvcc_on_path"] = code == 0 and bool(out.strip())
+    probe["nvcc_in_usr_local_cuda"] = Path("/usr/local/cuda/bin/nvcc").exists()
+    for cand in ("nvcc", "/usr/local/cuda/bin/nvcc"):
+        code, out = run([cand, "--version"], timeout=60)
+        if code == 0:
+            match = re.search(r"release (\d+\.\d+)", out)
+            probe["nvcc_version"] = match.group(1) if match else "unknown"
+            break
+    return probe
+
+
 def build_llama_cpp() -> float:
     t0 = time.time()
-    env = os.environ.copy()
-    env["CMAKE_ARGS"] = "-DGGML_CUDA=on"
-    env["CMAKE_CUDA_ARCHITECTURES"] = "75"  # T4 is sm_75; one arch keeps the build short
-    env["FORCE_CMAKE"] = "1"
+    RESULTS["nvcc_probe"] = _nvcc_probe()
+
+    # Path 1 (W5 v2): prebuilt CUDA wheel from the llama-cpp-python index.
+    # The v1 source build died in 28 s — no usable nvcc in the runtime image —
+    # and the index ships a py3-none manylinux wheel of the same version.
     code, out = run(
-        [sys.executable, "-m", "pip", "install", "--no-cache-dir", "llama-cpp-python"],
-        timeout=2700,
-        env=env,
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--no-cache-dir",
+            "llama-cpp-python",
+            "--extra-index-url",
+            WHEEL_INDEX,
+        ],
+        timeout=1200,
     )
+    RESULTS["install_path"] = "prebuilt-cu124-wheel" if code == 0 else "wheel-failed"
+
+    # Path 2: source build, only if the wheel is unusable. Full log captured —
+    # v1 kept only the tail and the real compiler error was lost with it.
+    if code != 0:
+        RESULTS["wheel_install_tail"] = out[-2000:]
+        env = os.environ.copy()
+        env["CMAKE_ARGS"] = "-DGGML_CUDA=on"
+        env["CMAKE_CUDA_ARCHITECTURES"] = "75"  # T4 is sm_75
+        env["FORCE_CMAKE"] = "1"
+        code, out = run(
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--no-cache-dir",
+                "llama-cpp-python",
+            ],
+            timeout=2700,
+            env=env,
+        )
+        RESULTS["install_path"] += "+source-build"
+        try:
+            (output_dir() / "build.log").write_text(out)
+        except OSError:
+            pass
+
     if code != 0:
         RESULTS["build_error"] = out[-4000:]
         flush()
-        raise SystemExit("llama-cpp-python CUDA build failed; see build_error")
+        raise SystemExit("llama-cpp-python install failed on every path; see json")
+
+    import llama_cpp
+
+    RESULTS["llama_cpp_python_version"] = llama_cpp.__version__
+    supports = getattr(llama_cpp.llama_cpp, "llama_supports_gpu_offload", None)
+    RESULTS["gpu_offload_supported"] = bool(supports()) if supports else None
+    flush()
+    # A CPU-only measurement must never ship dressed up as a T4 number.
+    if RESULTS["gpu_offload_supported"] is False:
+        raise SystemExit("llama.cpp reports NO GPU offload; refusing to measure")
     return time.time() - t0
 
 
@@ -303,12 +368,6 @@ def main() -> None:
     flush()
 
     RESULTS["build_s"] = round(build_llama_cpp(), 1)
-    try:
-        RESULTS["llama_cpp_python_version"] = importlib.metadata.version(
-            "llama-cpp-python"
-        )
-    except importlib.metadata.PackageNotFoundError:
-        RESULTS["llama_cpp_python_version"] = None
     flush()
 
     for entry in MODELS:
