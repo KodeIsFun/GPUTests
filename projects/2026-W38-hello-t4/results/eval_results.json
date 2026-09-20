@@ -71,5 +71,6 @@
       "usd_per_item": 2.5748e-05,
       "latency_s": 0.586
     }
-  ]
+  ],
+  "usd_per_item_max_over_min": 62.2
 }

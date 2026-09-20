@@ -106,6 +106,9 @@ def test_aggregate_exposes_the_spread_for_tweet_verification(tmp_path: Path) -> 
         _write_tree(tmp_path), out, "hello-proxy", "abc123"
     )
     assert aggregate["usd_per_item_min"] < aggregate["usd_per_item_max"]
+    # The ratio is what a spread post cites; it must be as verifiable as the
+    # extremes it derives from.
+    assert aggregate["usd_per_item_max_over_min"] == 83.3
     assert aggregate["models"] == 2
     # Every model gets its own flat file so a per-model claim is checkable.
     assert (out / "eval_results.cheap-model.json").exists()

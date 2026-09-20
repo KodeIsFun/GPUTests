@@ -1,0 +1,5 @@
+4 models sat the same 20-item exam, graded by code, no judge. Dearest bill: 0.00142215 per item. Cheapest: 0.0000778. A spread of 18.3 times for identical questions.
+
+The cheapest model's only slip is my favourite: pixel-perfect metadata, wrapped in an envelope key Kaggle has never heard of.
+
+Almost-right JSON is rejected JSON. Structure is not a style preference.

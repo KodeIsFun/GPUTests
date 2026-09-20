@@ -127,12 +127,17 @@ def write_eval_results(
         **summarize(runs),
         # The spread across models is the story worth telling, and a tweet that
         # compares two models cannot be verified against either model's own
-        # file. Surface the extremes at the top level so such a claim is still
-        # traceable to one artifact.
+        # file. Surface the extremes — and their ratio — at the top level so
+        # such a claim is still traceable to one artifact.
         "usd_per_item_min": min(m["usd_per_item"] for m in per_model),
         "usd_per_item_max": max(m["usd_per_item"] for m in per_model),
         "per_model": per_model,
     }
+    cheapest = aggregate["usd_per_item_min"]
+    if cheapest > 0:
+        aggregate["usd_per_item_max_over_min"] = round(
+            aggregate["usd_per_item_max"] / cheapest, 1
+        )
     (out_dir / "eval_results.json").write_text(
         json.dumps(aggregate, indent=2) + "\n"
     )

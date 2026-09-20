@@ -1,0 +1,5 @@
+Two models, same 5-item exam on writing Kaggle kernel-metadata.json, both scored a perfect 5 of 5.
+
+Gemini Flash-Lite billed 0.00013016 per item. The catalog's biggest Flash billed 0.00142215.
+
+Same perfect score. One bill is ten times the other, and the premium bought nothing measurable. Read both numbers before you budget your next eval — then check the receipt.

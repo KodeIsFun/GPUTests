@@ -76,3 +76,11 @@ def test_nested_smuggled_keys_are_not_evidence(tmp_path) -> None:
     f.write_text(json.dumps({"details": {"ad": "send $1.40 to driver 15.0"}}))
     with pytest.raises(TweetRejected):
         verify_from_files("$1.40 to driver 15.0", f)
+
+
+def test_price_spread_ratio_is_citable(tmp_path) -> None:
+    import json
+
+    f = tmp_path / "eval_results.json"
+    f.write_text(json.dumps({"usd_per_item_max_over_min": 18.3}))
+    verify_from_files("a spread of 18.3 times for identical questions", f)

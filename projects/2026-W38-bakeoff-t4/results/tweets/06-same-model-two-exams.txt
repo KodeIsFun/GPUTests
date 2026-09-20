@@ -1,0 +1,8 @@
+Same model, two exams, same 5-item format.
+
+Riddles: 0.0004293 per item, 110.4 output tokens each.
+Emit a valid Kaggle kernel-metadata.json: 0.00142215 per item, 369.8 tokens each.
+
+Structured output is where eval budgets actually go. Not prompt length — the schema tokens are the bill.
+
+Both graded by code, receipts public.

@@ -82,9 +82,22 @@ evidence, drafts, and ledgers now travel with the repo (that was open decision
 
 ## Tweet drafts (gate-verified, unposted — X still unwired)
 
-`projects/2026-W38-bakeoff-t4/results/tweets/` — `01-p100-gotcha`,
-`02-colab-kaggle-bakeoff`, `03-cheapest-model-wins`, all committed, each
-passed `verify_from_files` against its cited evidence files.
+`projects/2026-W38-bakeoff-t4/results/tweets/` — all committed, each passed
+`verify_from_files` against its cited evidence files:
+
+| File | Shape | Compares |
+|---|---|---|
+| `01-p100-gotcha.txt` | gotcha | — (flag accepted, T4 delivered) |
+| `02-colab-kaggle-bakeoff.txt` | compare | Colab T4 vs Kaggle T4 (matmul to Colab, transcription to Kaggle) |
+| `03-cheapest-model-wins.txt` | compare | Flash-Lite 5/5 vs gpt-oss-20b 3/5 |
+| `04-same-score-different-bill.txt` | compare | same 5/5, 0.00013016 vs 0.00142215 per item |
+| `05-price-spread-almost-right.txt` | compare | 18.3× spread + the envelope-key failure |
+| `06-same-model-two-exams.txt` | compare | gemini-3.7-flash on riddles vs metadata JSON |
+| `07-same-card-run-variance.txt` | honesty | same card, two kernels, variance |
+
+Supporting change: `lab.harvest` aggregates now emit
+`usd_per_item_max_over_min` (W2: 18.3, W0: 62.2) so a spread claim is
+verifiable from one artifact; the tweet gate whitelists it.
 
 ## Next: W3 — the 30-hour week
 

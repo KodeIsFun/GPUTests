@@ -27,6 +27,7 @@ EVIDENCE_KEYS = frozenset(
         "usd_per_item",
         "usd_per_item_min",
         "usd_per_item_max",
+        "usd_per_item_max_over_min",
         "latency_s",
     }
 )

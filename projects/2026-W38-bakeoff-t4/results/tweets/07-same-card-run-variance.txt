@@ -1,0 +1,5 @@
+Same free card, two separate Kaggle kernels, identical fp16 matmul: 23150.9 and 24358.0.
+
+Both say 'Tesla T4'. Both were the best hardware of their run.
+
+That is run-to-run variance on identical silicon. One benchmark run is an anecdote, not a spec — and anyone quoting a GPU number to a decimal place without a second run is guessing with extra steps.
