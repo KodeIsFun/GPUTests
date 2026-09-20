@@ -298,6 +298,26 @@ Every GPU job writes `results/timings.json`: `{gpu, vram_mb, wall_s, metric, git
 Every Benchmarks run writes `results/eval_results.json`: `{task, model, score, passed, input_tokens_cost, output_tokens_cost, latency_s, git_sha}`.
 Tweets may only cite digits that appear in one of those two files.
 
+## Pivot 2026-09-20 — content starts at Month 2
+
+Month 1 shipped calibration artifacts: a hardware card, a cost floor, a
+three-lane bake-off, a metadata-schema quiz. Every number is real and
+reproducible — and none of it is marketable. They are receipts, not content;
+per the Phase 4 rewrite below, the marketable thing is the friction people
+with free GPUs actually hit. So the calendar skips ahead:
+
+- **W3's** budget template becomes a byproduct of later weeks, not a week of
+  its own. Its one live action — publish `free-gpu-literacy` and click the
+  Benchmark collection into existence — stays queued until there is a third
+  task worth collecting.
+- **W4's** whisper week is already half-covered by W2's whisper-tiny RTF
+  numbers; large-v3 can slot into a backlog week if it earns its GPU hours.
+- **Month 2 starts now, at W5**: "GGUF on T4" — the measured answer to the
+  question every free-GPU holder asks first: *which LLM actually runs on this
+  thing, and how fast?* Qwen3 4B/8B/14B Q4_K_M + gpt-oss-20b MXFP4, llama.cpp
+  on a free T4, download/load/decode/prompt-processed timed per model. Kernel:
+  <https://www.kaggle.com/code/emdadh/gguf-on-t4>.
+
 ## Implementation phases
 
 ### Phase 0 — Human enablement (one sitting, ~35 min)
