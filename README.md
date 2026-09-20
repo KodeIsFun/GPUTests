@@ -2,16 +2,51 @@
 
 Unattended measurements on **Kaggle GPU** (~30h/week) and **Kaggle Benchmarks** (Model Proxy), with Colab as the public notebook surface. Every number below is measured, not estimated.
 
-**W0/1 and W2 are complete** — both lanes ran end to end with no browser.
+**Month 1 was calibration** (hardware cards, cost floors, a bake-off). **The content starts here, at Month 2:** the questions people with free GPUs actually ask, answered with runs they can reproduce.
 
-| Meter | Live (2026-09-19) |
+| Meter | Live (2026-09-20) |
 |---|---|
-| Kaggle GPU | **0.05 / 30h** (refresh 2026-09-26) |
+| Kaggle GPU | **0.22 / 30h** (refresh 2026-09-26) |
 | Kaggle TPU | 0 / 20h |
-| Benchmarks Proxy | **$0.0116** spent of a $90/month hard stop |
+| Benchmarks Proxy | **$0.043** spent this month of a $90 hard stop |
 | Colab | no active sessions |
 
-## W0/1 results
+## W5 results — which LLM actually runs on the free T4, and how fast
+
+The first table everyone looks for and nobody publishes. Kernel: [emdadh/gguf-on-t4](https://www.kaggle.com/code/emdadh/gguf-on-t4) — llama.cpp (llama-cpp-python 0.3.35, prebuilt cu124 wheel), 4k context, all layers on GPU, greedy decode.
+
+| Model | File | Download | Load | Decode (tok/s) | Prompt 512 (tok/s) |
+|---|---|---|---|---|---|
+| Qwen3-4B Q4_K_M | 2.50 GB | 13 s | 2.0 s | **62.64** | n/a (see honesty notes) |
+| Qwen3-8B Q4_K_M | 5.03 GB | 32 s | 2.3 s | 39.55 | 758.08 |
+| Qwen3-14B Q4_K_M | 9.00 GB | 32 s | 3.9 s | 23.21 | 481.89 |
+| gpt-oss-20b MXFP4 | 12.11 GB | 51 s | 57.3 s | **59.21** | 1568.00 |
+
+**The headline: gpt-oss-20b runs on the free T4.** The 12.11 GB file fits the 15360 MB card with room for context, every layer offloads, and it decodes at 59.21 tok/s — because the MoE only activates ~3.6B params per token, it is 2.5× faster than the 14B dense model. Nobody needs to guess anymore.
+
+**Honesty notes** (why there is no asterisk-free way to publish benchmarks):
+
+- The 4B model's prompt-processing number was a harness artifact (it violated the card's memory bandwidth) and is excluded; the other three are consistent with each other and with physics.
+- `nvidia-smi memory.used` under-reports llama.cpp's footprint on this driver (~55–75% of the file size at idle). File size is the real number; the reported figures are only good for relative comparison. llama.cpp's own `offloaded N/N layers` lines are in the committed kernel log.
+- gpt-oss-20b ran without its harmony chat template applying (raw `<|channel|>` markers in the output). Decode speed is unaffected; expect to fight the template in llama-cpp-python.
+
+**The build gotcha that cost a kernel run:** `pip install llama-cpp-python` from source dies on the Kaggle image before compiling anything (nvcc 12.8 is present, so the failure is elsewhere — the truncated log hid it). Don't debug it; point pip at the project's own prebuilt CUDA wheel index (`--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124`): 65.8 s to full GPU offload. Three kernel versions in `results/` tell the whole story.
+
+### Eval sibling: [recommend-quant-15gb](https://www.kaggle.com/benchmarks/tasks/emdadh/recommend-quant-15gb/2)
+
+Hosted models were asked to advise on running models on a 15360 MB card — graded against **our measured table**, not a textbook answer key. Deterministic grading, no LLM judge.
+
+| Model | Score | $/item | out tok/item |
+|---|---|---|---|
+| `gemini-3.5-flash-lite` | 4/5 | $0.0000912 | 28.2 |
+| `gemini-3.7-flash` | **5/5** | $0.00207225 | 538.8 |
+| `gpt-oss-20b` | **5/5** | $0.0000912684 | 341.8 |
+
+14/15. The cheap model lost its perfect score to the one item that is pure arithmetic (picking the largest file that fits with headroom — it answered conservatively and wrongly). The expensive model bought the same 5/5 as gpt-oss-20b at **22.7× the price per item**. And one failure was ours: the first grader rejected gpt-oss-20b's legitimately correct lowercase `q4_0` on case-sensitive matching — fixed and re-run, because a grader that fails a right answer is a broken grader.
+
+## Month 1 — calibration (kept for the receipts)
+
+## W0/1 results — calibration
 
 ### Free Kaggle T4 — hardware card
 
@@ -42,7 +77,7 @@ All 20 items passed. Total: **$0.00235534**.
 
 Evidence: `projects/2026-W38-hello-t4/results/{timings.json,eval_results.json}` (committed — every digit above is checkable in-repo).
 
-## W2 results — the bake-off
+## W2 results — the three-lane bake-off (calibration)
 
 ### GPU lanes: same torch + whisper-tiny, three free surfaces
 

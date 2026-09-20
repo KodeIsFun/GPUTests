@@ -29,6 +29,16 @@ EVIDENCE_KEYS = frozenset(
         "usd_per_item_max",
         "usd_per_item_max_over_min",
         "latency_s",
+        # W5 GGUF table (timings.json schema, projects/2026-W38-gguf-on-t4)
+        "tg_tok_s",
+        "pp512_tok_s",
+        "file_gb",
+        "load_s",
+        "download_s",
+        "build_s",
+        "tg_completion_tokens",
+        "vram_peak_mb",
+        "vram_after_warmup_mb",
     }
 )
 
@@ -70,6 +80,13 @@ def _collect_evidence(payload: dict[str, Any], into: dict[str, Any]) -> None:
                 into[key].append(value)
         elif isinstance(value, dict):
             _collect_evidence(value, into)
+        elif isinstance(value, list):
+            # Per-model evidence lives in lists ("models": [...], "per_model":
+            # [...]) — W5's whole table was invisible to the gate until lists
+            # of records were traversed like dicts.
+            for item in value:
+                if isinstance(item, dict):
+                    _collect_evidence(item, into)
 
 
 def verify_tweet_numbers(tweet: str, evidence: dict[str, Any]) -> None:

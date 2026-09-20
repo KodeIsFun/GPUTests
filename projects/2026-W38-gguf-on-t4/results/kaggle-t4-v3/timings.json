@@ -1,0 +1,114 @@
+{
+  "metric": "gguf-llm-toks",
+  "git_sha": "98fbe87",
+  "platform": "kaggle",
+  "gpu": "Tesla T4",
+  "vram_mb": 15360.0,
+  "driver": "580.159.04",
+  "baseline_vram_used_mb": 0.0,
+  "budget_s": 7200,
+  "models": [
+    {
+      "model": "qwen3-4b-q4-k-m",
+      "repo": "bartowski/Qwen_Qwen3-4B-GGUF",
+      "file": "Qwen_Qwen3-4B-Q4_K_M.gguf",
+      "n_ctx": 4096,
+      "status": "ok",
+      "free_mb_before_load": 15357.0,
+      "file_gb": 2.497,
+      "download_s": 13.21,
+      "load_s": 1.95,
+      "offload_log": [
+        "load_tensors: offloaded 37/37 layers to GPU"
+      ],
+      "pp512_tok_s": 17692.97,
+      "vram_after_warmup_mb": 1901.0,
+      "tg_wall_s": 10.22,
+      "tg_completion_tokens": 640,
+      "tg_tok_s": 62.64,
+      "answer_head": "1. **Mercury** \u2013 The closest planet to the Sun, it experiences extreme temperature variations, ranging from scorching heat during the day to freezing cold at ni",
+      "answer_ok": true,
+      "vram_peak_mb": 1901.0,
+      "vram_freed_after_del": true
+    },
+    {
+      "model": "qwen3-8b-q4-k-m",
+      "repo": "bartowski/Qwen_Qwen3-8B-GGUF",
+      "file": "Qwen_Qwen3-8B-Q4_K_M.gguf",
+      "n_ctx": 4096,
+      "status": "ok",
+      "free_mb_before_load": 15237.0,
+      "file_gb": 5.028,
+      "download_s": 31.55,
+      "load_s": 2.31,
+      "offload_log": [
+        "load_tensors: offloaded 37/37 layers to GPU"
+      ],
+      "pp512_tok_s": 758.08,
+      "vram_after_warmup_mb": 2917.0,
+      "tg_wall_s": 14.29,
+      "tg_completion_tokens": 565,
+      "tg_tok_s": 39.55,
+      "answer_head": "1. **Mercury** \u2013 It is the closest planet to the Sun and has extreme temperature variations, with daytime temperatures reaching up to 430\u00b0C (800\u00b0F) and nighttim",
+      "answer_ok": true,
+      "vram_peak_mb": 2917.0,
+      "vram_freed_after_del": true
+    },
+    {
+      "model": "qwen3-14b-q4-k-m",
+      "repo": "bartowski/Qwen_Qwen3-14B-GGUF",
+      "file": "Qwen_Qwen3-14B-Q4_K_M.gguf",
+      "n_ctx": 4096,
+      "status": "ok",
+      "free_mb_before_load": 15237.0,
+      "file_gb": 9.002,
+      "download_s": 31.8,
+      "load_s": 3.92,
+      "offload_log": [
+        "load_tensors: offloaded 41/41 layers to GPU"
+      ],
+      "pp512_tok_s": 481.89,
+      "vram_after_warmup_mb": 4899.0,
+      "tg_wall_s": 18.78,
+      "tg_completion_tokens": 436,
+      "tg_tok_s": 23.21,
+      "answer_head": "1. **Earth** - The only planet in the solar system known to support life, with liquid water and a breathable atmosphere.  \n2. **Jupiter** - The largest planet i",
+      "answer_ok": true,
+      "vram_peak_mb": 4899.0,
+      "vram_freed_after_del": true
+    },
+    {
+      "model": "gpt-oss-20b-mxfp4",
+      "repo": "ggml-org/gpt-oss-20b-GGUF",
+      "file": "gpt-oss-20b-MXFP4.gguf",
+      "n_ctx": 4096,
+      "status": "ok",
+      "free_mb_before_load": 15237.0,
+      "file_gb": 12.11,
+      "download_s": 51.0,
+      "load_s": 57.34,
+      "offload_log": [
+        "load_tensors: offloaded 25/25 layers to GPU"
+      ],
+      "pp512_tok_s": 1568.0,
+      "vram_after_warmup_mb": 6563.0,
+      "tg_wall_s": 3.09,
+      "tg_completion_tokens": 183,
+      "tg_tok_s": 59.21,
+      "answer_head": "<|channel|>analysis<|message|>The user asks: \"Name three planets in the solar system and one fact about each.\" So we need to provide three planets and a fact ab",
+      "answer_ok": false,
+      "vram_peak_mb": 6563.0,
+      "vram_freed_after_del": true
+    }
+  ],
+  "nvcc_probe": {
+    "nvcc_on_path": true,
+    "nvcc_in_usr_local_cuda": true,
+    "nvcc_version": "12.8"
+  },
+  "install_path": "prebuilt-cu124-wheel",
+  "llama_cpp_python_version": "0.3.35",
+  "gpu_offload_supported": true,
+  "build_s": 65.8,
+  "wall_s": 313.7
+}

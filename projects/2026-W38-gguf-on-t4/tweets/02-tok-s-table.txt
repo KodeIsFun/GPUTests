@@ -1,0 +1,8 @@
+Same kernel, same greedy decode, four models, one free T4 (llama.cpp):
+
+Qwen3-4B — 62.64 tok/s
+Qwen3-8B — 39.55 tok/s
+Qwen3-14B — 23.21 tok/s
+gpt-oss-20b MXFP4 — 59.21 tok/s
+
+The 12.11 GB file fits the 15360 MB card with context to spare. Kernel with the exact recipe is public.

@@ -21,18 +21,20 @@ import re
 import kaggle_benchmarks as kbench
 
 # %%
-# FILLED POST-HARVEST from projects/2026-W38-gguf-on-t4/results/timings.json
-# (W5, Kaggle T4, llama.cpp, Q4_K_M / MXFP4). Sizes in GB as recorded by the
-# downloader; tok/s as recorded by the greedy decode timer.
+# FILLED 2026-09-20 from projects/2026-W38-gguf-on-t4/results/timings.json
+# (W5 v3, Kaggle T4, llama.cpp via the prebuilt cu124 wheel, greedy decode).
+# Sizes in GB as recorded by the downloader; tok/s as recorded by the decode
+# timer. The answer key is our own run, not a textbook value.
 MEASURED = {
-    "qwen3_8b_file_gb": None,   # e.g. 5.05
-    "qwen3_14b_file_gb": None,  # e.g. 8.99
-    "gpt_oss_20b_file_gb": None,
-    "qwen3_14b_tg_tok_s": None,     # the reality check for item 5's claim
-    "qwen3_8b_tg_tok_s": None,
+    "qwen3_8b_file_gb": 5.028,
+    "qwen3_14b_file_gb": 9.002,
+    "gpt_oss_20b_file_gb": 12.11,
+    "qwen3_14b_tg_tok_s": 23.21,
+    "qwen3_8b_tg_tok_s": 39.55,
 }
 VRAM_MB = 15360
 HEADROOM_MB = 1500  # context + CUDA context, per the W5 job's own budgeting
+CLAIMED_14B_TOK_S = 40.0  # item 5's claim; plausible only if measured is close
 
 
 # %%
@@ -65,12 +67,15 @@ def first_number(text: str) -> float | None:
 # %%
 def grade_recommend(entry: dict, response: str) -> bool:
     """Model+quant for a 7-9B model on 15360 MB: a real quant name, a size
-    estimate within a factor of 2 of our measured 8B file, and it must fit."""
+    estimate within a factor of 2 of our measured 8B file, and it must fit.
+    Case-insensitive on the quant: the first run failed gpt-oss-20b's
+    legitimately correct "q4_0" on uppercase-only matching, and a grader that
+    fails a right answer is a broken grader (fixed + re-run, 2026-09-20)."""
     meta = extract_json_object(response)
     if not isinstance(meta, dict):
         return False
     quant = str(meta.get("quant", ""))
-    if not re.fullmatch(r"Q[2-8]_[A-Z0-9_]+|IQ[2-4]_[A-Z0-9_]+", quant):
+    if not re.fullmatch(r"[iI][qQ][2-8]_[A-Za-z0-9_]+|[qQ][2-8]_[A-Za-z0-9_]+", quant):
         return False
     size = meta.get("file_gb")
     if not isinstance(size, (int, float)) or size <= 0:
@@ -106,16 +111,22 @@ def grade_largest_fit(entry: dict, response: str) -> bool:
 
 
 def grade_speed_claim(entry: dict, response: str) -> bool:
-    """A friend claims ~40 tok/s on a 14B Q4 GGUF, llama.cpp, T4. Our measured
-    decode speed is the key: 'not plausible' is correct when measured < 20."""
-    plausible = MEASURED["qwen3_14b_tg_tok_s"] >= 20
+    """A friend claims ~40 tok/s on a 14B Q4 GGUF, llama.cpp, T4. Measured:
+    23.21 tok/s. The claim is only plausible if reality is within 20% of it —
+    a bare >= 20 threshold would accept a claim that is 70% too optimistic."""
+    plausible = MEASURED["qwen3_14b_tg_tok_s"] >= CLAIMED_14B_TOK_S * 0.8
     said_no = re.search(
-        r"not\s+(?:plausible|realistic|possible)|no[,.]|unlikely|far\s+(?:slower|off)|"
-        r"much\s+slower|too\s+(?:high|optimistic)|closer\s+to",
+        r"not\s+(?:plausible|realistic|possible|accurate)|no[,.]|unlikely|"
+        r"far\s+(?:slower|off)|much\s+slower|too\s+(?:high|optimistic)|closer\s+to|"
+        r"overestimat\w+|exaggerat\w+|implausib\w+|unrealistic|inflat\w+",
         (response or ""),
         re.IGNORECASE,
     )
-    said_yes = re.search(r"\b(plausible|realistic|reasonable|believable)\b", (response or ""), re.IGNORECASE)
+    said_yes = re.search(
+        r"(?<!im)(?<!un)(?<!non-)\b(plausible|realistic|reasonable|believable|accurate)\b",
+        (response or ""),
+        re.IGNORECASE,
+    )
     return (said_yes is not None) if plausible else (said_no is not None)
 
 

@@ -5,9 +5,12 @@ The Month-2 pivot question: everyone with a free Colab/Kaggle GPU asks
 publishes a measured table, so this week produces one.
 
 v3 protocol (v2 lessons, all paid for on the same kernel's version history):
-  - v1: source build of llama-cpp-python died in 28 s (no usable nvcc in the
-    runtime image). v2+ installs the prebuilt CUDA wheel from the project's
-    own cu124 index and refuses to measure if llama.cpp reports no offload.
+  - v1: the source build of llama-cpp-python died in 28 s. The v3 probe
+    shows nvcc 12.8 IS present, so the cause was never "no nvcc" - it is
+    simply unknown, because v1 kept only the tail of the build log. v2+
+    installs the prebuilt CUDA wheel from the project's own cu124 index
+    (65 s to a working offload) and refuses to measure if llama.cpp reports
+    no offload. Lesson: capture the whole log, and prefer the wheel.
   - v2 skipped gpt-oss-20b on over-fat VRAM margins (3500 MB) without even
     attempting the load. v3 attempts with an honest 1500 MB reserve; an OOM
     is caught and recorded as a result, not an exit.

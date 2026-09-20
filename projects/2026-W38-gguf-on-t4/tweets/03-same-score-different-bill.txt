@@ -1,0 +1,1 @@
+We turned our own T4 measurements into an exam: "recommend a quant that fits 15360 MB", graded against what actually ran. Gemini Flash: 5/5 at $0.00207225 per item. gpt-oss-20b: 5/5 at $0.0000912684. Same answers, 22.7 times the price. The cheapest model failed the one arithmetic item and took 4/5.

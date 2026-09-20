@@ -1,0 +1,33 @@
+{
+  "task_name": "recommend-quant-15gb",
+  "trial_name": "recommend-quant-15gb-Run #2",
+  "trial_uri": "kbench://not-a-harbor-trial",
+  "task_id": {
+    "path": "kbench://not-a-harbor-task"
+  },
+  "task_checksum": "unknown (kbench)",
+  "config": {
+    "task": {
+      "path": "kbench://not-a-harbor-task"
+    }
+  },
+  "agent_info": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_info": {
+      "name": "openai/gpt-oss-20b"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 122,
+    "n_output_tokens": 260,
+    "cost_usd": 7.354e-05
+  },
+  "verifier_result": {
+    "rewards": {
+      "score": 1.0
+    }
+  },
+  "started_at": "2026-09-20T15:49:37.330254Z",
+  "finished_at": "2026-09-20T15:49:38.918618Z"
+}

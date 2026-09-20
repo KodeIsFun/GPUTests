@@ -1,0 +1,16 @@
+{
+  "task": "recommend-quant-15gb",
+  "model": "gemini-3.7-flash",
+  "git_sha": "e134436",
+  "models": 1,
+  "items": 5,
+  "passed": 5,
+  "score": 1.0,
+  "input_tokens": 345,
+  "output_tokens": 2694,
+  "output_tokens_per_item": 538.8,
+  "input_tokens_cost": 0.00025875,
+  "output_tokens_cost": 0.0101025,
+  "usd_per_item": 0.00207225,
+  "latency_s": 2.9166
+}

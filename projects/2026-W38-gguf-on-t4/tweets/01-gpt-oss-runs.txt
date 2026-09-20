@@ -1,0 +1,1 @@
+The free-tier question everyone asks, now with a measured answer: gpt-oss-20b runs on a Kaggle T4. 12.11 GB MXFP4 file, every layer on the GPU, zero OOM, 59.21 tokens/s. The plot twist: the 14B dense model on the same card is the slowest of the bunch at 23.21.

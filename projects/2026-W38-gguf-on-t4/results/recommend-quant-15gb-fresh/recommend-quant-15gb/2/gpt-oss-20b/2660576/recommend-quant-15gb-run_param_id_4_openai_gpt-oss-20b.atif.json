@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "recommend-quant-15gb-Run #5",
+  "trajectory_id": "recommend-quant-15gb-Run #5",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "openai/gpt-oss-20b"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A friend claims llama.cpp on a Tesla T4 generates about 40 tokens per second on a 14B Q4_K_M model. In one short sentence: is that plausible, and what is a realistic number?",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-20T15:54:38.283897Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "No\u2014on a single Tesla\u202fT4 a 14\u2011B Q4_K_M model typically delivers only about 5\u201315\u202ftokens\u202f/\u202fsecond (often closer to 10\u202fts/s), so 40\u202fts/s is not realistic.",
+      "extra": {
+        "sender_name": "openai/gpt-oss-20b"
+      },
+      "model_name": "openai/gpt-oss-20b",
+      "metrics": {
+        "prompt_tokens": 111,
+        "completion_tokens": 427,
+        "cost_usd": 0.00011452,
+        "extra": {
+          "total_backend_latency_ms": 1986
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'recommend-quant-15gb'.",
+  "final_metrics": {
+    "total_prompt_tokens": 111,
+    "total_completion_tokens": 427,
+    "total_cost_usd": 0.00011452,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "recommend-quant-15gb",
+        "description": "One item: prompt the model, grade the reply against the measured key.",
+        "definition": "@kbench.task(name=\"recommend-quant-15gb\")\ndef recommend_quant_15gb(llm, prompt: str, kind: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply against the measured key.\"\"\"\n    response = llm.prompt(prompt)\n    return GRADERS[kind]({}, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-20T15:54:40.485113Z"
+    }
+  }
+}

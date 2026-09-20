@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "recommend-quant-15gb-Run #5",
+  "trajectory_id": "recommend-quant-15gb-Run #5",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "google/gemini-3.5-flash-lite"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A friend claims llama.cpp on a Tesla T4 generates about 40 tokens per second on a 14B Q4_K_M model. In one short sentence: is that plausible, and what is a realistic number?",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-20T15:48:46.387395Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "That claim is implausible; a realistic number for a 14B Q4_K_M model on a Tesla T4 is closer to **10 to 15 tokens per second**.",
+      "extra": {
+        "sender_name": "google/gemini-3.5-flash-lite"
+      },
+      "model_name": "google/gemini-3.5-flash-lite",
+      "metrics": {
+        "prompt_tokens": 50,
+        "completion_tokens": 41,
+        "cost_usd": 0.0001175,
+        "extra": {
+          "total_backend_latency_ms": 539
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'recommend-quant-15gb'.",
+  "final_metrics": {
+    "total_prompt_tokens": 50,
+    "total_completion_tokens": 41,
+    "total_cost_usd": 0.0001175,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "recommend-quant-15gb",
+        "description": "One item: prompt the model, grade the reply against the measured key.",
+        "definition": "@kbench.task(name=\"recommend-quant-15gb\")\ndef recommend_quant_15gb(llm, prompt: str, kind: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply against the measured key.\"\"\"\n    response = llm.prompt(prompt)\n    return GRADERS[kind]({}, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-20T15:48:47.017363Z"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "recommend-quant-15gb-Run #2",
+  "trajectory_id": "recommend-quant-15gb-Run #2",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "google/gemini-3.7-flash"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A 14B parameter model's Q4_K_M GGUF file is about 9 GB. You have a GPU with 15360 MB of VRAM and need room for a 4k context. Does it fit? Answer yes or no with one short sentence.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-20T15:49:36.896861Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "Yes, it fits easily because the combined model weights and 4k context require around 10 to 11 GB of VRAM, well within your 15 GB limit.",
+      "extra": {
+        "sender_name": "google/gemini-3.7-flash"
+      },
+      "model_name": "google/gemini-3.7-flash",
+      "metrics": {
+        "prompt_tokens": 64,
+        "completion_tokens": 487,
+        "cost_usd": 0.00187425,
+        "extra": {
+          "total_backend_latency_ms": 2086
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'recommend-quant-15gb'.",
+  "final_metrics": {
+    "total_prompt_tokens": 64,
+    "total_completion_tokens": 487,
+    "total_cost_usd": 0.00187425,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "recommend-quant-15gb",
+        "description": "One item: prompt the model, grade the reply against the measured key.",
+        "definition": "@kbench.task(name=\"recommend-quant-15gb\")\ndef recommend_quant_15gb(llm, prompt: str, kind: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply against the measured key.\"\"\"\n    response = llm.prompt(prompt)\n    return GRADERS[kind]({}, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-20T15:49:39.093590Z"
+    }
+  }
+}

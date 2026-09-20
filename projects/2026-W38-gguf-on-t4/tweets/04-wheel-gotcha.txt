@@ -1,0 +1,1 @@
+Gotcha for anyone running llama.cpp on Kaggle: building llama-cpp-python from source dies before it compiles anything, and pip's error tail shows nothing usable. Don't debug it — the project ships a prebuilt CUDA wheel: point --extra-index-url at the cu124 index. 65.8 s to full GPU offload.

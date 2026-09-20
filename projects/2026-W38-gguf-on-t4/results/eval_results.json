@@ -1,0 +1,63 @@
+{
+  "task": "recommend-quant-15gb",
+  "git_sha": "e134436",
+  "models": 3,
+  "items": 15,
+  "passed": 14,
+  "score": 0.9333,
+  "input_tokens": 1336,
+  "output_tokens": 4544,
+  "output_tokens_per_item": 302.93,
+  "input_tokens_cost": 0.000391342,
+  "output_tokens_cost": 0.01088225,
+  "usd_per_item": 0.0007515728,
+  "latency_s": 1.5515,
+  "usd_per_item_min": 9.12e-05,
+  "usd_per_item_max": 0.00207225,
+  "usd_per_item_max_over_min": 22.7,
+  "per_model": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "models": 1,
+      "items": 5,
+      "passed": 4,
+      "score": 0.8,
+      "input_tokens": 345,
+      "output_tokens": 141,
+      "output_tokens_per_item": 28.2,
+      "input_tokens_cost": 0.0001035,
+      "output_tokens_cost": 0.0003525,
+      "usd_per_item": 9.12e-05,
+      "latency_s": 0.5522
+    },
+    {
+      "model": "gemini-3.7-flash",
+      "models": 1,
+      "items": 5,
+      "passed": 5,
+      "score": 1.0,
+      "input_tokens": 345,
+      "output_tokens": 2694,
+      "output_tokens_per_item": 538.8,
+      "input_tokens_cost": 0.00025875,
+      "output_tokens_cost": 0.0101025,
+      "usd_per_item": 0.00207225,
+      "latency_s": 2.9166
+    },
+    {
+      "model": "gpt-oss-20b",
+      "models": 1,
+      "items": 5,
+      "passed": 5,
+      "score": 1.0,
+      "input_tokens": 646,
+      "output_tokens": 1709,
+      "output_tokens_per_item": 341.8,
+      "input_tokens_cost": 2.9092e-05,
+      "output_tokens_cost": 0.00042725,
+      "usd_per_item": 9.12684e-05,
+      "latency_s": 1.1856
+    }
+  ],
+  "merge_note": "flash-lite from run1 (task v1; its single failure was item 4 arithmetic - a real miss, unaffected by the v2 case-fix); gpt-oss-20b re-run on task v2 after the quant-name case fix; gemini-3.7-flash from the v1 batch (5/5 unaffected by the fix). Grader provenance in repo history."
+}

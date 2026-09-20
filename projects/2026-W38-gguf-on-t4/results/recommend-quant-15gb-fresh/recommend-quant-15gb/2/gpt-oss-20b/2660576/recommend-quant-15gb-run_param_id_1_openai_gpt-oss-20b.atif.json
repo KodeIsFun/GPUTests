@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "recommend-quant-15gb-Run #2",
+  "trajectory_id": "recommend-quant-15gb-Run #2",
+  "agent": {
+    "name": "kaggle-benchmarks",
+    "version": "0.6.1",
+    "model_name": "openai/gpt-oss-20b"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "A 14B parameter model's Q4_K_M GGUF file is about 9 GB. You have a GPU with 15360 MB of VRAM and need room for a 4k context. Does it fit? Answer yes or no with one short sentence.",
+      "extra": {
+        "sender_name": "User"
+      },
+      "timestamp": "2026-09-20T15:54:35.263495Z"
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "Yes, it fits.",
+      "extra": {
+        "sender_name": "openai/gpt-oss-20b"
+      },
+      "model_name": "openai/gpt-oss-20b",
+      "metrics": {
+        "prompt_tokens": 122,
+        "completion_tokens": 224,
+        "cost_usd": 6.454e-05,
+        "extra": {
+          "total_backend_latency_ms": 1140
+        }
+      }
+    }
+  ],
+  "notes": "Converted from kbench run.json for task 'recommend-quant-15gb'.",
+  "final_metrics": {
+    "total_prompt_tokens": 122,
+    "total_completion_tokens": 224,
+    "total_cost_usd": 6.454e-05,
+    "total_steps": 2,
+    "extra": {
+      "kbench_result": {
+        "score": 1.0
+      }
+    }
+  },
+  "extra": {
+    "kbench": {
+      "task_version": {
+        "version_number": 1,
+        "name": "recommend-quant-15gb",
+        "description": "One item: prompt the model, grade the reply against the measured key.",
+        "definition": "@kbench.task(name=\"recommend-quant-15gb\")\ndef recommend_quant_15gb(llm, prompt: str, kind: str) -> bool:\n    \"\"\"One item: prompt the model, grade the reply against the measured key.\"\"\"\n    response = llm.prompt(prompt)\n    return GRADERS[kind]({}, response)\n"
+      },
+      "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+      "end_time": "2026-09-20T15:54:36.617359Z"
+    }
+  }
+}

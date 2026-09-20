@@ -84,3 +84,30 @@ def test_price_spread_ratio_is_citable(tmp_path) -> None:
     f = tmp_path / "eval_results.json"
     f.write_text(json.dumps({"usd_per_item_max_over_min": 18.3}))
     verify_from_files("a spread of 18.3 times for identical questions", f)
+
+
+def test_numbers_inside_list_of_model_records_are_evidence(tmp_path) -> None:
+    """W5: per-model rows live in a LIST ("models": [...], "per_model": [...]).
+
+    The collector only recursed into dicts, so a whole table of tok/s numbers
+    was invisible to the gate and every honest tweet about it was rejected.
+    """
+    import json
+
+    f = tmp_path / "timings.json"
+    f.write_text(
+        json.dumps(
+            {
+                "gpu": "Tesla T4",
+                "models": [
+                    {"model": "qwen3-8b", "tg_tok_s": 39.55},
+                    {"model": "gpt-oss-20b", "tg_tok_s": 59.21},
+                ],
+            }
+        )
+    )
+    verify_from_files(
+        "Qwen3-8B: 39.55 tok/s. gpt-oss-20b: 59.21 tok/s.", f
+    )
+    with pytest.raises(TweetRejected):
+        verify_from_files("Qwen3-8B: 40.1 tok/s.", f)
