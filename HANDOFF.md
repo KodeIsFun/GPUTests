@@ -12,6 +12,7 @@ running.
 | Repo (public, branch `main`) | <https://github.com/KodeIsFun/GPUTests> |
 | W5 kernel — GGUF on T4 (3 versions tell the whole story) | <https://www.kaggle.com/code/emdadh/gguf-on-t4> |
 | W5 task — recommend-quant-15gb (published, v2) | <https://www.kaggle.com/benchmarks/tasks/emdadh/recommend-quant-15gb/2> |
+| **W6 repo — run-qwen-image-on-free-colab (agent skill + verified notebook + public API)** | <https://github.com/KodeIsFun/run-qwen-image-on-free-colab> |
 | W2 kernels + task (calibration, kept) | see git log and PLAN.md |
 
 ## Live meters (end of W5)
@@ -88,6 +89,15 @@ the gate (regression test in `tests/test_tweets.py`).
   Next: cfg 1.0 test (halves the passes; needs quality eyeball), Lightning/turbo LoRA hunt
   for 2.1 (the 5–10× compounding path), quant-vs-speed row (expected: no speed change —
   compute-bound), then the SD1.5/SDXL/Flux comparisons from the original plan.
+- **W6 repo shipped 2026-09-21**: `run-qwen-image-on-free-colab` (local:
+  `/Users/tuhin/RND/run-qwen-image-on-free-colab`, commit 98ed7d3) — A-to-Z agent skill
+  in the `run-llm-on-free-gpu` house style: SKILL.md routing + 9 invariants, 5 references
+  (manual steps, CLI lane, API-from-anywhere, tuning, 12 troubleshooting entries), the
+  notebook built via `tools/build_notebook.py`, stdlib-only `clients/txt2img.py`. Verified
+  on a fresh T4 (`verify-img`): all cells green, API URL served a real generation through
+  the tunnel from outside Colab (87 s, proof PNG committed). One lesson: a byte-identical
+  repeat of the sample workflow returns ComfyUI's **cached** image in ~10 s — use a new
+  prompt/seed when proving serving.
 - **Benchmark collection click** (owner, ~2 min in the web UI): now due —
   three published tasks exist (hello-proxy, emit-kernel-metadata,
   recommend-quant-15gb).
