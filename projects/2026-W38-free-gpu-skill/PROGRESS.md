@@ -1,4 +1,6 @@
-# PROGRESS — `run-llm-on-free-gpu` (paused 2026-09-20, "destroy everything" requested)
+# PROGRESS — `run-llm-on-free-gpu` — COMPLETED 2026-09-20 (paused once on owner order, resumed same night)
+
+**FINAL STATE: shipped and verified.** Repo: <https://github.com/KodeIsFun/run-llm-on-free-gpu> (public, default branch `main`). The verification lap that was pending at the pause is GREEN: all cells OK on a fresh free T4, `server healthy`, `API URL: https://...trycloudflare.com` printed, and a real completion served through the public tunnel to a machine outside Colab (model `local-llm`, usage accounting intact). Session stopped after; `colab sessions` empty. What changed since the snapshot below: `drain_vram()` moved to the top of the load cell, load-failure messages carry real error text, api-server reference documents Qwen3 thinking through the server. The snapshot/ folder and the notes below are kept as the historical record of the pause; the live repo supersedes them.
 
 The standalone repo at `/Users/tuhin/RND/run-llm-on-free-gpu` was **deleted on
 the owner's order** after this snapshot was committed here. `snapshot/` is the
