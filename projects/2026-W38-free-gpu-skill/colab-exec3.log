@@ -1,0 +1,575 @@
+[colab] Parsing notebook 'colab/run-llm-t4.ipynb'...
+[colab] Executing cell 1/8 - 8b4d9481-2382-4635-ae0e-cb3b2e1fa008...
+Config: qwen3-8b | serve: True | tunnel: cloudflared
+[colab] Executing cell 2/8 - a9bc9b43-4f56-45e6-91b9-36c820759afe...
+OK: GPU runtime detected — Tesla T4 with 15360 MB VRAM
+[colab] Executing cell 3/8 - a63d14dd-e7ed-4e81-b8d0-aeae768f0d9d...
+install: 4 s (prebuilt cu124 wheel)
+llama-cpp-python 0.3.35
+OK: install (GPU offload supported)
+[colab] Executing cell 4/8 - e6424c71-9118-41a9-8af7-7636694e56d8...
+downloaded qwen3-8b: 5.03 GB in 0 s
+OK: download
+[colab] Executing cell 5/8 - c1ade329-9ed4-4aec-ad9d-41e3a818e21e...
+loaded qwen3-8b in 2.0 s
+offload proof: load_tensors: offloaded 37/37 layers to GPU
+OK: load -> qwen3-8b
+[colab] Executing cell 6/8 - 709631a3-9cb2-471f-a452-ae605bad1a9c...
+CUDA Graph id 72 reused
+ggml_backend_cuda_graph_compute: CUDA graph warmup complete
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+CUDA Graph id 72 reused
+ggml_backend_cuda_graph_compute: CUDA graph warmup reset
+CUDA Graph id 75 reused
+ggml_backend_cuda_graph_compute: CUDA graph warmup complete
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+CUDA Graph id 75 reused
+ggml_backend_cuda_graph_compute: CUDA graph warmup reset
+CUDA Graph id 78 reused
+ggml_backend_cuda_graph_compute: CUDA graph warmup complete
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+CUDA Graph id 78 reused
+llama_perf_context_print:        load time =      48.11 ms
+llama_perf_context_print: prompt eval time =      47.76 ms /    21 tokens (    2.27 ms per token,   439.74 tokens per second)
+llama_perf_context_print:        eval time =   26558.62 ms /   511 runs   (   51.97 ms per token,    19.24 tokens per second)
+llama_perf_context_print:       total time =   27343.32 ms /   532 tokens
+llama_perf_context_print:    graphs reused =        508
+Q: Name three planets in the solar system and one fact about each.
+A (27.3 s): 1. **Mercury** – It is the closest planet to the Sun and has extreme temperature variations, with daytime temperatures reaching up to 430°C (800°F) and nighttime temperatures dropping to -180°C (-290°F).  
+2. **Venus** – It is the hottest planet in the solar system, with a surface temperature of about 465°C (870°F), due to its thick atmosphere composed mostly of carbon dioxide and a strong greenhouse effect.  
+3
+OK: chat
+[colab] Executing cell 7/8 - 6224b72d-18ab-4bb2-af5d-a1d18c98a7c4...
+server will use port 33811 (8080 is taken on Colab VMs)
+ound
+INFO:     127.0.0.1:60274 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53914 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53918 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53934 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33358 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33374 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33378 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32778 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32782 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32792 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32808 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47660 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47674 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47678 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54940 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54944 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54946 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51216 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51222 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51224 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51226 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44110 - "GET /health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44122 - "GET /health HTTP/1.1" 404 Not Found
+
+An exception has occurred, use %tb to see the full traceback.
+[0;31mSystemExit[0m[0;31m:[0m server never became healthy — log above
+
+/usr/local/lib/python3.13/dist-packages/IPython/core/interactiveshell.py:3561: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
+[colab] Executing cell 8/8 - 913b759d-de9a-48ae-8b68-d0a79fa744bf...
+nothing torn down (TEARDOWN=False)
+[colab] Saving notebook with outputs to 'colab/run-llm-t4_output.ipynb'...
