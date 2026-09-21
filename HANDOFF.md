@@ -20,7 +20,7 @@ running.
 GPU       0.22h  29.78h  30.00h  refresh 2026-09-26
 TPU       0.00h  20.00h  20.00h  refresh 2026-09-26
 Proxy     $0.0435 lifetime (see ledger/proxy.jsonl for the breakdown)
-Colab     not used this week
+Colab     W6 probe 2026-09-21: one T4 session, ~36 min, stopped (see projects/2026-W39-qwen-image21-t4/)
 ```
 
 ## W5 results
@@ -77,9 +77,14 @@ the gate (regression test in `tests/test_tweets.py`).
 
 ## Next
 
-- **W6 (image gen)**: SD1.5 vs SDXL-turbo vs Flux-schnell on the same T4 —
-  s/image + VRAM; the next "everyone asks" table. Same self-contained-job
-  pattern, incremental flush, honest margins.
+- **W6 (image gen) started 2026-09-21, probe done**: Qwen-Image-2.1 GGUF
+  Q4_K_M (7B DiT) runs on a free Colab T4 on the card-recommended setup —
+  38.0 s/step at 1024², 825.6 s cold / 765.6 s warm per 20-step image, peak
+  VRAM 91%, RAM 75% (dynamic VRAM loading saved the 9.35 GB int8 encoder).
+  Text rendering survives the quant: "FREE GPU LAB" neon sign, spelled right.
+  Full numbers + PNGs in `projects/2026-W39-qwen-image21-t4/`. Next: quant
+  table (Q8/Q6/Q5), fp16-forced run (T4 fp32 manual cast is the 38 s/step
+  bottleneck), then the SD1.5/SDXL/Flux comparisons from the original plan.
 - **Benchmark collection click** (owner, ~2 min in the web UI): now due —
   three published tasks exist (hello-proxy, emit-kernel-metadata,
   recommend-quant-15gb).

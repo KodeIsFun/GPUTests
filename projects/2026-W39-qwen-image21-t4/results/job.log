@@ -1,0 +1,198 @@
+[     0.0s] === PHASE 0: env report ===
+Mon Sep 21 15:16:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+| N/A   46C    P8             10W /   70W |       0MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+[     0.2s] meminfo: MemTotal:       13286944 kB
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         236G   48G  189G  21% /
+[     4.6s] env: {'gpu': 'Tesla T4', 'torch': '2.11.0+cu128', 'cuda': '12.8', 'python': '3.13.15'}
+[     4.6s] === PHASE 1: install ComfyUI + GGUF nodes ===
+Cloning into '/content/ComfyUI'...
+[     6.5s] clone ComfyUI rc=0 1.9s
+Cloning into '/content/ComfyUI/custom_nodes/ComfyUI-GGUF'...
+[     7.0s] clone ComfyUI-GGUF (leejet) rc=0 0.5s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.8 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 87.1 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 80.3 MB/s eta 0:00:00
+[    40.0s] pip comfy requirements rc=0 32.9s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 4.5 MB/s eta 0:00:00
+[    42.8s] pip gguf requirements rc=0 2.8s
+[    42.8s] === PHASE 2: download weights ===
+[    89.7s] download qwen-image-2.1-Q4_K_M.gguf rc=0 4.60GB in 47.0s (98 MB/s)
+[   213.5s] download qwen3vl_8b_int8_convrot.safetensors rc=0 9.35GB in 97.9s (96 MB/s)
+[   313.2s] download qwen_image_2.1_vae_bf16.safetensors rc=0 0.68GB in 8.5s (79 MB/s)
+[   313.4s] Comfy-Org TE candidates: ['text_encoders/qwen3vl_8b_w4a8.safetensors', 'text_encoders/qwen3vl_8b_int8_convrot.safetensors', 'text_encoders/qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors', 'text_encoders/qwen3.5_9b_qwen_image_2.1_pe_t2i.int8_convrot.safetensors']
+[   408.9s] download qwen3vl_8b_w4a8.safetensors rc=0 6.31GB in 95.5s (66 MB/s)
+[   475.2s] === ATTEMPT 1: te=qwen3vl_8b_int8_convrot.safetensors flags=[] ===
+[   505.4s] object_info checks: {"gguf_loader_classes": ["UnetLoaderGGUF", "UnetLoaderGGUFAdvanced"], "gguf_loader": "UnetLoaderGGUF", "cliploader_types": ["stable_diffusion", "stable_cascade", "sd3", "stable_audio", "mochi", "ltxv", "pixart", "cosmos", "lumina2", "wan", "hidream", "chroma", "ace", "omnigen2", "qwen_image", "hunyuan_image", "flux2", "ovis", "longcat_image", "cogvideox", "lens", "pixeldit", "ideogram4", "boogu", "krea2", "joyimage", "mage", "minimax", "yue2"], "has_qwen_image_type": true, "has_EmptySD3LatentImage": true, "has_res_multistep": true}
+[  1331.0s] p1_cat_raincoat: ok=True 825.6s (ok)
+[  2096.7s] p2_freegpulab_sign: ok=True 765.6s (ok)
+[  2097.1s] === DONE success=True total=2097.1s ===
+=== TIMINGS_JSON ===
+{
+  "run": "qwen-image-2.1-q4km-t4",
+  "platform": "colab-t4",
+  "started_utc": "2026-09-21T15:16:19Z",
+  "settings_assumptions": {
+    "official": "40 steps @ 2048x2048 (diffusers card example), sampler unpublished",
+    "used": "20 steps @ 1024x1024, cfg 2.5, res_multistep/simple, seed 42",
+    "why": "free T4 budget; cfg/sampler carried from Qwen-Image 1.0 Comfy-Org template"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "te": "qwen3vl_8b_int8_convrot.safetensors",
+      "flags": [],
+      "images": [
+        {
+          "name": "p1_cat_raincoat",
+          "ok": true,
+          "wall_s": 825.6,
+          "files": [
+            "w6t4_p1_cat_raincoat_00001_.png"
+          ],
+          "note": "ok",
+          "saved": "a1_w6t4_p1_cat_raincoat_00001_.png"
+        },
+        {
+          "name": "p2_freegpulab_sign",
+          "ok": true,
+          "wall_s": 765.6,
+          "files": [
+            "w6t4_p2_freegpulab_sign_00001_.png"
+          ],
+          "note": "ok",
+          "saved": "a1_w6t4_p2_freegpulab_sign_00001_.png"
+        }
+      ],
+      "errors": [],
+      "boot_s": 505.2,
+      "node_checks": {
+        "gguf_loader_classes": [
+          "UnetLoaderGGUF",
+          "UnetLoaderGGUFAdvanced"
+        ],
+        "gguf_loader": "UnetLoaderGGUF",
+        "cliploader_types": [
+          "stable_diffusion",
+          "stable_cascade",
+          "sd3",
+          "stable_audio",
+          "mochi",
+          "ltxv",
+          "pixart",
+          "cosmos",
+          "lumina2",
+          "wan",
+          "hidream",
+          "chroma",
+          "ace",
+          "omnigen2",
+          "qwen_image",
+          "hunyuan_image",
+          "flux2",
+          "ovis",
+          "longcat_image",
+          "cogvideox",
+          "lens",
+          "pixeldit",
+          "ideogram4",
+          "boogu",
+          "krea2",
+          "joyimage",
+          "mage",
+          "minimax",
+          "yue2"
+        ],
+        "has_qwen_image_type": true,
+        "has_EmptySD3LatentImage": true,
+        "has_res_multistep": true
+      },
+      "prompt_executed_lines": [],
+      "pollers_end": {
+        "vram_max_mb": 14039,
+        "ram_total_mb": 12975,
+        "ram_used_peak_mb": 9671,
+        "vram_samples_n": 357
+      },
+      "success": true
+    }
+  ],
+  "env": {
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "python": "3.13.15"
+  },
+  "install_done_s": 42.8,
+  "downloads": [
+    {
+      "url": "qwen-image-2.1-Q4_K_M.gguf",
+      "file_gb": 4.6,
+      "download_s": 47.0,
+      "rc": 0
+    },
+    {
+      "url": "qwen3vl_8b_int8_convrot.safetensors",
+      "file_gb": 9.35,
+      "download_s": 97.9,
+      "rc": 0
+    },
+    {
+      "url": "qwen_image_2.1_vae_bf16.safetensors",
+      "file_gb": 0.68,
+      "download_s": 8.5,
+      "rc": 0
+    }
+  ],
+  "download_total_s": 153.4,
+  "node_checks_note": "verified at runtime via /object_info per attempt",
+  "small_te_download": {
+    "url": "qwen3vl_8b_w4a8.safetensors",
+    "file_gb": 6.31,
+    "download_s": 95.5,
+    "rc": 0
+  },
+  "ladder": [
+    {
+      "te": "qwen3vl_8b_int8_convrot.safetensors",
+      "flags": []
+    },
+    {
+      "te": "qwen3vl_8b_int8_convrot.safetensors",
+      "flags": [
+        "--lowvram"
+      ]
+    },
+    {
+      "te": "qwen3vl_8b_w4a8.safetensors",
+      "flags": []
+    }
+  ],
+  "final_attempt": 1,
+  "final_pollers": {
+    "vram_max_mb": 14039,
+    "ram_total_mb": 12975,
+    "ram_used_peak_mb": 9671,
+    "vram_samples_n": 358
+  },
+  "total_s": 2097.1,
+  "success": true
+}
