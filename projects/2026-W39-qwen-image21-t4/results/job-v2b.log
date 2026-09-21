@@ -1,0 +1,84 @@
+[     0.0s] === setup: ComfyUI + weights (skipped if present) ===
+Cloning into '/content/ComfyUI'...
+[     1.6s] clone ComfyUI rc=0 1.6s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 6.7 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 72.0 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 113.1 MB/s eta 0:00:00
+[    34.4s] pip comfy requirements rc=0 32.8s
+Cloning into '/content/ComfyUI/custom_nodes/ComfyUI-GGUF'...
+[    34.8s] clone ComfyUI-GGUF rc=0 0.4s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 4.2 MB/s eta 0:00:00
+[    38.0s] pip gguf requirements rc=0 3.3s
+[   103.8s] download qwen-image-2.1-Q4_K_M.gguf rc=0 in 65.8s
+[   217.0s] download qwen3vl_8b_int8_convrot.safetensors rc=0 in 113.2s
+[   222.3s] download qwen_image_2.1_vae_bf16.safetensors rc=0 in 5.3s
+[   385.1s] booting server with ['--force-fp16', '--disable-comfy-compiler']
+[   547.3s] p1_cat_raincoat: ok=True 129.1s (ok)
+[   628.3s] p2_freegpulab_sign: ok=True 81.1s (ok)
+[   628.8s] === DONE success=True total=628.8s ===
+=== TIMINGS_V2B_JSON ===
+{
+  "run": "qwen-image-2.1-q4km-t4-v2b-fp16-nocompile",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "matrix_note": "same rows as v2 phase 2; only change vs v2 fp16 attempt: --disable-comfy-compiler",
+  "rows": [
+    {
+      "key": "combo_fp16_768_12_p1_cat_raincoat",
+      "ok": true,
+      "wall_s": 129.1,
+      "note": "ok",
+      "files": [
+        "v2b_fp16_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "saved": "v2b_v2b_fp16_00001_.png"
+    },
+    {
+      "key": "combo_fp16_768_12_p2_freegpulab_sign",
+      "ok": true,
+      "wall_s": 81.1,
+      "note": "ok",
+      "files": [
+        "v2b_fp16_00002_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "saved": "v2b_v2b_fp16_00002_.png"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-Q4_K_M.gguf",
+      "download_s": 65.8,
+      "rc": 0
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "download_s": 113.2,
+      "rc": 0
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "download_s": 5.3,
+      "rc": 0
+    }
+  ],
+  "cast_lines_seen": [
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "prompt_executed": [
+    "127.92",
+    "79.17"
+  ],
+  "s_per_step_fp16": "6.20",
+  "total_s": 628.8,
+  "success": true
+}

@@ -20,7 +20,7 @@ running.
 GPU       0.22h  29.78h  30.00h  refresh 2026-09-26
 TPU       0.00h  20.00h  20.00h  refresh 2026-09-26
 Proxy     $0.0435 lifetime (see ledger/proxy.jsonl for the breakdown)
-Colab     W6 probe 2026-09-21: one T4 session, ~36 min, stopped (see projects/2026-W39-qwen-image21-t4/)
+Colab     W6 2026-09-21: 4 T4 sessions (~70 min total), all stopped (projects/2026-W39-qwen-image21-t4/)
 ```
 
 ## W5 results
@@ -77,14 +77,17 @@ the gate (regression test in `tests/test_tweets.py`).
 
 ## Next
 
-- **W6 (image gen) started 2026-09-21, probe done**: Qwen-Image-2.1 GGUF
-  Q4_K_M (7B DiT) runs on a free Colab T4 on the card-recommended setup —
-  38.0 s/step at 1024², 825.6 s cold / 765.6 s warm per 20-step image, peak
-  VRAM 91%, RAM 75% (dynamic VRAM loading saved the 9.35 GB int8 encoder).
-  Text rendering survives the quant: "FREE GPU LAB" neon sign, spelled right.
-  Full numbers + PNGs in `projects/2026-W39-qwen-image21-t4/`. Next: quant
-  table (Q8/Q6/Q5), fp16-forced run (T4 fp32 manual cast is the 38 s/step
-  bottleneck), then the SD1.5/SDXL/Flux comparisons from the original plan.
+- **W6 (image gen) started 2026-09-21, probe + speed combo done**: Qwen-Image-2.1 GGUF
+  Q4_K_M (7B DiT) runs on a free Colab T4 on the card-recommended setup — 38.0 s/step at
+  1024², 825.6 s cold / 765.6 s warm per 20-step image, peak VRAM 91%, RAM 75% (dynamic
+  VRAM loading saved the 9.35 GB int8 encoder). Text rendering survives the quant: "FREE
+  GPU LAB" neon sign, spelled right. Speed combo lands 9.7×: fp16 + 12 steps + 768² →
+  **6.20 s/step, 79.2 s warm image** — but fp16 needs `--disable-comfy-compiler` (ComfyUI's
+  aimdo compiler crashes on T4 fp16) and `--force-fp16` (the Advanced GGUF loader has no
+  weight_dtype input). Full numbers + PNGs in `projects/2026-W39-qwen-image21-t4/`.
+  Next: cfg 1.0 test (halves the passes; needs quality eyeball), Lightning/turbo LoRA hunt
+  for 2.1 (the 5–10× compounding path), quant-vs-speed row (expected: no speed change —
+  compute-bound), then the SD1.5/SDXL/Flux comparisons from the original plan.
 - **Benchmark collection click** (owner, ~2 min in the web UI): now due —
   three published tasks exist (hello-proxy, emit-kernel-metadata,
   recommend-quant-15gb).
@@ -131,6 +134,21 @@ New:
 9. **The tweet gate saw no numbers inside `"models": [...]`** until the
    collector recursed lists. If a new artifact schema appears, check the gate
    can witness it BEFORE drafting posts.
+10. **Never bundle artifact downloads with `colab stop` — and verify each
+    download.** The v2 artifact set was lost this way (a zsh `set -- $pair`
+    doesn't word-split, so every download got one mangled argument, a grep
+    swallowed the errors, and the stop ran anyway). `colab stop` is terminal:
+    the VM and `/content` are gone. Download one file at a time, `ls -la` to
+    verify, stop as a separate command.
+11. **ComfyUI `--force-fp16` crashes on T4 without `--disable-comfy-compiler`**:
+    `aimdo memory compile error` from `comfy_aimdo/malloc_graph.py` on the
+    first fp16 forward (the model itself loads fine). The leejet ComfyUI-GGUF
+    `UnetLoaderGGUFAdvanced` has no `weight_dtype` input, so server flags are
+    the only fp16 path.
+12. **Jobs must be fresh-VM safe.** A job that assumes a previous session's
+    `/content` state dies with `FileNotFoundError` on a new VM (v2c first
+    attempt). Every job script carries its own install+download phase with
+    cached-file skips.
 
 ## Standing rules still in force
 

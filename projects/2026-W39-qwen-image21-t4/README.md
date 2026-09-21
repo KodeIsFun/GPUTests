@@ -98,3 +98,49 @@ quantization at 20 steps.
 
 Files: `timings.json` (single source of truth), `comfyui-a1.log`,
 `job.log`, both PNGs. Session `w6-qwen21` stopped; nothing left running.
+
+---
+
+## Result v2 (2026-09-21, sessions w6-qwen21-v2 / -v2c): the speed combo
+
+Combo: **fp16 cast + 12 steps + 768²**, same seed and prompts as v1.
+
+| Config | s/step | Cold image | Warm image | Source |
+|---|---|---|---|---|
+| v1: 1024², 20 steps, fp32 (bf16 model, T4 has no bf16) | 38.0 | 825.6 s | 765.6 s | `results/timings.json` |
+| v2 control: 768², 12 steps, fp32 | — | 342.6 s | — | poller capture (see incident note) |
+| **v2b combo: 768², 12 steps, fp16 + `--disable-comfy-compiler`** | **6.20** | **127.9 s** | **79.2 s** | `results/timings-v2b.json` |
+
+**9.7× faster warm-image generation** (765.6 → 79.2 s). Attribution from
+s/step: 6.13× total = ~2.96× settings (20→12 steps × 1024²→768²) × ~2.07×
+fp16 — the fp16 win landed even better than the predicted 1.5–2×.
+
+Quality (eyeballed from committed PNGs): fp16 introduces no visible artifacts;
+the neon sign still reads **FREE GPU LAB** spelled perfectly at 12 steps.
+Minor banding in the darkest reflection gradients, plausibly fp16 and/or
+12-step related — judged acceptable for social content.
+
+### The fp16 blocker and its fix (the gotcha worth posting)
+
+`--force-fp16` alone **crashes on the T4**: the model loads fine
+(`weight dtype torch.float16`) but the first forward dies with
+`RuntimeError: aimdo memory compile error` from `comfy_aimdo/malloc_graph.py`
+— ComfyUI's model-compiler/CUDA-graph subfeature can't compile the fp16 path
+on this card. Adding **`--disable-comfy-compiler`** fixes it. The leejet
+fork's `UnetLoaderGGUFAdvanced` exposes **no `weight_dtype` input at all**
+(empty via `/object_info`), so the per-node fp16 route does not exist here;
+the server flag is the only path.
+
+### Incident note (kept honest)
+
+The first v2/v2b artifact set was lost: artifacts were never downloaded (a
+zsh word-splitting bug in the download loop), and the VM stop was bundled
+into the same command. The v2 numbers and error text above survive via the
+committed poller captures (`results/v2-poller-capture.log`,
+`v2b-poller-capture.log`); the fp16 rows were re-generated cleanly on session
+`w6-qwen21-v2c` (`timings-v2b.json`, both PNGs, `comfyui-v2b.log` are from
+that run — numbers reproduced: 6.81 vs 6.20 s/step across the two runs).
+Rule added to HANDOFF: verify every download before stopping a session, and
+never bundle downloads with the stop.
+
+Session stopped; nothing left running.

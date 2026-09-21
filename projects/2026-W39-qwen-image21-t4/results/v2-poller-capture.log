@@ -1,0 +1,76 @@
+--- poll 1 ---
+Cloning into '/content/ComfyUI/custom_nodes/ComfyUI-GGUF'...
+[     7.6s] clone ComfyUI-GGUF (leejet) rc=0 0.6s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.1 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 55.5 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 42.3 MB/s eta 0:00:00
+[    43.3s] pip comfy requirements rc=0 35.7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 6.5 MB/s eta 0:00:00
+[    46.2s] pip gguf requirements rc=0 2.9s
+[    46.2s] === PHASE 2: download weights ===
+[    87.7s] download qwen-image-2.1-Q4_K_M.gguf rc=0 4.60GB in 41.5s
+[   157.0s] download qwen3vl_8b_int8_convrot.safetensors rc=0 9.35GB in 69.3s
+[   165.5s] download qwen_image_2.1_vae_bf16.safetensors rc=0 0.68GB in 8.5s
+
+MARKER_RUNNING
+--- poll 2 ---
+[     7.6s] clone ComfyUI-GGUF (leejet) rc=0 0.6s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.1 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 55.5 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 42.3 MB/s eta 0:00:00
+[    43.3s] pip comfy requirements rc=0 35.7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 6.5 MB/s eta 0:00:00
+[    46.2s] pip gguf requirements rc=0 2.9s
+[    46.2s] === PHASE 2: download weights ===
+[    87.7s] download qwen-image-2.1-Q4_K_M.gguf rc=0 4.60GB in 41.5s
+[   157.0s] download qwen3vl_8b_int8_convrot.safetensors rc=0 9.35GB in 69.3s
+[   165.5s] download qwen_image_2.1_vae_bf16.safetensors rc=0 0.68GB in 8.5s
+[   282.9s] object_info checks: {"gguf_loader_classes": ["UnetLoaderGGUF", "UnetLoaderGGUFAdvanced"], "gguf_loader": "UnetLoaderGGUF", "has_advanced_loader": true, "advanced_weight_dtype_enum": null, "has_qwen_image_type": true, "has_EmptySD3LatentImage": true}
+
+MARKER_RUNNING
+--- poll 3 ---
+[     7.6s] clone ComfyUI-GGUF (leejet) rc=0 0.6s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.1 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 55.5 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 42.3 MB/s eta 0:00:00
+[    43.3s] pip comfy requirements rc=0 35.7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 6.5 MB/s eta 0:00:00
+[    46.2s] pip gguf requirements rc=0 2.9s
+[    46.2s] === PHASE 2: download weights ===
+[    87.7s] download qwen-image-2.1-Q4_K_M.gguf rc=0 4.60GB in 41.5s
+[   157.0s] download qwen3vl_8b_int8_convrot.safetensors rc=0 9.35GB in 69.3s
+[   165.5s] download qwen_image_2.1_vae_bf16.safetensors rc=0 0.68GB in 8.5s
+[   282.9s] object_info checks: {"gguf_loader_classes": ["UnetLoaderGGUF", "UnetLoaderGGUFAdvanced"], "gguf_loader": "UnetLoaderGGUF", "has_advanced_loader": true, "advanced_weight_dtype_enum": null, "has_qwen_image_type": true, "has_EmptySD3LatentImage": true}
+
+MARKER_RUNNING
+--- poll 4 ---
+7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 6.5 MB/s eta 0:00:00
+[    46.2s] pip gguf requirements rc=0 2.9s
+[    46.2s] === PHASE 2: download weights ===
+[    87.7s] download qwen-image-2.1-Q4_K_M.gguf rc=0 4.60GB in 41.5s
+[   157.0s] download qwen3vl_8b_int8_convrot.safetensors rc=0 9.35GB in 69.3s
+[   165.5s] download qwen_image_2.1_vae_bf16.safetensors rc=0 0.68GB in 8.5s
+[   282.9s] object_info checks: {"gguf_loader_classes": ["UnetLoaderGGUF", "UnetLoaderGGUFAdvanced"], "gguf_loader": "UnetLoaderGGUF", "has_advanced_loader": true, "advanced_weight_dtype_enum": null, "has_qwen_image_type": true, "has_EmptySD3LatentImage": true}
+[   625.5s] ctl_fp32_768_12_p1: ok=True 342.6s (ok)
+[   625.5s] combo_fp16_768_12_p1: skipping — Advanced loader enum lacks fp16 []
+[   625.5s] combo_fp16_768_12_p2: skipping — Advanced loader enum lacks fp16 []
+[   625.9s] Advanced-loader fp16 unavailable for ['combo_fp16_768_12_p1', 'combo_fp16_768_12_p2']; relaunching with --force-fp16
+
+MARKER_RUNNING
+--- poll 5 ---
+      "rc": 0
+    }
+  ],
+  "final_pollers": {
+    "vram_max_mb": 13209,
+    "ram_total_mb": 12975,
+    "ram_used_peak_mb": 10095,
+    "vram_samples_n": 90
+  },
+  "total_s": 701.6,
+  "success": false
+}
+
+MARKER_DONE
+POLL_EXIT_DONE

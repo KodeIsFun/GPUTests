@@ -1,0 +1,65 @@
+{
+  "run": "qwen-image-2.1-q4km-t4-v2b-fp16-nocompile",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "matrix_note": "same rows as v2 phase 2; only change vs v2 fp16 attempt: --disable-comfy-compiler",
+  "rows": [
+    {
+      "key": "combo_fp16_768_12_p1_cat_raincoat",
+      "ok": true,
+      "wall_s": 129.1,
+      "note": "ok",
+      "files": [
+        "v2b_fp16_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "saved": "v2b_v2b_fp16_00001_.png"
+    },
+    {
+      "key": "combo_fp16_768_12_p2_freegpulab_sign",
+      "ok": true,
+      "wall_s": 81.1,
+      "note": "ok",
+      "files": [
+        "v2b_fp16_00002_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "saved": "v2b_v2b_fp16_00002_.png"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-Q4_K_M.gguf",
+      "download_s": 65.8,
+      "rc": 0
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "download_s": 113.2,
+      "rc": 0
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "download_s": 5.3,
+      "rc": 0
+    }
+  ],
+  "cast_lines_seen": [
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "prompt_executed": [
+    "127.92",
+    "79.17"
+  ],
+  "s_per_step_fp16": "6.20",
+  "total_s": 628.8,
+  "success": true
+}

@@ -1,0 +1,18 @@
+--- poll 1 ---
+[     0.0s] booting server with ['--force-fp16', '--disable-comfy-compiler']
+
+MARKER_RUNNING
+--- poll 2 ---
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "prompt_executed": [
+    "127.36",
+    "86.95"
+  ],
+  "s_per_step_fp16": "6.81",
+  "total_s": 235.0,
+  "success": true
+}
+
+MARKER_DONE
+POLL_EXIT_DONE
