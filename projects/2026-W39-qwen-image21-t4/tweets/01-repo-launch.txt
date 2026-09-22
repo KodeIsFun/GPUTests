@@ -1,14 +1,14 @@
-Everyone's favorite free GPU (Colab's T4) runs image models ~6× slower than it can — silently. The model gets cast to fp32, and nothing tells you.
+Qwen just shipped Qwen-Image-2.1 — and the output is genuinely excellent: photoreal shots, clean composition, and it still nails the one thing most image models fumble: text.
 
-Worse: the obvious fix (--force-fp16) hard-crashes with "aimdo memory compile error". You need a second flag almost nobody documents.
+The best part? It's only 7B, so it runs on Google's FREE Colab T4. No GPU, no paid tier, no setup pain.
 
-I measured my way through it:
+I ran it on the free tier and the receipts are in the repo:
 
-• fp32: 38 s/step → fp16: 6.2 s/step
-• a full image in ~80 s, total cost $0
-• "use a smaller quant for speed" does nothing — it's compute-bound (measured, not guessed)
-• text rendering survives it all: it drew a neon sign that reads FREE GPU LAB, spelled right
+• it drew a neon sign reading "FREE GPU LAB" — spelled perfectly, rain reflections and all
+• photoreal cat in a raincoat, straight off a 4.6 GB quant file
+• ~80 seconds per image, total cost $0
+• one-click notebook prints you a public API — generate from any machine
 
-Full recipe — one-click notebook, a public API you can call from any machine, and the measured settings table:
+Stop screenshotting other people's gens. Run it yourself:
 
 https://github.com/KodeIsFun/run-qwen-image-on-free-colab
