@@ -1,0 +1,14 @@
+Everyone's favorite free GPU (Colab's T4) runs image models ~6× slower than it can — silently. The model gets cast to fp32, and nothing tells you.
+
+Worse: the obvious fix (--force-fp16) hard-crashes with "aimdo memory compile error". You need a second flag almost nobody documents.
+
+I measured my way through it:
+
+• fp32: 38 s/step → fp16: 6.2 s/step
+• a full image in ~80 s, total cost $0
+• "use a smaller quant for speed" does nothing — it's compute-bound (measured, not guessed)
+• text rendering survives it all: it drew a neon sign that reads FREE GPU LAB, spelled right
+
+Full recipe — one-click notebook, a public API you can call from any machine, and the measured settings table:
+
+https://github.com/KodeIsFun/run-qwen-image-on-free-colab
