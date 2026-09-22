@@ -1,0 +1,13 @@
+What if your AI API cost $0/month — and your prompts never left the machine?
+
+Google hands out free T4 GPUs. I published the playbook (built for humans AND AI agents) that turns one into your own OpenAI-compatible endpoint in a single notebook run:
+
+→ no credit card, no per-token bill
+→ private: your data stays on your VM
+→ point n8n, Zapier, or your code at it like it's OpenAI
+
+The surprise we measured: gpt-oss-20b runs on that free card at 59.21 tok/s — 2.5× faster than a 14B.
+
+Honest limits: it's a workshop, not a deployment — the URL dies with the session.
+
+Every number measured: github.com/KodeIsFun/run-llm-on-free-gpu
