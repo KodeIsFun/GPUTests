@@ -1,6 +1,6 @@
 # Plan: 4-step probe — same v2b settings, no Pocket rewriter
 
-**Status:** planned, not yet run. **Baseline:** `results/timings-v2b.json` (12 steps, warm 79.17 s, 6.20 s/step, cold 127.92 s).
+**Status: RUN 2026-09-24 — quality FAIL, 12 steps stays default.** Results in `README.md` § "4-step follow-up" and `results-v3/`. Baseline was switched from v2b (non-UC weights) to the Pocket probe's direct arm (UC-Q4_K_M) at run time: the non-UC diffusion GGUF 404s after the abenzerps repo restructure. cfg 2.5 sign illegible at 4 steps; cfg 1.0 contingency (front-loaded into the same session) only partially legible. Speed held: 27.0 s warm vs 87.1 s (3.2×).
 
 ## Question
 

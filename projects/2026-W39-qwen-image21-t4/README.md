@@ -144,3 +144,36 @@ Rule added to HANDOFF: verify every download before stopping a session, and
 never bundle downloads with the stop.
 
 Session stopped; nothing left running.
+
+## 4-step follow-up (v3, 2026-09-24) — FAIL on quality, 12 steps stays default
+
+Plan in `PLAN-4steps.md`; driver `job_v3_steps4.py`; artifacts in `results-v3/`
+(`timings_v3.json`, `comparison_v3.png`, sign zooms). Same direct pipeline (no
+Pocket rewriter), 4 steps instead of 12, everything else held fixed: fp16 +
+`--disable-comfy-compiler`, cfg 2.5, `res_multistep/simple`, seed 42.
+
+**Baseline deviation, forced upstream:** the non-UC `qwen-image-2.1-Q4_K_M.gguf`
+now 404s — abenzerps restructured `Qwen-Image-2.1-GGUF` into
+`Qwen-Image-2.1-Uncensored-GGUF` and dropped the non-UC diffusion file (TE/VAE
+still resolve via redirect). So v2b is no longer a valid same-weights baseline;
+the run switched to **UC-Q4_K_M** and compares against the Pocket probe's
+DIRECT arm (same UC weights, 12 steps, seed 42): sign 768² 87.1 s, cat
+864×576 126.1 s cold. Timings sizes were matched per prompt for an exact
+comparison. (Also: the first launch attempt downloaded a 15-byte 404 body
+because the job's wget path didn't hard-fail on rc — relaunch covered it;
+husks left on the ephemeral VM.)
+
+| Row | Result | vs 12-step UC baseline |
+|---|---|---|
+| cat 864×576, cfg 2.5 | 78.1 s (cold, includes model load) | 12-step cat was 126.1 s cold |
+| sign 768×768, cfg 2.5 | **27.0 s** (25.29 s executed) | 87.1 s → **3.2× faster** |
+| sign 768×768, cfg 1.0 (contingency) | 15.0 s | — |
+
+**Verdict: quality fails, speed is real.** At cfg 2.5 the photographic prompt
+survives (yellow raincoat intact, composition usable) but the text canary
+collapses: the sign is dark, smeared, and illegible. The front-loaded cfg 1.0
+contingency partially rescues it — "FREE GPU" becomes readable but the third
+word degrades and letters wobble with ghost strokes; still far from the crisp
+12-step render. Per the plan's criteria: 4 steps is closed, cfg-off does not
+rescue it, 12 steps stays the default. The failure mode is specifically text
+rendering; photographic content is the marginal-use case.

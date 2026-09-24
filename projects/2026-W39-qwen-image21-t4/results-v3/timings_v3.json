@@ -1,0 +1,77 @@
+{
+  "run": "qwen-image-2.1-uc-q4km-t4-v3-steps4",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "steps": 4,
+  "matrix_note": "4 steps vs the Pocket probe's 12-step DIRECT arm (same UC-Q4_K_M weights, cfg 2.5, res_multistep/simple, seed 42). Deviation from PLAN-4steps.md: non-UC Q4_K_M 404s after repo restructure, so timings_v2b.json is not the baseline anymore.",
+  "rows": [
+    {
+      "key": "uc_4steps_864x576_cfg2.5_p1_cat_raincoat",
+      "ok": true,
+      "wall_s": 78.1,
+      "note": "ok",
+      "files": [
+        "v3_fp16_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "cfg": 2.5,
+      "size": "864x576",
+      "saved": "v3_fp16_v3_fp16_00001_.png"
+    },
+    {
+      "key": "uc_4steps_768x768_cfg2.5_p2_freegpulab_sign",
+      "ok": true,
+      "wall_s": 27.0,
+      "note": "ok",
+      "files": [
+        "v3_fp16_00002_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "cfg": 2.5,
+      "size": "768x768",
+      "saved": "v3_fp16_v3_fp16_00002_.png"
+    },
+    {
+      "key": "uc_4steps_768x768_cfg1.0_p2_freegpulab_sign_cfg1",
+      "ok": true,
+      "wall_s": 15.0,
+      "note": "ok",
+      "files": [
+        "v3_cfg1_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "cfg": 1.0,
+      "size": "768x768",
+      "saved": "v3_cfg1_v3_cfg1_00001_.png"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-UC-Q4_K_M.gguf",
+      "download_s": 71.2,
+      "rc": 0
+    }
+  ],
+  "cast_lines_seen": [
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "prompt_executed": [
+    "77.34",
+    "25.29",
+    "12.90"
+  ],
+  "s_per_step": "2.72",
+  "total_s": 391.9,
+  "success": true
+}
