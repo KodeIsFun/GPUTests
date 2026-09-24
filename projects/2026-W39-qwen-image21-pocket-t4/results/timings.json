@@ -1,0 +1,147 @@
+{
+  "run": "qwen-image-2.1-pocket-0.8b-paired-t4",
+  "platform": "colab-t4",
+  "pocket_model": "ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-0.8B",
+  "image_model": "Qwen-Image-2.1 GGUF Q4_K_M via leejet/ComfyUI-GGUF",
+  "started_utc": "2026-09-23T18:19:19Z",
+  "settings": {
+    "size_reference": "768x768 target; pocket-selected aspect ratio mapped to ~0.6MP",
+    "steps": 12,
+    "cfg": 2.5,
+    "sampler": "res_multistep/simple",
+    "seed": 42,
+    "image_flags": [
+      "--force-fp16",
+      "--disable-comfy-compiler"
+    ]
+  },
+  "rows": [
+    {
+      "key": "cat_raincoat_direct",
+      "arm": "direct",
+      "ok": true,
+      "wall_s": 126.1,
+      "files": [
+        "cat_raincoat_direct_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "cat_raincoat_direct.png"
+    },
+    {
+      "key": "cat_raincoat_pocket",
+      "arm": "pocket",
+      "ok": true,
+      "wall_s": 78.1,
+      "files": [
+        "cat_raincoat_pocket_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "cat_raincoat_pocket.png"
+    },
+    {
+      "key": "freegpulab_sign_direct",
+      "arm": "direct",
+      "ok": true,
+      "wall_s": 87.1,
+      "files": [
+        "freegpulab_sign_direct_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "freegpulab_sign_direct.png"
+    },
+    {
+      "key": "freegpulab_sign_pocket",
+      "arm": "pocket",
+      "ok": true,
+      "wall_s": 87.1,
+      "files": [
+        "freegpulab_sign_pocket_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "freegpulab_sign_pocket.png"
+    },
+    {
+      "key": "bakery_bicycle_direct",
+      "arm": "direct",
+      "ok": true,
+      "wall_s": 75.1,
+      "files": [
+        "bakery_bicycle_direct_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "bakery_bicycle_direct.png"
+    },
+    {
+      "key": "bakery_bicycle_pocket",
+      "arm": "pocket",
+      "ok": true,
+      "wall_s": 78.1,
+      "files": [
+        "bakery_bicycle_pocket_00001_.png"
+      ],
+      "note": "ok",
+      "saved": "bakery_bicycle_pocket.png"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-UC-Q4_K_M.gguf",
+      "rc": 0,
+      "download_s": 163.1
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "rc": 0,
+      "download_s": 107.4
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "rc": 0,
+      "download_s": 8.1
+    }
+  ],
+  "env": {
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "python": "3.13.15"
+  },
+  "pocket_load_s": 42.6,
+  "rewrites": [
+    {
+      "key": "cat_raincoat",
+      "request": "a photo of a siamese cat wearing a tiny yellow raincoat, sitting on wet cobblestones at night, neon city lights bokeh, 50mm lens",
+      "rewritten_prompt": "A realistic close-up portrait shows a medium-sized Siamese cat sitting indoors on wet, uneven cobblestone ground at night. The cat occupies most of the frame, positioned slightly left of center and facing forward with a calm, attentive expression. Its head is turned toward the viewer, with long silky black-and-chaise fur visible around the muzzle, forehead, ears, cheeks, and neck. A small yellow dot appears on the forehead, while another yellow mark is visible on the ear tip. The cat\u2019s fur is short and pointed, with subtle gray-brown shading along the ears, cheek lines, and neck contours. Around the cat\u2019s neck and chest is a large shiny black leather raincoat, tied tightly around the shoulders with elastic or ribbon detail; the garment is reflective, dark charcoal-black, and casts a strong glow across the cat\u2019s fur due to high-contrast backlighting. Beneath the coat, the cat\u2019s body is partially visible as dark brown-to-black fur, emphasizing the layered jacket structure. The background is a blurred urban night scene with many bokeh city lights in warm yellow, orange, and amber tones. To the left, tall rectangular buildings appear softly out of focus, while a narrow window or streetlight emits bright yellow light. On the right, another building is visible with a blue-painted window near the lower-right corner, also glowing as a backdrop. The wet ground reflects the cat\u2019s black fur and the ambient lights, creating highlights along the coat and paw pads. Soft rim lighting from the left creates gentle shadows on the cat\u2019s fur and cobblestones, while the overall composition feels intimate, cinematic, and high-key with strong contrast between the warm neon environment and the dark cat silhouette.",
+      "wh_ratio": "3:2",
+      "pocket_latency_s": 21.32,
+      "pocket_output_tokens": 360,
+      "parse": "ok",
+      "height": 576,
+      "width": 864
+    },
+    {
+      "key": "freegpulab_sign",
+      "request": "a neon shop sign that reads \"FREE GPU LAB\", rainy night, reflections on wet pavement",
+      "rewritten_prompt": "A realistic nighttime storefront sign is shown in a realistic color-grain photograph, set against a dark, wet, reflective city background. The upper portion of the image features a tall rectangular sign made of vertically aligned dark steel-like panels with glossy, metallic-looking surface details. The sign has a dark navy or black outer frame with rounded corners, a raised beveled edge, subtle rim shadows, and faint seam-line texture. Along the center line, a bright neon-green LED-style text reads \"FREE GPU LAB\" in large, rounded, condensed uppercase letters; the letters have a crisp, glowing green backlight, slight gradient variation, and a soft three-dimensional appearance due to highlights and shadows. The text is horizontally centered and spans most of the sign\u2019s width, positioned just below the middle of the signboard. Below the sign, the lower half of the image is dominated by wet pavement in deep gray and near-black tones, with thick dark streaks creating strong specular highlights and glossy reflections. Several puddles occupy the lower-right and lower-center areas, reflecting distant city lights and a pale sky. A soft warm-white glare appears on the right side of the pavement, while darker shadows appear along the edges of the puddles and near the bottom of the sign. The lighting is dramatic and low-key, with strong artificial neon contrast against the rainy environment. The overall composition uses a close-up view of the sign mounted above the street, emphasizing the industrial technology brand \"FREE GPU LAB\" through its glowing neon typography, reflective surfaces, and atmospheric nocturnal setting.",
+      "wh_ratio": "1:1",
+      "pocket_latency_s": 16.15,
+      "pocket_output_tokens": 323,
+      "parse": "ok",
+      "height": 768,
+      "width": 768
+    },
+    {
+      "key": "bakery_bicycle",
+      "request": "a photo of a red bicycle leaning against a bakery door",
+      "rewritten_prompt": "A realistic outdoor photograph shows a vintage-style red vintage-style leather bicycle leaning sharply against a warm-toned bakery interior door. The bicycle is positioned diagonally across the frame, its large red frame dominating the composition from the lower-left foreground toward the upper-right background. The seat sits close to the right side, tilted backward into the room, while the front handlebar extends upward and to the left, and the rear wheel hangs loose and partially out of frame on the left. The frame has rounded geometries with chrome-like detailing, a narrow chain rack visible near the lower chain area, and two thin metallic spokes arranged symmetrically along the front tube. The wheels are glossy black with visible spokes, thin rims, and rubber contact patches on the rough wooden floor. The frame has an embossed leather texture with soft seams running through the metal tubing, giving it a worn yet polished vintage appearance. Near the center-left side of the bike\u2019s rear wheel area, a decorative brass plate or decorative emblem glows warmly, illuminated by the warm indoor light, creating contrast against the dark metal and red body. The bicycle\u2019s front fork, chainstall chain, and pedal area are captured in sharp focus, while the rear part appears slightly softer due to the angle. The bakery interior behind the bike is shallow-focus and warm, with a dark wooden door opening into the room, a tall window or windowless wall, and a warm cream-orange wall surface. Natural sunlight enters from an unseen high-left area, casting soft highlights along the bicycle\u2019s edges and emphasizing the chrome spokes, leather, wood grain, and glossy black tire contact points. The floor is uneven wooden flooring, appearing weathered, rough, and brown. The composition uses a low perspective with the bike angled into the room, making the bicycle feel like an unexpected central subject against the warm, inviting bakery setting. The overall scene combines the tactile details of a vintage bike with a cozy domestic interior, highlighted by golden light and warm color grading.",
+      "wh_ratio": "3:2",
+      "pocket_latency_s": 20.53,
+      "pocket_output_tokens": 410,
+      "parse": "ok",
+      "height": 576,
+      "width": 864
+    }
+  ],
+  "total_s": 1094.3,
+  "success": true
+}
