@@ -177,3 +177,62 @@ word degrades and letters wobble with ghost strokes; still far from the crisp
 12-step render. Per the plan's criteria: 4 steps is closed, cfg-off does not
 rescue it, 12 steps stays the default. The failure mode is specifically text
 rendering; photographic content is the marginal-use case.
+
+---
+
+## Result v4 (2026-09-26, session w39-turbo): Viggle turbo LoRA — 6 steps PASS, new fast preset
+
+Plan in `PLAN-turbo.md`; driver `job_v4_turbo.py`; artifacts in `results-v4/`
+(`timings_v4_turbo.json`, `comparison_v4.png`, `comfyui-v4.log`, 4 PNGs). The
+community answer to the 4-step failure: [Viggle/Qwen-Image-2.1-viggle-turbo](https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo),
+a DMD2-distilled LoRA (v0.2.1) that claims 6 steps at "very competitive"
+quality with CFG fully off. We ran their exact ComfyUI recipe on free-tier
+weights.
+
+**Verdict: PASS on both criteria — 6-step turbo becomes the lab's fast preset
+for Qwen-Image-2.1 on T4.** The text canary that killed the naive 4-step probe
+spells **FREE GPU LAB** perfectly at 6 steps (crisp neon, correct reflections),
+and the photographic prompt keeps every element (siamese points, yellow hooded
+raincoat, wet cobblestones, neon bokeh).
+
+| Row (seed 42) | Wall | Executed | s/step |
+|---|---|---|---|
+| turbo cat 864×576, 6 steps (cold, incl. model load) | 72.1 s | 70.13 s | 2.34 |
+| **turbo sign 768×768, 6 steps (warm)** | **21.0 s** | 20.17 s | 2.68 |
+| anchor sign, no LoRA, 12 steps cfg 2.5 (warm) | 69.1 s | 67.79 s | 5.29 |
+| turbo sign 768×768, 8 steps (contingency, not needed) | 30.0 s | 28.50 s | 3.13 |
+
+- **3.3× vs the in-session anchor** (21.0 s vs 69.1 s, same VM, same unsloth
+  weights) — the only clean comparison, since the old baselines used different
+  weight files. Against the retired defaults: 87.1 s (UC, pocket probe) → 4.1×;
+  79.2 s (v2b non-UC) → 3.8×.
+- CFG-off halves per-step cost exactly as predicted: 2.68 vs 5.29 s/step
+  (6 forward passes per image vs 24).
+- The 8-step contingency (add high-noise sigma steps only, per the card) was
+  never needed for this prompt class but is measured: 30.0 s.
+
+### What the recipe actually is (and what we kept/changed)
+
+The card's few-step claim is **not** a sampler tweak — it needs their custom
+nodes (`comfyui/viggle_turbo.py`, shipped with the repo): a resolution-shifted
+sigma schedule (`1.0, 0.9375, 0.875, 0.75, 0.5, 0.25`, dynamic exponential
+shift from token count) that stock KSampler cannot express, and a **runtime
+hook** LoRA loader because merging the LoRA is lossy (their docstring: ~70% of
+the update kept on bf16, ~4x requant noise on int8). We kept their node, their
+r128 LoRA at strength 1.0, euler, BasicGuider (no negative pass), EmptySD3LatentImage,
+and swapped only the weights to **unsloth base (non-UC) Q4_K_M** — abenzerps'
+repo is UC-only since the restructure, and base matches the LoRA's training
+distribution. Text encoding stayed on the v3-proven CLIPLoader/CLIPTextEncode
+path; downloads ~15.6 GB in 140 s, session total 513.2 s, stopped clean.
+
+Two risks that did not materialize: the hook node works fine on GGUF-loaded
+models (the card admits its ComfyUI port is "vibe-coded", verified only
+against diffusers — no `_fallback_merge` row was triggered), and VRAM held at
+~13.3/15.64 GB with the 0.68 GB LoRA resident. Weight-provenance caveat for
+future comparisons: unsloth's base Q4_K_M is 4.20 GB vs the dead abenzerps
+file's 4.60 GB — different quant runs; the 12-step anchor row (69.1 s vs the
+old 79.2/87.1 s walls) suggests it is also somewhat faster, so use in-session
+anchors, not cross-repo JSONs, for ratios.
+
+License note: Qwen Research, non-commercial — fine for eval/content probes,
+not for a product.

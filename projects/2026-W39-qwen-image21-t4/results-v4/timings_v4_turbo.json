@@ -1,0 +1,115 @@
+{
+  "run": "qwen-image-2.1-q4km-t4-v4-viggle-turbo",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "lora": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+  "lora_mode": "viggle_turbo_runtime_hooks",
+  "matrix_note": "Viggle turbo 6-step (cfg off, runtime-hook LoRA) vs in-session 12-step cfg 2.5 anchor on unsloth base Q4_K_M. Sigmas per Viggle v0.2.1 card; r128 LoRA never merged.",
+  "rows": [
+    {
+      "key": "turbo_cat_864x576_6steps",
+      "ok": true,
+      "wall_s": 72.1,
+      "note": "ok",
+      "files": [
+        "v4turbo_cat_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v4turbo_cat",
+      "saved": "v4turbo_cat__v4turbo_cat_00001_.png",
+      "s_per_step": "2.34",
+      "executed_s": "70.13",
+      "vram_free_gb": 2.35,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "turbo_sign_768x768_6steps",
+      "ok": true,
+      "wall_s": 21.0,
+      "note": "ok",
+      "files": [
+        "v4turbo_sign6_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v4turbo_sign6",
+      "saved": "v4turbo_sign6__v4turbo_sign6_00001_.png",
+      "s_per_step": "2.68",
+      "executed_s": "20.17",
+      "vram_free_gb": 2.35,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "anchor_sign_768x768_12steps_cfg2.5",
+      "ok": true,
+      "wall_s": 69.1,
+      "note": "ok",
+      "files": [
+        "v4anchor_sign_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v4anchor_sign",
+      "saved": "v4anchor_sign__v4anchor_sign_00001_.png",
+      "s_per_step": "5.29",
+      "executed_s": "67.79",
+      "vram_free_gb": 3.03,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "turbo_sign_768x768_8steps",
+      "ok": true,
+      "wall_s": 30.0,
+      "note": "ok",
+      "files": [
+        "v4turbo_sign8_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v4turbo_sign8",
+      "saved": "v4turbo_sign8__v4turbo_sign8_00001_.png",
+      "s_per_step": "3.13",
+      "executed_s": "28.50",
+      "vram_free_gb": 2.35,
+      "vram_total_gb": 15.64
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-Q4_K_M.gguf",
+      "download_s": 48.4,
+      "rc": 0
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "download_s": 82.3,
+      "rc": 0
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "download_s": 3.8,
+      "rc": 0
+    },
+    {
+      "file": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+      "download_s": 5.5,
+      "rc": 0
+    }
+  ],
+  "cast_lines_seen": [
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "total_s": 513.2,
+  "success": true
+}
