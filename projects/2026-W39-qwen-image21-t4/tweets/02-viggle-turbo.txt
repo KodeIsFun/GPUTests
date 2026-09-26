@@ -8,6 +8,6 @@ It's legit — but only if you respect the weird parts:
 • the LoRA can never be merged into the weights — merging silently drops most of its update; runtime hooks only
 • it still holds on quantized GGUF weights, not just the full-precision demo
 
-Same seed as every probe here: "FREE GPU LAB" spelled perfectly in neon. 21.0 s per warm image vs 69.1 s without the LoRA. First render pays the model load (72.1 s), then it's an image every ~21 seconds — free tier, nothing billed.
+Same seed as every run in the repo: "FREE GPU LAB" spelled perfectly in neon. 21.0 s per warm image vs 69.1 s without the LoRA. First render pays the model load (72.1 s), then it's an image every ~21 seconds — free tier, nothing billed.
 
-Recipe, timings, PNGs: https://github.com/KodeIsFun/GPUTests
+Recipe, verified notebook, API: https://github.com/KodeIsFun/run-qwen-image-on-free-colab

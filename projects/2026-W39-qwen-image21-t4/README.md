@@ -236,3 +236,14 @@ anchors, not cross-repo JSONs, for ratios.
 
 License note: Qwen Research, non-commercial — fine for eval/content probes,
 not for a product.
+
+**Shipped 2026-09-26:** this recipe is now the default path in the public
+repo [run-qwen-image-on-free-colab](https://github.com/KodeIsFun/run-qwen-image-on-free-colab)
+(commits 5d3aa28 + 33e9330): turbo notebook cells, `txt2img.py --turbo`
+default + `--no-turbo` baseline, `workflows/t2i-turbo.json`, SKILL.md
+invariants 10-12, and a `tools/check_workflows.py` consistency gate keeping
+the three graph copies identical. Re-verified end-to-end on a fresh T4 (all
+7 cells OK, 72.1 s cold generate matching this probe, tunnel-served proof
+from outside). The update also fixes that repo's issue #1 — a user hit the
+dead abenzerps GGUF URL on 2026-09-22 — which is what forced the unsloth
+weight swap everywhere.
