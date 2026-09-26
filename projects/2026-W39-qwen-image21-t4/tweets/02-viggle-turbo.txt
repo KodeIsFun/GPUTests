@@ -1,0 +1,13 @@
+Last week I tried the obvious speed trick on Qwen's 7B image model: cut the step count. At four steps the neon sign came out as glow mush — faster, sure, and text rendering died with it.
+
+Then someone insisted their turbo LoRA does six steps, clean. Turbo-LoRA claims are a dime a dozen, so I made it prove itself on a free Colab T4.
+
+It's legit — but only if you respect the weird parts:
+
+• the sigma schedule needs the author's custom ComfyUI node, and CFG has to be fully off
+• the LoRA can never be merged into the weights — merging silently drops most of its update; runtime hooks only
+• it still holds on quantized GGUF weights, not just the full-precision demo
+
+Same seed as every probe here: "FREE GPU LAB" spelled perfectly in neon. 21.0 s per warm image vs 69.1 s without the LoRA. First render pays the model load (72.1 s), then it's an image every ~21 seconds — free tier, nothing billed.
+
+Recipe, timings, PNGs: https://github.com/KodeIsFun/GPUTests
