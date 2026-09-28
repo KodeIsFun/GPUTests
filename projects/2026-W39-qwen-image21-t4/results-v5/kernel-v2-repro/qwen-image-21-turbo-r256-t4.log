@@ -1,0 +1,162 @@
+[{"stream_name":"stdout","time":1.093776492,"data":"[     0.0s] === setup: ComfyUI + weights (skipped if present) ===\n"}
+,{"stream_name":"stderr","time":1.175505153,"data":"Cloning into '/tmp/ComfyUI'...\n"}
+,{"stream_name":"stdout","time":3.005009384,"data":"[     1.9s] clone ComfyUI rc=0 1.9s\n"}
+,{"stream_name":"stdout","time":29.66343467,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.8/35.8 MB 53.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":29.663480766,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.8/320.8 kB 13.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":29.663488554,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 91.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":29.703915854,"data":"[    28.6s] pip comfy requirements rc=0 26.7s\n"}
+,{"stream_name":"stderr","time":29.707479124,"data":"Cloning into '/tmp/ComfyUI/custom_nodes/ComfyUI-GGUF'...\n"}
+,{"stream_name":"stdout","time":30.119642181,"data":"[    29.0s] clone ComfyUI-GGUF rc=0 0.4s\n"}
+,{"stream_name":"stdout","time":35.665207642,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 2.9 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":35.701730246,"data":"[    34.6s] pip gguf requirements rc=0 5.6s\n"}
+,{"stream_name":"stdout","time":35.892629133,"data":"[    34.8s] viggle_turbo.py rc=0\n"}
+,{"stream_name":"stdout","time":99.780442061,"data":"[    98.7s] download qwen-image-2.1-Q4_K_M.gguf 4.20 GB in 63.7s (attempt 1)\n"}
+,{"stream_name":"stdout","time":206.495521869,"data":"[   205.4s] download qwen3vl_8b_int8_convrot.safetensors 9.35 GB in 106.5s (attempt 1)\n"}
+,{"stream_name":"stdout","time":211.642843806,"data":"[   210.5s] download qwen_image_2.1_vae_bf16.safetensors 0.68 GB in 4.9s (attempt 1)\n"}
+,{"stream_name":"stdout","time":222.141316576,"data":"[   221.0s] download Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors 1.36 GB in 10.3s (attempt 1)\n"}
+,{"stream_name":"stdout","time":232.679415013,"data":"[   231.6s] download Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors 0.68 GB in 10.4s (attempt 1)\n"}
+,{"stream_name":"stdout","time":343.325704967,"data":"[   342.2s] booting server with ['--force-fp16', '--disable-comfy-compiler']\n"}
+,{"stream_name":"stdout","time":457.603141252,"data":"[   456.5s] r256_cat_864x576_6steps: ok=True 60.0s (ok)\n"}
+,{"stream_name":"stdout","time":481.628475033,"data":"[   480.5s] r256_sign_768x768_6steps: ok=True 24.0s (ok)\n"}
+,{"stream_name":"stdout","time":508.654853099,"data":"[   507.6s] r256_sign_768x768_8steps_text: ok=True 27.0s (ok)\n"}
+,{"stream_name":"stdout","time":532.680538879,"data":"[   531.6s] r128_sign_768x768_6steps_anchor: ok=True 24.0s (ok)\n"}
+,{"stream_name":"stdout","time":534.359754992,"data":"[   533.3s] === DONE success=True total=533.3s ===\n"}
+,{"stream_name":"stdout","time":534.3598103,"data":"=== TIMINGS_V5_JSON ===\n"}
+,{"stream_name":"stdout","time":534.359994797,"data":"{\n"}
+,{"stream_name":"stdout","time":534.360007541,"data":"  \"run\": \"qwen-image-2.1-q4km-t4-v5-turbo-r256\",\n"}
+,{"stream_name":"stdout","time":534.360032381,"data":"  \"surface\": \"kaggle\",\n"}
+,{"stream_name":"stdout","time":534.360037824,"data":"  \"flags\": [\n"}
+,{"stream_name":"stdout","time":534.360043008,"data":"    \"--force-fp16\",\n"}
+,{"stream_name":"stdout","time":534.36004854,"data":"    \"--disable-comfy-compiler\"\n"}
+,{"stream_name":"stdout","time":534.36007279,"data":"  ],\n"}
+,{"stream_name":"stdout","time":534.360077499,"data":"  \"loras\": [\n"}
+,{"stream_name":"stdout","time":534.360082507,"data":"    \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360087505,"data":"    \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors\"\n"}
+,{"stream_name":"stdout","time":534.360112627,"data":"  ],\n"}
+,{"stream_name":"stdout","time":534.36011708,"data":"  \"matrix_note\": \"v0.2.1 r256 (recommended) vs r128 (shipped recipe) on the same unsloth base Q4_K_M weights, plus the card's 8-step small-text sigma schedule. Rows 2 vs 4 are the rank delta; row 3 is the text-quality contingency. All sign rows warm.\",\n"}
+,{"stream_name":"stdout","time":534.360123983,"data":"  \"rows\": [\n"}
+,{"stream_name":"stdout","time":534.360128153,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360132244,"data":"      \"key\": \"r256_cat_864x576_6steps\",\n"}
+,{"stream_name":"stdout","time":534.360136753,"data":"      \"ok\": true,\n"}
+,{"stream_name":"stdout","time":534.36014117,"data":"      \"wall_s\": 60.0,\n"}
+,{"stream_name":"stdout","time":534.360145916,"data":"      \"note\": \"ok\",\n"}
+,{"stream_name":"stdout","time":534.360151061,"data":"      \"files\": [\n"}
+,{"stream_name":"stdout","time":534.360156073,"data":"        \"v5r256_cat_00001_.png\"\n"}
+,{"stream_name":"stdout","time":534.360161273,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360166004,"data":"      \"flags\": [\n"}
+,{"stream_name":"stdout","time":534.360170659,"data":"        \"--force-fp16\",\n"}
+,{"stream_name":"stdout","time":534.360174913,"data":"        \"--disable-comfy-compiler\"\n"}
+,{"stream_name":"stdout","time":534.360179057,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360182939,"data":"      \"prefix\": \"v5r256_cat\",\n"}
+,{"stream_name":"stdout","time":534.360187166,"data":"      \"saved\": \"v5r256_cat__v5r256_cat_00001_.png\",\n"}
+,{"stream_name":"stdout","time":534.360191469,"data":"      \"s_per_step\": \"2.41\",\n"}
+,{"stream_name":"stdout","time":534.360195724,"data":"      \"executed_s\": \"58.95\",\n"}
+,{"stream_name":"stdout","time":534.360199847,"data":"      \"vram_free_gb\": 1.67,\n"}
+,{"stream_name":"stdout","time":534.360204196,"data":"      \"vram_total_gb\": 15.64,\n"}
+,{"stream_name":"stdout","time":534.360208483,"data":"      \"lora_name\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360213026,"data":"      \"sigmas\": \"1.0, 0.9375, 0.875, 0.75, 0.5, 0.25\"\n"}
+,{"stream_name":"stdout","time":534.360217311,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.360221219,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360225195,"data":"      \"key\": \"r256_sign_768x768_6steps\",\n"}
+,{"stream_name":"stdout","time":534.36024847,"data":"      \"ok\": true,\n"}
+,{"stream_name":"stdout","time":534.360253678,"data":"      \"wall_s\": 24.0,\n"}
+,{"stream_name":"stdout","time":534.360258705,"data":"      \"note\": \"ok\",\n"}
+,{"stream_name":"stdout","time":534.360263664,"data":"      \"files\": [\n"}
+,{"stream_name":"stdout","time":534.360268559,"data":"        \"v5r256_sign6_00001_.png\"\n"}
+,{"stream_name":"stdout","time":534.360272756,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360276754,"data":"      \"flags\": [\n"}
+,{"stream_name":"stdout","time":534.36028077,"data":"        \"--force-fp16\",\n"}
+,{"stream_name":"stdout","time":534.360284843,"data":"        \"--disable-comfy-compiler\"\n"}
+,{"stream_name":"stdout","time":534.36028891,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360297865,"data":"      \"prefix\": \"v5r256_sign6\",\n"}
+,{"stream_name":"stdout","time":534.360302204,"data":"      \"saved\": \"v5r256_sign6__v5r256_sign6_00001_.png\",\n"}
+,{"stream_name":"stdout","time":534.360306576,"data":"      \"s_per_step\": \"2.81\",\n"}
+,{"stream_name":"stdout","time":534.36031075,"data":"      \"executed_s\": \"21.87\",\n"}
+,{"stream_name":"stdout","time":534.360314813,"data":"      \"vram_free_gb\": 1.7,\n"}
+,{"stream_name":"stdout","time":534.360318872,"data":"      \"vram_total_gb\": 15.64,\n"}
+,{"stream_name":"stdout","time":534.360323027,"data":"      \"lora_name\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360333521,"data":"      \"sigmas\": \"1.0, 0.9375, 0.875, 0.75, 0.5, 0.25\"\n"}
+,{"stream_name":"stdout","time":534.360337581,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.36035443,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360359277,"data":"      \"key\": \"r256_sign_768x768_8steps_text\",\n"}
+,{"stream_name":"stdout","time":534.360364517,"data":"      \"ok\": true,\n"}
+,{"stream_name":"stdout","time":534.360369353,"data":"      \"wall_s\": 27.0,\n"}
+,{"stream_name":"stdout","time":534.36037405,"data":"      \"note\": \"ok\",\n"}
+,{"stream_name":"stdout","time":534.360378377,"data":"      \"files\": [\n"}
+,{"stream_name":"stdout","time":534.360382513,"data":"        \"v5r256_sign8text_00001_.png\"\n"}
+,{"stream_name":"stdout","time":534.360386596,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360390613,"data":"      \"flags\": [\n"}
+,{"stream_name":"stdout","time":534.360394651,"data":"        \"--force-fp16\",\n"}
+,{"stream_name":"stdout","time":534.360398824,"data":"        \"--disable-comfy-compiler\"\n"}
+,{"stream_name":"stdout","time":534.360402875,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360408012,"data":"      \"prefix\": \"v5r256_sign8text\",\n"}
+,{"stream_name":"stdout","time":534.360412247,"data":"      \"saved\": \"v5r256_sign8text__v5r256_sign8text_00001_.png\",\n"}
+,{"stream_name":"stdout","time":534.36041663,"data":"      \"s_per_step\": \"2.94\",\n"}
+,{"stream_name":"stdout","time":534.360420766,"data":"      \"executed_s\": \"25.52\",\n"}
+,{"stream_name":"stdout","time":534.360424851,"data":"      \"vram_free_gb\": 2.14,\n"}
+,{"stream_name":"stdout","time":534.360428987,"data":"      \"vram_total_gb\": 15.64,\n"}
+,{"stream_name":"stdout","time":534.360438799,"data":"      \"lora_name\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.36045577,"data":"      \"sigmas\": \"1.0, 0.9375, 0.875, 0.75, 0.625, 0.5, 0.25, 0.125\"\n"}
+,{"stream_name":"stdout","time":534.360460972,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.360465744,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360470433,"data":"      \"key\": \"r128_sign_768x768_6steps_anchor\",\n"}
+,{"stream_name":"stdout","time":534.360475495,"data":"      \"ok\": true,\n"}
+,{"stream_name":"stdout","time":534.360479521,"data":"      \"wall_s\": 24.0,\n"}
+,{"stream_name":"stdout","time":534.360483667,"data":"      \"note\": \"ok\",\n"}
+,{"stream_name":"stdout","time":534.360487799,"data":"      \"files\": [\n"}
+,{"stream_name":"stdout","time":534.36049181,"data":"        \"v5r128_sign6_00001_.png\"\n"}
+,{"stream_name":"stdout","time":534.360495892,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360499862,"data":"      \"flags\": [\n"}
+,{"stream_name":"stdout","time":534.360503916,"data":"        \"--force-fp16\",\n"}
+,{"stream_name":"stdout","time":534.360511975,"data":"        \"--disable-comfy-compiler\"\n"}
+,{"stream_name":"stdout","time":534.360516131,"data":"      ],\n"}
+,{"stream_name":"stdout","time":534.360520084,"data":"      \"prefix\": \"v5r128_sign6\",\n"}
+,{"stream_name":"stdout","time":534.360524364,"data":"      \"saved\": \"v5r128_sign6__v5r128_sign6_00001_.png\",\n"}
+,{"stream_name":"stdout","time":534.360528574,"data":"      \"s_per_step\": \"3.01\",\n"}
+,{"stream_name":"stdout","time":534.360538384,"data":"      \"executed_s\": \"23.09\",\n"}
+,{"stream_name":"stdout","time":534.36055443,"data":"      \"vram_free_gb\": 2.82,\n"}
+,{"stream_name":"stdout","time":534.360559446,"data":"      \"vram_total_gb\": 15.64,\n"}
+,{"stream_name":"stdout","time":534.360564185,"data":"      \"lora_name\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360569084,"data":"      \"sigmas\": \"1.0, 0.9375, 0.875, 0.75, 0.5, 0.25\"\n"}
+,{"stream_name":"stdout","time":534.360574112,"data":"    }\n"}
+,{"stream_name":"stdout","time":534.36057854,"data":"  ],\n"}
+,{"stream_name":"stdout","time":534.360582498,"data":"  \"downloads\": [\n"}
+,{"stream_name":"stdout","time":534.360586567,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360590402,"data":"      \"file\": \"qwen-image-2.1-Q4_K_M.gguf\",\n"}
+,{"stream_name":"stdout","time":534.360594662,"data":"      \"download_s\": 63.7,\n"}
+,{"stream_name":"stdout","time":534.360598733,"data":"      \"size_gb\": 4.2\n"}
+,{"stream_name":"stdout","time":534.360602752,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.360606724,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.36061069,"data":"      \"file\": \"qwen3vl_8b_int8_convrot.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360614894,"data":"      \"download_s\": 106.5,\n"}
+,{"stream_name":"stdout","time":534.360618942,"data":"      \"size_gb\": 9.35\n"}
+,{"stream_name":"stdout","time":534.360622998,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.36062685,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360641215,"data":"      \"file\": \"qwen_image_2.1_vae_bf16.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360658039,"data":"      \"download_s\": 4.9,\n"}
+,{"stream_name":"stdout","time":534.360663045,"data":"      \"size_gb\": 0.68\n"}
+,{"stream_name":"stdout","time":534.360667825,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.36067251,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360677258,"data":"      \"file\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360681726,"data":"      \"download_s\": 10.3,\n"}
+,{"stream_name":"stdout","time":534.360685875,"data":"      \"size_gb\": 1.36\n"}
+,{"stream_name":"stdout","time":534.360689947,"data":"    },\n"}
+,{"stream_name":"stdout","time":534.360693767,"data":"    {\n"}
+,{"stream_name":"stdout","time":534.360697693,"data":"      \"file\": \"Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors\",\n"}
+,{"stream_name":"stdout","time":534.360701999,"data":"      \"download_s\": 10.4,\n"}
+,{"stream_name":"stdout","time":534.360706017,"data":"      \"size_gb\": 0.68\n"}
+,{"stream_name":"stdout","time":534.360710051,"data":"    }\n"}
+,{"stream_name":"stdout","time":534.360713901,"data":"  ],\n"}
+,{"stream_name":"stdout","time":534.360717837,"data":"  \"cast_lines_seen\": [\n"}
+,{"stream_name":"stdout","time":534.360721929,"data":"    \"weight dtype torch.float16, manual cast: None\"\n"}
+,{"stream_name":"stdout","time":534.360730409,"data":"  ],\n"}
+,{"stream_name":"stdout","time":534.360739913,"data":"  \"total_s\": 533.3,\n"}
+,{"stream_name":"stdout","time":534.360755817,"data":"  \"success\": true\n"}
+,{"stream_name":"stdout","time":534.360760749,"data":"}\n"}
+,{"stream_name":"stderr","time":536.80471625,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":536.804759176,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":537.116952395,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":537.116980557,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":537.863748423,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":539.341472475,"data":"[NbConvertApp] Writing 359466 bytes to __results__.html\n"}
+]

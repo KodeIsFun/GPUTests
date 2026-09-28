@@ -1,0 +1,13 @@
+Free AI image generation just got a free upgrade.
+
+Two days after I published my free-GPU recipe, the makers of the "turbo" speed-up shipped a bigger, better version and made it their official recommendation. Bigger usually means slower — so I re-ran my exact test: same prompts, same free GPU, same image.
+
+Speed: identical. The new file generates an image in 24.0 s — same as the old one — and the neon sign in my test still spells "FREE GPU LAB", every letter correct. Their bonus mode for tiny text (two extra steps): 27.0 s, and the text survives that too.
+
+• new file: 24.0 s per image (old file: also 24.0 s)
+• small-text mode: 27.0 s
+• first image incl. one-time load: 75.1 s
+
+Already shipped: my free recipe repo now uses the new file by default. I re-tested the whole thing on a fresh Google GPU — then ran the identical test on a Kaggle GPU. Same numbers, to the second. Used the old recipe? Just re-run the notebook; the new file is picked up automatically.
+
+Real images, real timings, nothing to pay. Notebook: https://github.com/KodeIsFun/run-qwen-image-on-free-colab

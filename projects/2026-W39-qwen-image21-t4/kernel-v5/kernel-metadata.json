@@ -1,0 +1,18 @@
+{
+  "id": "emdadh/qwen-image-21-turbo-r256-t4",
+  "title": "qwen-image-21-turbo-r256-t4",
+  "code_file": "job_v5_turbo_r256.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "keywords": [
+    "gpu",
+    "free-gpu-lab"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

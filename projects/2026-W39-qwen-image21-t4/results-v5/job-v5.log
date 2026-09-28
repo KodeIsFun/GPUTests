@@ -1,0 +1,155 @@
+[     0.0s] === setup: ComfyUI + weights (skipped if present) ===
+Cloning into '/content/ComfyUI'...
+[     2.0s] clone ComfyUI rc=0 2.0s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.7 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 69.6 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 70.9 MB/s eta 0:00:00
+[    33.7s] pip comfy requirements rc=0 31.7s
+Cloning into '/content/ComfyUI/custom_nodes/ComfyUI-GGUF'...
+[    34.3s] clone ComfyUI-GGUF rc=0 0.7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 6.5 MB/s eta 0:00:00
+[    37.1s] pip gguf requirements rc=0 2.8s
+[    37.3s] viggle_turbo.py rc=0
+[    81.7s] download qwen-image-2.1-Q4_K_M.gguf 4.20 GB in 44.4s
+[   144.9s] download qwen3vl_8b_int8_convrot.safetensors 9.35 GB in 63.2s
+[   153.1s] download qwen_image_2.1_vae_bf16.safetensors 0.68 GB in 8.2s
+[   173.0s] download Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors 1.36 GB in 19.9s
+[   179.2s] download Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors 0.68 GB in 6.2s
+[   270.4s] booting server with ['--force-fp16', '--disable-comfy-compiler']
+[   375.6s] r256_cat_864x576_6steps: ok=True 75.1s (ok)
+[   399.6s] r256_sign_768x768_6steps: ok=True 24.0s (ok)
+[   426.6s] r256_sign_768x768_8steps_text: ok=True 27.0s (ok)
+[   450.7s] r128_sign_768x768_6steps_anchor: ok=True 24.0s (ok)
+[   451.2s] === DONE success=True total=451.2s ===
+=== TIMINGS_V5_JSON ===
+{
+  "run": "qwen-image-2.1-q4km-t4-v5-turbo-r256",
+  "surface": "colab",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "loras": [
+    "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+    "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors"
+  ],
+  "matrix_note": "v0.2.1 r256 (recommended) vs r128 (shipped recipe) on the same unsloth base Q4_K_M weights, plus the card's 8-step small-text sigma schedule. Rows 2 vs 4 are the rank delta; row 3 is the text-quality contingency. All sign rows warm.",
+  "rows": [
+    {
+      "key": "r256_cat_864x576_6steps",
+      "ok": true,
+      "wall_s": 75.1,
+      "note": "ok",
+      "files": [
+        "v5r256_cat_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v5r256_cat",
+      "saved": "v5r256_cat__v5r256_cat_00001_.png",
+      "s_per_step": "2.34",
+      "executed_s": "72.66",
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.5, 0.25"
+    },
+    {
+      "key": "r256_sign_768x768_6steps",
+      "ok": true,
+      "wall_s": 24.0,
+      "note": "ok",
+      "files": [
+        "v5r256_sign6_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v5r256_sign6",
+      "saved": "v5r256_sign6__v5r256_sign6_00001_.png",
+      "s_per_step": "2.73",
+      "executed_s": "21.20",
+      "vram_free_gb": 2.24,
+      "vram_total_gb": 15.64,
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.5, 0.25"
+    },
+    {
+      "key": "r256_sign_768x768_8steps_text",
+      "ok": true,
+      "wall_s": 27.0,
+      "note": "ok",
+      "files": [
+        "v5r256_sign8text_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v5r256_sign8text",
+      "saved": "v5r256_sign8text__v5r256_sign8text_00001_.png",
+      "s_per_step": "2.81",
+      "executed_s": "24.52",
+      "vram_free_gb": 2.24,
+      "vram_total_gb": 15.64,
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.625, 0.5, 0.25, 0.125"
+    },
+    {
+      "key": "r128_sign_768x768_6steps_anchor",
+      "ok": true,
+      "wall_s": 24.0,
+      "note": "ok",
+      "files": [
+        "v5r128_sign6_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v5r128_sign6",
+      "saved": "v5r128_sign6__v5r128_sign6_00001_.png",
+      "s_per_step": "2.86",
+      "executed_s": "22.02",
+      "vram_free_gb": 2.92,
+      "vram_total_gb": 15.64,
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.5, 0.25"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-Q4_K_M.gguf",
+      "download_s": 44.4,
+      "size_gb": 4.2
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "download_s": 63.2,
+      "size_gb": 9.35
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "download_s": 8.2,
+      "size_gb": 0.68
+    },
+    {
+      "file": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "download_s": 19.9,
+      "size_gb": 1.36
+    },
+    {
+      "file": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r128.safetensors",
+      "download_s": 6.2,
+      "size_gb": 0.68
+    }
+  ],
+  "cast_lines_seen": [
+    "weight dtype torch.float16, manual cast: None"
+  ],
+  "total_s": 451.2,
+  "success": true
+}

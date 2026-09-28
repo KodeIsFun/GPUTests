@@ -237,6 +237,81 @@ anchors, not cross-repo JSONs, for ratios.
 License note: Qwen Research, non-commercial — fine for eval/content probes,
 not for a product.
 
+---
+
+## Result v5 (2026-09-27, session w39-v5-r256): upstream's r256 upgrade is free — adopt it
+
+Driver `job_v5_turbo_r256.py`; artifacts in `results-v5/` (`timings_v5_r256.json`,
+4 PNGs, `comfyui-v5.log`, `job-v5.log`). Trigger: two days after the v4 ship,
+Viggle released **v0.2.1 (2026-09-24)**, which recommends the **rank-256** LoRA
+(r128 — what v4 used and the public repo ships — is their SVD truncation keeping
+~95% of the update energy) and publishes an **8-step sigma schedule** for small
+dense text. This probe measures both on the same card, with an **in-session r128
+anchor** (per the v4 lesson: rank deltas must come from the same VM, not
+cross-session JSONs).
+
+| Row (seed 42, unsloth Q4_K_M, fp16 + `--disable-comfy-compiler`) | wall | executed | s/step |
+|---|---|---|---|
+| r256 cat 864×576, 6 steps (cold, incl. model load) | 75.1 s | 72.66 s | 2.34 |
+| **r256 sign 768×768, 6 steps (warm)** | **24.0 s** | 21.20 s | 2.73 |
+| r256 sign 768×768, 8-step small-text schedule (warm) | 27.0 s | 24.52 s | 2.81 |
+| r128 sign 768×768, 6 steps (warm, anchor) | 24.0 s | 22.02 s | 2.86 |
+
+**Verdict: r256 costs nothing — same 24.0 s warm wall as r128, same VRAM class
+(2.2 vs 2.9 GB free), and the canary passes in every row** ("FREE GPU LAB"
+spelled perfectly at r128-6, r256-6, and r256-8; the cat keeps all elements).
+The 8-step schedule is exactly +3 s (two extra steps at ~2.8 s) with visibly
+nicer rain streaks and equal text legibility. Cross-session note: v4's r128
+warm sign was 21.0 s, today's r128 anchor is 24.0 s — same-VM-day variance is
+~10%, which is exactly why rows 2-vs-4 (identical 24.0/24.0) are the only clean
+rank comparison.
+
+**Recipe change for the public repo — SHIPPED 2026-09-27 (commit 19f0ae3):**
+default LoRA swapped to r256, the card's official 8-step small-text schedule
+documented (superseding the v4-era high-noise-only advice), notebook rebuilt,
+`tools/check_workflows.py` gate ALL GREEN, fresh-T4 verification all 7 cells
+OK (warm ~24 s, r256 download listed), tunnel re-proven from outside including
+a `txt2img.py` generation (34 s round trip), fresh r256 sign render added to
+`samples/`.
+
+Operations gotchas learned this run (2026-09-27, first run from the Linux box):
+
+1. **`google-colab-cli` 0.6.0 `exec` is broken** (`AttributeError: module
+   'jupyter_kernel_client' has no attribute 'KernelClient'` — dep drift).
+   Fix: `uv tool install google-colab-cli==0.7.4 --force` (downgrades
+   jupyter-kernel-client to 0.9.0). `upload`/`download`/`new`/`stop` work on
+   0.6.0; only `exec` is affected.
+2. **Kaggle T4 queue ran 45+ min** while Colab granted the T4 instantly — when
+   both lanes are authed, race them; Colab `exec` runs Python files (`-f`), not
+   shell strings, so detached launches go through a 3-line `Popen` snippet.
+3. The Kaggle kernel (`emdadh/qwen-image-21-turbo-r256-t4`, pushed with
+   `-t 3600`) is the public reproducibility artifact. **Kernel v1 died at
+   0.06 h with a truncated GGUF (2.46/4.20 GB)**: HF egress from Kaggle stalled
+   past wget's 60 s read timeout, and the job's hard-fail refused the file —
+   correct behavior, too-brittle retry policy (3 tries). Kernel **v2** (same
+   day) HEAD-verifies expected sizes and resume-loops up to 8 attempts, and
+   keeps the ComfyUI + weights tree in `/tmp` so kernel output is only `out/`.
+
+**Kernel v2 repro (2026-09-27): COMPLETE — numbers match Colab on every warm
+row.** Artifacts in `results-v5/kernel-v2-repro/`. GPU spend for both kernel
+versions: 0.21 h of the 30 h week.
+
+| Row (seed 42) | Colab wall | Kaggle wall |
+|---|---|---|
+| r256 cat 864×576, 6 steps (cold, incl. load) | 75.1 s | 60.0 s |
+| r256 sign 768², 6 steps (warm) | 24.0 s | 24.0 s |
+| r256 sign 768², 8-step small-text (warm) | 27.0 s | 27.0 s |
+| r128 sign 768², 6 steps (warm, anchor) | 24.0 s | 24.0 s |
+
+Warm rows are identical to the second (same VM-class T4, same weights, same
+seed); the cold row differs only in model-load time (60.0 vs 75.1 s). The rank
+conclusion is surface-independent: **r256 == r128 on speed, both pass the
+canary — adopt r256.**
+
+Session stopped; nothing left running.
+
+---
+
 **Shipped 2026-09-26:** this recipe is now the default path in the public
 repo [run-qwen-image-on-free-colab](https://github.com/KodeIsFun/run-qwen-image-on-free-colab)
 (commits 5d3aa28 + 33e9330): turbo notebook cells, `txt2img.py --turbo`

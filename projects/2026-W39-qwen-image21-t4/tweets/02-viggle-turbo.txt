@@ -1,13 +1,17 @@
-Last week I tried the obvious speed trick on Qwen's 7B image model: cut the step count. At four steps the neon sign came out as glow mush — faster, sure, and text rendering died with it.
+Can you really generate AI images for free? Yes — on Google Colab's free GPU, and it's fast.
 
-Then someone insisted their turbo LoRA does six steps, clean. Turbo-LoRA claims are a dime a dozen, so I made it prove itself on a free Colab T4.
+I tried the obvious trick first: fewer steps, faster pictures. At four steps the image came out quick — and the text in it turned to glow mush.
 
-It's legit — but only if you respect the weird parts:
+Then people insisted a free "turbo" add-on does it in six steps, clean. Free claims are a dime a dozen, so I made it prove itself on a free GPU.
 
-• the sigma schedule needs the author's custom ComfyUI node, and CFG has to be fully off
-• the LoRA can never be merged into the weights — merging silently drops most of its update; runtime hooks only
-• it still holds on quantized GGUF weights, not just the full-precision demo
+It's legit. An image every 21.0 seconds instead of 69.1 s — and the neon sign in my test image spells "FREE GPU LAB" perfectly. AI is famously terrible at text, so that's the real test.
 
-Same seed as every run in the repo: "FREE GPU LAB" spelled perfectly in neon. 21.0 s per warm image vs 69.1 s without the LoRA. First render pays the model load (72.1 s), then it's an image every ~21 seconds — free tier, nothing billed.
+Three catches nobody tells you (all handled for you in the recipe):
 
-Recipe, verified notebook, API: https://github.com/KodeIsFun/run-qwen-image-on-free-colab
+• you need the author's custom add-on — stock settings give you mush
+• the turbo file must be applied the author's way; the standard way silently throws away most of the magic
+• it works even on the compressed free-tier model, not just the full-size demo
+
+First image takes 72.1 s (one-time model load), then it's a new image every ~21 seconds. Free tier, nothing billed.
+
+Click and run: https://github.com/KodeIsFun/run-qwen-image-on-free-colab
