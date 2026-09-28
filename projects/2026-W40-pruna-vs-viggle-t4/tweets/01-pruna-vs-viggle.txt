@@ -1,0 +1,13 @@
+Two labs shipped competing "turbo" upgrades for the hottest open AI image model, days apart. Nobody had raced them on a free GPU. So: same prompt, same seed, same free Google card, and the neon-sign test where every letter of "FREE GPU LAB" must survive.
+
+• Pruna, five steps: 21.0 s an image
+• Viggle, six steps: 33.0 s
+• Pruna's own quality mode (eight steps): 30.0 s — same bill as Viggle
+
+At square 1024x1024 (Pruna's training size): 33.0 s vs 42.0 s. First image, one-time load included: 69.1 s.
+
+Text verdict: both perfect. Every letter, every time.
+
+Two catches if you try this at home: Pruna ships files stock ComfyUI silently ignores (they load through the same unmerged add-on trick Viggle uses — I checked the file keys first), and it demands its own exact step schedule, not the defaults.
+
+Ran on the free notebook recipe: https://github.com/KodeIsFun/run-qwen-image-on-free-colab

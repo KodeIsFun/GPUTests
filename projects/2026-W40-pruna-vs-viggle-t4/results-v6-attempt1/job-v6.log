@@ -1,0 +1,284 @@
+[     0.0s] === setup: ComfyUI + weights (skipped if present) ===
+Cloning into '/tmp/ComfyUI'...
+[     2.4s] clone ComfyUI rc=0 2.4s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.4/69.4 kB 7.6 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 85.7 MB/s eta 0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 72.1 MB/s eta 0:00:00
+[    35.0s] pip comfy requirements rc=0 32.7s
+Cloning into '/tmp/ComfyUI/custom_nodes/ComfyUI-GGUF'...
+[    35.7s] clone ComfyUI-GGUF rc=0 0.7s
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.5/118.5 kB 5.9 MB/s eta 0:00:00
+[    39.0s] pip gguf requirements rc=0 3.3s
+[    39.2s] viggle_turbo.py rc=0
+[    39.2s] pruna_sigmas.py written (1348 B)
+[    92.5s] download qwen-image-2.1-Q4_K_M.gguf 4.20 GB in 53.0s (attempt 1)
+[   161.4s] download qwen3vl_8b_int8_convrot.safetensors 9.35 GB in 68.6s (attempt 1)
+[   165.9s] download qwen_image_2.1_vae_bf16.safetensors 0.68 GB in 4.0s (attempt 1)
+[   170.7s] download p_qwen_image_2.1_5step_v0.1.safetensors 0.34 GB in 4.6s (attempt 1)
+[   173.4s] download p_qwen_image_2.1_8step_v0.1.safetensors 0.34 GB in 2.5s (attempt 1)
+[   184.9s] download Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors 1.36 GB in 11.3s (attempt 1)
+[   278.7s] booting server with ['--force-fp16', '--disable-comfy-compiler']
+[   380.8s] pruna5_sign_768x768_cold: ok=True 69.1s (ok)
+[   383.8s] pruna5_sign_768x768_warm: ok=True 3.0s (ok)
+[   401.8s] pruna5_cat_864x576_warm: ok=True 18.0s (ok)
+[   431.9s] pruna8_sign_768x768_warm: ok=True 30.0s (ok)
+[   464.9s] pruna5_sign_1024x1024_warm: ok=True 33.0s (ok)
+[   495.2s] viggle_r256_sign_768x768_6s_warm: ok=True 30.3s (ok)
+[   537.5s] viggle_r256_sign_1024x1024_6s_warm: ok=True 42.3s (ok)
+[   537.9s] === DONE success=True total=537.9s ===
+=== TIMINGS_V6_JSON ===
+{
+  "run": "pruna-vs-viggle-t4-v6",
+  "surface": "kaggle",
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "seed": 42,
+  "base_weights": {
+    "gguf": "unsloth/Qwen-Image-2.1-GGUF qwen-image-2.1-Q4_K_M.gguf",
+    "te": "abenzerps/Qwen-Image-2.1-GGUF qwen3vl_8b_int8_convrot.safetensors",
+    "vae": "abenzerps/Qwen-Image-2.1-GGUF qwen_image_2.1_vae_bf16.safetensors"
+  },
+  "loras": [
+    "p_qwen_image_2.1_5step_v0.1.safetensors",
+    "p_qwen_image_2.1_8step_v0.1.safetensors",
+    "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors"
+  ],
+  "recipe_note": "Both sides load through the same unmerged runtime-hook node (ViggleTurboLora, diffusers-format keys verified via remote safetensors headers: pruna rank 64, viggle rank 256, same module layout). Each side runs its own published sigma schedule; cfg off per both cards. kv_cache (Pruna card option) is a diffusers-pipeline feature, not exercised on this ComfyUI path \u2014 recorded as a recipe difference.",
+  "matrix_note": "rows 1-5 Pruna (cold, 768 warm headline, cat, 8-step, 1K); rows 6-7 viggle r256 anchors on the same VM (768 warm = v5's 24.0 s row, 1K pairs with row 5). All sign rows same prompt, seed 42.",
+  "rows": [
+    {
+      "key": "pruna5_sign_768x768_cold",
+      "ok": true,
+      "wall_s": 69.1,
+      "note": "ok",
+      "files": [
+        "v6p5sign_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6p5sign",
+      "saved": "v6p5sign__v6p5sign_00001_.png",
+      "lora_name": "p_qwen_image_2.1_5step_v0.1.safetensors",
+      "steps": 5,
+      "width": 768,
+      "height": 768,
+      "loader": "runtime_hook",
+      "sigmas": "1.0,0.94,0.8571428571428571,0.6666666666666666,0.4",
+      "sigmas_node": "PrunaSigmas",
+      "s_per_step": "2.63",
+      "executed_s": "68.36",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.7,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "pruna5_sign_768x768_warm",
+      "ok": true,
+      "wall_s": 3.0,
+      "note": "ok",
+      "files": [
+        "v6p5signW_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6p5signW",
+      "saved": "v6p5signW__v6p5signW_00001_.png",
+      "lora_name": "p_qwen_image_2.1_5step_v0.1.safetensors",
+      "steps": 5,
+      "width": 768,
+      "height": 768,
+      "loader": "runtime_hook",
+      "sigmas": "1.0,0.94,0.8571428571428571,0.6666666666666666,0.4",
+      "sigmas_node": "PrunaSigmas",
+      "s_per_step": "2.63",
+      "executed_s": "0.18",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.7,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "pruna5_cat_864x576_warm",
+      "ok": true,
+      "wall_s": 18.0,
+      "note": "ok",
+      "files": [
+        "v6p5cat_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6p5cat",
+      "saved": "v6p5cat__v6p5cat_00001_.png",
+      "lora_name": "p_qwen_image_2.1_5step_v0.1.safetensors",
+      "steps": 5,
+      "width": 864,
+      "height": 576,
+      "loader": "runtime_hook",
+      "sigmas": "1.0,0.94,0.8571428571428571,0.6666666666666666,0.4",
+      "sigmas_node": "PrunaSigmas",
+      "s_per_step": "2.52",
+      "executed_s": "16.40",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.7,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "pruna8_sign_768x768_warm",
+      "ok": true,
+      "wall_s": 30.0,
+      "note": "ok",
+      "files": [
+        "v6p8sign_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6p8sign",
+      "saved": "v6p8sign__v6p8sign_00001_.png",
+      "lora_name": "p_qwen_image_2.1_8step_v0.1.safetensors",
+      "steps": 8,
+      "width": 768,
+      "height": 768,
+      "loader": "runtime_hook",
+      "sigmas": "1.0,0.9333333333333333,0.8571428571428571,0.7692307692307693,0.6666666666666666,0.5454545454545454,0.4,0.2222222222222222",
+      "sigmas_node": "PrunaSigmas",
+      "s_per_step": "2.95",
+      "executed_s": "28.89",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.7,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "pruna5_sign_1024x1024_warm",
+      "ok": true,
+      "wall_s": 33.0,
+      "note": "ok",
+      "files": [
+        "v6p5sign1k_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6p5sign1k",
+      "saved": "v6p5sign1k__v6p5sign1k_00001_.png",
+      "lora_name": "p_qwen_image_2.1_5step_v0.1.safetensors",
+      "steps": 5,
+      "width": 1024,
+      "height": 1024,
+      "loader": "runtime_hook",
+      "sigmas": "1.0,0.94,0.8571428571428571,0.6666666666666666,0.4",
+      "sigmas_node": "PrunaSigmas",
+      "s_per_step": "5.47",
+      "executed_s": "30.92",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.7,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "viggle_r256_sign_768x768_6s_warm",
+      "ok": true,
+      "wall_s": 30.3,
+      "note": "ok",
+      "files": [
+        "v6vg256sign_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6vg256sign",
+      "saved": "v6vg256sign__v6vg256sign_00001_.png",
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "steps": 6,
+      "width": 768,
+      "height": 768,
+      "loader": "runtime_hook",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.5, 0.25",
+      "sigmas_node": "ViggleTurboSigmas",
+      "s_per_step": "3.73",
+      "executed_s": "29.89",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 1.91,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "viggle_r256_sign_1024x1024_6s_warm",
+      "ok": true,
+      "wall_s": 42.3,
+      "note": "ok",
+      "files": [
+        "v6vg256sign1k_00001_.png"
+      ],
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v6vg256sign1k",
+      "saved": "v6vg256sign1k__v6vg256sign1k_00001_.png",
+      "lora_name": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "steps": 6,
+      "width": 1024,
+      "height": 1024,
+      "loader": "runtime_hook",
+      "sigmas": "1.0, 0.9375, 0.875, 0.75, 0.5, 0.25",
+      "sigmas_node": "ViggleTurboSigmas",
+      "s_per_step": "6.43",
+      "executed_s": "41.90",
+      "lora_key_warnings": 0,
+      "vram_free_gb": 2.24,
+      "vram_total_gb": 15.64
+    }
+  ],
+  "pruna_lora_metadata_5step": {
+    "lora_adapter_metadata": "{\"transformer.alora_invocation_tokens\": null, \"transformer.alpha_pattern\": {}, \"transformer.arrow_config\": null, \"transformer.auto_mapping\": null, \"transformer.base_model_name_or_path\": null, \"transformer.bias\": \"none\", \"transformer.corda_config\": null, \"transformer.ensure_weight_tying\": false, \"transformer.eva_config\": null, \"transformer.exclude_modules\": null, \"transformer.fan_in_fan_out\": false, \"transformer.inference_mode\": false, \"transformer.init_lora_weights\": true, \"transformer.layer_replication\": null, \"transformer.layers_pattern\": null, \"transformer.layers_to_transform\": null, \"transformer.loftq_config\": {}, \"transformer.lora_alpha\": 128, \"transformer.lora_bias\": false, \"transformer.lora_dropout\": 0.0, \"transformer.lora_ga_config\": null, \"transformer.megatron_config\": null, \"transformer.megatron_core\": \"megatron.core\", \"transformer.modules_to_save\": null, \"transformer.monteclora_config\": null, \"transformer.peft_type\": \"LORA\", \"transformer.peft_version\": \"0.20.0\", \"transformer.qalora_group_size\": 16, \"transformer.r\": 64, \"transformer.rank_pattern\": {}, \"transformer.revision\": null, \"transformer.target_modules\": [\"to_q\", \"to_k\", \"to_v\", \"to_out.0\", \"img_mlp.proj\", \"img_mlp.out\", \"img_mlp.gate_layer\"], \"transformer.target_parameters\": null, \"transformer.task_type\": null, \"transformer.trainable_token_indices\": null, \"transformer.use_bdlora\": null, \"transformer.use_dora\": false, \"transformer.use_qalora\": false, \"transformer.use_rslora\": false, \"transformer.velora_config\": null}",
+    "format": "pt",
+    "training_run": "qwen21-pcm8-cdm-original-targets-20260923",
+    "checkpoint_iteration": "4000",
+    "base_model": "Qwen/Qwen-Image-2.1",
+    "inference_sigmas": "[1.0, 0.94, 0.8571428571428571, 0.6666666666666666, 0.4, 0.0]"
+  },
+  "downloads": [
+    {
+      "file": "qwen-image-2.1-Q4_K_M.gguf",
+      "download_s": 53.0,
+      "size_gb": 4.2
+    },
+    {
+      "file": "qwen3vl_8b_int8_convrot.safetensors",
+      "download_s": 68.6,
+      "size_gb": 9.35
+    },
+    {
+      "file": "qwen_image_2.1_vae_bf16.safetensors",
+      "download_s": 4.0,
+      "size_gb": 0.68
+    },
+    {
+      "file": "p_qwen_image_2.1_5step_v0.1.safetensors",
+      "download_s": 4.6,
+      "size_gb": 0.34
+    },
+    {
+      "file": "p_qwen_image_2.1_8step_v0.1.safetensors",
+      "download_s": 2.5,
+      "size_gb": 0.34
+    },
+    {
+      "file": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "download_s": 11.3,
+      "size_gb": 1.36
+    }
+  ],
+  "cast_lines_seen_n": 1,
+  "total_s": 537.9,
+  "success": true
+}
