@@ -8,4 +8,4 @@ Text quality: both spell "FREE GPU LAB" perfectly, every letter. Z-Image's small
 
 Both free, both worth your clicks — pick by workload: batches of variations = Z-Image (also the Apache-licensed one), mixed prompts = Qwen.
 
-The free notebook recipe that runs both: https://github.com/KodeIsFun/run-qwen-image-on-free-colab
+The free notebook recipe that runs both: https://github.com/KodeIsFun/run-z-image-on-free-colab
