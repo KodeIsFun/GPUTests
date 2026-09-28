@@ -1,0 +1,18 @@
+{
+  "id": "emdadh/ternary-bonsai-2-27b-on-t4",
+  "title": "Ternary Bonsai 2 27B on T4",
+  "code_file": "job.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "keywords": [
+    "gpu",
+    "free-gpu-lab"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

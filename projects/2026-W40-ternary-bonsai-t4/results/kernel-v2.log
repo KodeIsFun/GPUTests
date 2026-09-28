@@ -1,0 +1,243 @@
+[{"stream_name":"stdout","time":1.037305604,"data":"[     0.0s] === env probe ===\n"}
+,{"stream_name":"stdout","time":1.073042809,"data":"[     0.0s] gpu: Tesla T4, 580.159.04, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.073062389,"data":"Tesla T4, 580.159.04, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.073283244,"data":"[     0.0s] === pinned fork binaries ===\n"}
+,{"stream_name":"stdout","time":3.287206847,"data":"[     2.2s] download llama.tar.gz 0.27 GB in 1.9s\n"}
+,{"stream_name":"stdout","time":8.999045693,"data":"[     8.0s] binaries: ['LICENSE', 'ggml-rpc-server', 'libggml-base.so', 'libggml-base.so.0', 'libggml-base.so.0.21.0', 'libggml-cpu-alderlake.so', 'libggml-cpu-cannonlake.so', 'libggml-cpu-cascadelake.so', 'libggml-cpu-cooperlake.so', 'libggml-cpu-haswell.so', 'libggml-cpu-icelake.so', 'libggml-cpu-ivybridge.so', 'libggml-cpu-piledriver.so', 'libggml-cpu-sandybridge.so', 'libggml-cpu-sapphirerapids.so', 'libggml-cpu-skylakex.so', 'libggml-cpu-sse42.so', 'libggml-cpu-ssse3.so', 'libggml-cpu-x64.so', 'libggml-cpu-zen4.so', 'libggml-cuda.so', 'libggml-rpc.so', 'libggml.so', 'libggml.so.0', 'libggml.so.0.21.0', 'libllama-batched-bench-impl.so', 'libllama-bench-impl.so', 'libllama-cli-impl.so', 'libllama-common.so', 'libllama-common.so.0', 'libllama-common.so.0.2.0', 'libllama-completion-impl.so', 'libllama-fit-params-impl.so', 'libllama-perplexity-impl.so', 'libllama-quantize-impl.so', 'libllama-server-impl.so', 'libllama.so', 'libllama.so.0', 'libllama.so.0.2.0', 'libmtmd.so', 'libmtmd.so.0', 'libmtmd.so.0.2.0', 'llama', 'llama-batched', 'llama-batched-bench', 'llama-bench', 'llama-cli', 'llama-completion', 'llama-debug', 'llama-diffusion-cli', 'llama-embedding', 'llama-eval-callback', 'llama-finetune', 'llama-fit-params', 'llama-gemma3-cli', 'llama-gen-docs', 'llama-gguf', 'llama-gguf-hash', 'llama-gguf-split', 'llama-idle', 'llama-imatrix', 'llama-kv-mean-center', 'llama-llava-cli', 'llama-lookahead', 'llama-lookup', 'llama-lookup-create', 'llama-lookup-merge', 'llama-lookup-stats', 'llama-minicpmv-cli', 'llama-mtmd-cli', 'llama-mtmd-debug', 'llama-parallel', 'llama-passkey', 'llama-perplexity', 'llama-quantize', 'llama-qwen2vl-cli', 'llama-results', 'llama-retrieval', 'llama-rs-rollback', 'llama-rs-rollback-multi', 'llama-server', 'llama-simple', 'llama-simple-chat', 'llama-speculative', 'llama-speculative-simple', 'llama-tokenize', 'llama-tts']\n"}
+,{"stream_name":"stdout","time":11.05769092,"data":"[    10.0s] llama-bench: usage: /tmp/llama/llama-bench [options]\n"}
+,{"stream_name":"stdout","time":11.057717822,"data":"\n"}
+,{"stream_name":"stdout","time":11.05772373,"data":"options:\n"}
+,{"stream_name":"stdout","time":11.057729095,"data":"  -h, --help\n"}
+,{"stream_name":"stdout","time":11.057734127,"data":"  --numa \u003cdistribute|isolate|numactl\u003e         numa mode (default: disabled)\n"}
+,{"stream_name":"stdout","time":11.057739836,"data":"  -r, --repetitions \u003cn\u003e                       number of times\n"}
+,{"stream_name":"stdout","time":11.058132845,"data":"[    10.0s] === downloads (resume-loop) ===\n"}
+,{"stream_name":"stdout","time":78.806265371,"data":"[    77.8s] download Ternary-Bonsai-2-27B-PTQ1_0.gguf 5.95 GB in 67.6s\n"}
+,{"stream_name":"stdout","time":164.744181398,"data":"[   163.7s] download Ternary-Bonsai-2-27B-PQ2_0.gguf 7.21 GB in 85.8s\n"}
+,{"stream_name":"stdout","time":342.73951881,"data":"[   341.7s] download Qwen3.8-27B-UD-IQ2_XXS.gguf 7.27 GB in 177.8s\n"}
+,{"stream_name":"stdout","time":342.739810506,"data":"[   341.7s] === row: PTQ1_0_ternary_1.75bpw ===\n"}
+,{"stream_name":"stdout","time":488.674540358,"data":"[   487.6s] bench: pp=294.38 tg=17.77 wall=145.9s vram_peak=3.51GB vram_end=0.0GB\n"}
+,{"stream_name":"stdout","time":507.148516336,"data":"[   506.1s] smoke: exit=0 chars=1284 head=Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\n"}
+,{"stream_name":"stdout","time":507.149099395,"data":"[   506.1s] === row: PQ2_0_ternary_2.13bpw ===\n"}
+,{"stream_name":"stdout","time":573.991869799,"data":"[   573.0s] bench: pp=294.66 tg=21.56 wall=66.8s vram_peak=4.08GB vram_end=0.0GB\n"}
+,{"stream_name":"stdout","time":581.669644846,"data":"[   580.6s] smoke: exit=0 chars=1066 head=Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\n"}
+,{"stream_name":"stdout","time":581.670136764,"data":"[   580.6s] === row: Qwen3.8-27B_UD-IQ2_XXS_conventional ===\n"}
+,{"stream_name":"stdout","time":781.315826311,"data":"[   780.3s] bench: pp=246.29 tg=11.86 wall=199.6s vram_peak=4.65GB vram_end=0.0GB\n"}
+,{"stream_name":"stdout","time":790.074641383,"data":"[   789.0s] smoke: exit=0 chars=1038 head=Loading model... |\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\b/\b-\b\\\b|\n"}
+,{"stream_name":"stdout","time":790.076822736,"data":"[   789.0s] === DONE success=True total=789.0s ===\n"}
+,{"stream_name":"stdout","time":790.076843672,"data":"=== RESULTS_V8_JSON ===\n"}
+,{"stream_name":"stdout","time":790.077087555,"data":"{\n"}
+,{"stream_name":"stdout","time":790.077097705,"data":"  \"run\": \"ternary-bonsai2-27b-t4\",\n"}
+,{"stream_name":"stdout","time":790.077104376,"data":"  \"surface\": \"kaggle\",\n"}
+,{"stream_name":"stdout","time":790.077112563,"data":"  \"llama_build\": \"prism-b10743-adfffbe\",\n"}
+,{"stream_name":"stdout","time":790.077137282,"data":"  \"rows\": [\n"}
+,{"stream_name":"stdout","time":790.07714274,"data":"    {\n"}
+,{"stream_name":"stdout","time":790.077147789,"data":"      \"key\": \"PTQ1_0_ternary_1.75bpw\",\n"}
+,{"stream_name":"stdout","time":790.077153046,"data":"      \"file\": \"Ternary-Bonsai-2-27B-PTQ1_0.gguf\",\n"}
+,{"stream_name":"stdout","time":790.077157691,"data":"      \"size_gb\": 5.95,\n"}
+,{"stream_name":"stdout","time":790.077162887,"data":"      \"cmd\": \"/tmp/llama/llama-bench -m /tmp/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf -ngl 99 -p 512 -n 128 -r 3\",\n"}
+,{"stream_name":"stdout","time":790.077167881,"data":"      \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077172112,"data":"      \"wall_s\": 145.9,\n"}
+,{"stream_name":"stdout","time":790.077176482,"data":"      \"vram_peak_gb\": 3.51,\n"}
+,{"stream_name":"stdout","time":790.077180733,"data":"      \"vram_trace_mb_head\": [\n"}
+,{"stream_name":"stdout","time":790.077185001,"data":"        0,\n"}
+,{"stream_name":"stdout","time":790.077189184,"data":"        0,\n"}
+,{"stream_name":"stdout","time":790.077193344,"data":"        0,\n"}
+,{"stream_name":"stdout","time":790.077197634,"data":"        0,\n"}
+,{"stream_name":"stdout","time":790.07720169,"data":"        3,\n"}
+,{"stream_name":"stdout","time":790.077205905,"data":"        3,\n"}
+,{"stream_name":"stdout","time":790.07721004,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077214389,"data":"        13,\n"}
+,{"stream_name":"stdout","time":790.077220109,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077226893,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077229938,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077232847,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077244763,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077247138,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077249305,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077251396,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077253549,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077255625,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077257712,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077259902,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077262211,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077264309,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077266481,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077268565,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077270665,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077272838,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077274941,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077303564,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077305762,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077307935,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077310034,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077312125,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077314226,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077316421,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077318525,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077320653,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077322751,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077324933,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077327038,"data":"        105,\n"}
+,{"stream_name":"stdout","time":790.077329126,"data":"        105\n"}
+,{"stream_name":"stdout","time":790.077331234,"data":"      ],\n"}
+,{"stream_name":"stdout","time":790.077333441,"data":"      \"vram_trace_n\": 548,\n"}
+,{"stream_name":"stdout","time":790.077335663,"data":"      \"pp512_tps\": 294.38,\n"}
+,{"stream_name":"stdout","time":790.077337996,"data":"      \"backend\": \"CUDA\",\n"}
+,{"stream_name":"stdout","time":790.077340316,"data":"      \"ngl\": \"99\",\n"}
+,{"stream_name":"stdout","time":790.077342521,"data":"      \"tg128_tps\": 17.77,\n"}
+,{"stream_name":"stdout","time":790.077344717,"data":"      \"vram_end_gb\": 0.0,\n"}
+,{"stream_name":"stdout","time":790.077347404,"data":"      \"bench_raw\": \"| model                          |       size |     params | backend    | ngl |            test |                  t/s |\\n| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |\\n| qwen35 27B PTQ1_0 - 1.75 bpw ternary (group 128) |   5.53 GiB |    26.90 B | CUDA       |  99 |           pp512 |       294.38 \\u00b1 16.80 |\\n| qwen35 27B PTQ1_0 - 1.75 bpw ternary (group 128) |   5.53 GiB |    26.90 B | CUDA       |  99 |           tg128 |         17.77 \\u00b1 0.33 |\\n\\nbuild: adfffbe41 (10743)\\n\",\n"}
+,{"stream_name":"stdout","time":790.077351946,"data":"      \"smoke\": {\n"}
+,{"stream_name":"stdout","time":790.077354146,"data":"        \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077356315,"data":"        \"wall_s\": 18.5,\n"}
+,{"stream_name":"stdout","time":790.07735864,"data":"        \"n_chars\": 1284,\n"}
+,{"stream_name":"stdout","time":790.077361744,"data":"        \"head\": \"Loading model... |\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\",\n"}
+,{"stream_name":"stdout","time":790.077372655,"data":"        \"has_think_tag\": false\n"}
+,{"stream_name":"stdout","time":790.077375035,"data":"      }\n"}
+,{"stream_name":"stdout","time":790.077377236,"data":"    },\n"}
+,{"stream_name":"stdout","time":790.077379412,"data":"    {\n"}
+,{"stream_name":"stdout","time":790.077381527,"data":"      \"key\": \"PQ2_0_ternary_2.13bpw\",\n"}
+,{"stream_name":"stdout","time":790.077383794,"data":"      \"file\": \"Ternary-Bonsai-2-27B-PQ2_0.gguf\",\n"}
+,{"stream_name":"stdout","time":790.077386105,"data":"      \"size_gb\": 7.21,\n"}
+,{"stream_name":"stdout","time":790.077388408,"data":"      \"cmd\": \"/tmp/llama/llama-bench -m /tmp/models/Ternary-Bonsai-2-27B-PQ2_0.gguf -ngl 99 -p 512 -n 128 -r 3\",\n"}
+,{"stream_name":"stdout","time":790.0773908,"data":"      \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077392955,"data":"      \"wall_s\": 66.8,\n"}
+,{"stream_name":"stdout","time":790.077395121,"data":"      \"vram_peak_gb\": 4.08,\n"}
+,{"stream_name":"stdout","time":790.077397402,"data":"      \"pp512_tps\": 294.66,\n"}
+,{"stream_name":"stdout","time":790.077399571,"data":"      \"backend\": \"CUDA\",\n"}
+,{"stream_name":"stdout","time":790.077401765,"data":"      \"ngl\": \"99\",\n"}
+,{"stream_name":"stdout","time":790.077499587,"data":"      \"tg128_tps\": 21.56,\n"}
+,{"stream_name":"stdout","time":790.077502711,"data":"      \"vram_end_gb\": 0.0,\n"}
+,{"stream_name":"stdout","time":790.077505011,"data":"      \"bench_raw\": \"| model                          |       size |     params | backend    | ngl |            test |                  t/s |\\n| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |\\n| qwen35 27B PQ2_0 - 2.13 bpw (group 128) |   6.70 GiB |    26.90 B | CUDA       |  99 |           pp512 |        294.66 \\u00b1 0.22 |\\n| qwen35 27B PQ2_0 - 2.13 bpw (group 128) |   6.70 GiB |    26.90 B | CUDA       |  99 |           tg128 |         21.56 \\u00b1 0.23 |\\n\\nbuild: adfffbe41 (10743)\\n\",\n"}
+,{"stream_name":"stdout","time":790.077508396,"data":"      \"smoke\": {\n"}
+,{"stream_name":"stdout","time":790.077510579,"data":"        \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077512803,"data":"        \"wall_s\": 7.7,\n"}
+,{"stream_name":"stdout","time":790.077514958,"data":"        \"n_chars\": 1066,\n"}
+,{"stream_name":"stdout","time":790.077517535,"data":"        \"head\": \"Loading model... |\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b \\b \\u2584\\u2584 \\u2584\\u2584 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2580\\u2580\\u2588\\u2584 \\u2588\\u2588\\u2588\\u2584\\u2588\\u2588\\u2588\\u2584 \\u2580\\u2580\\u2588\\u2584 \\u2584\\u2588\\u2588\\u2588\\u2588 \\u2588\\u2588\\u2588\\u2588\\u2584 \\u2588\\u2588\\u2588\\u2588\\u2584 \\u2588\\u2588 \\u2588\\u2588 \\u2584\\u2588\\u2580\\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2584\\u2588\\u2580\\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\",\n"}
+,{"stream_name":"stdout","time":790.07752273,"data":"        \"has_think_tag\": false\n"}
+,{"stream_name":"stdout","time":790.077529107,"data":"      }\n"}
+,{"stream_name":"stdout","time":790.077531378,"data":"    },\n"}
+,{"stream_name":"stdout","time":790.077533446,"data":"    {\n"}
+,{"stream_name":"stdout","time":790.077535654,"data":"      \"key\": \"Qwen3.8-27B_UD-IQ2_XXS_conventional\",\n"}
+,{"stream_name":"stdout","time":790.077537969,"data":"      \"file\": \"Qwen3.8-27B-UD-IQ2_XXS.gguf\",\n"}
+,{"stream_name":"stdout","time":790.07754024,"data":"      \"size_gb\": 7.27,\n"}
+,{"stream_name":"stdout","time":790.077542925,"data":"      \"cmd\": \"/tmp/llama/llama-bench -m /tmp/models/Qwen3.8-27B-UD-IQ2_XXS.gguf -ngl 99 -p 512 -n 128 -r 3\",\n"}
+,{"stream_name":"stdout","time":790.077545504,"data":"      \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077547677,"data":"      \"wall_s\": 199.6,\n"}
+,{"stream_name":"stdout","time":790.07754987,"data":"      \"vram_peak_gb\": 4.65,\n"}
+,{"stream_name":"stdout","time":790.077552058,"data":"      \"pp512_tps\": 246.29,\n"}
+,{"stream_name":"stdout","time":790.077554263,"data":"      \"backend\": \"CUDA\",\n"}
+,{"stream_name":"stdout","time":790.077556493,"data":"      \"ngl\": \"99\",\n"}
+,{"stream_name":"stdout","time":790.077558688,"data":"      \"tg128_tps\": 11.86,\n"}
+,{"stream_name":"stdout","time":790.077560881,"data":"      \"vram_end_gb\": 0.0,\n"}
+,{"stream_name":"stdout","time":790.077563162,"data":"      \"bench_raw\": \"| model                          |       size |     params | backend    | ngl |            test |                  t/s |\\n| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |\\n| qwen35 27B IQ2_XXS - 2.0625 bpw |   6.76 GiB |    26.90 B | CUDA       |  99 |           pp512 |       246.29 \\u00b1 10.83 |\\n| qwen35 27B IQ2_XXS - 2.0625 bpw |   6.76 GiB |    26.90 B | CUDA       |  99 |           tg128 |         11.86 \\u00b1 0.12 |\\n\\nbuild: adfffbe41 (10743)\\n\",\n"}
+,{"stream_name":"stdout","time":790.077566481,"data":"      \"smoke\": {\n"}
+,{"stream_name":"stdout","time":790.077568616,"data":"        \"exit\": 0,\n"}
+,{"stream_name":"stdout","time":790.077570783,"data":"        \"wall_s\": 8.8,\n"}
+,{"stream_name":"stdout","time":790.077572971,"data":"        \"n_chars\": 1038,\n"}
+,{"stream_name":"stdout","time":790.077575226,"data":"        \"head\": \"Loading model... |\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b-\\b\\\\\\b|\\b/\\b \\b \\u2584\\u2584 \\u2584\\u2584 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2580\\u2580\\u2588\\u2584 \\u2588\\u2588\\u2588\\u2584\\u2588\\u2588\\u2588\\u2584 \\u2580\\u2580\\u2588\\u2584 \\u2584\\u2588\\u2588\\u2588\\u2588 \\u2588\\u2588\\u2588\\u2588\\u2584 \\u2588\\u2588\\u2588\\u2588\\u2584 \\u2588\\u2588 \\u2588\\u2588 \\u2584\\u2588\\u2580\\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2584\\u2588\\u2580\\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\\u2588 \\u2588\",\n"}
+,{"stream_name":"stdout","time":790.077580194,"data":"        \"has_think_tag\": false\n"}
+,{"stream_name":"stdout","time":790.077582496,"data":"      }\n"}
+,{"stream_name":"stdout","time":790.077584599,"data":"    }\n"}
+,{"stream_name":"stdout","time":790.077586705,"data":"  ],\n"}
+,{"stream_name":"stdout","time":790.077588846,"data":"  \"gpu\": \"Tesla T4, 580.159.04, 15360 MiB\\nTesla T4, 580.159.04, 15360 MiB\",\n"}
+,{"stream_name":"stdout","time":790.077591333,"data":"  \"binaries\": [\n"}
+,{"stream_name":"stdout","time":790.077593508,"data":"    \"LICENSE\",\n"}
+,{"stream_name":"stdout","time":790.077597863,"data":"    \"ggml-rpc-server\",\n"}
+,{"stream_name":"stdout","time":790.077600278,"data":"    \"libggml-base.so\",\n"}
+,{"stream_name":"stdout","time":790.07760242,"data":"    \"libggml-base.so.0\",\n"}
+,{"stream_name":"stdout","time":790.077604705,"data":"    \"libggml-base.so.0.21.0\",\n"}
+,{"stream_name":"stdout","time":790.077606903,"data":"    \"libggml-cpu-alderlake.so\",\n"}
+,{"stream_name":"stdout","time":790.077609125,"data":"    \"libggml-cpu-cannonlake.so\",\n"}
+,{"stream_name":"stdout","time":790.077611336,"data":"    \"libggml-cpu-cascadelake.so\",\n"}
+,{"stream_name":"stdout","time":790.07761372,"data":"    \"libggml-cpu-cooperlake.so\",\n"}
+,{"stream_name":"stdout","time":790.077615889,"data":"    \"libggml-cpu-haswell.so\",\n"}
+,{"stream_name":"stdout","time":790.077618162,"data":"    \"libggml-cpu-icelake.so\",\n"}
+,{"stream_name":"stdout","time":790.077620856,"data":"    \"libggml-cpu-ivybridge.so\",\n"}
+,{"stream_name":"stdout","time":790.077623275,"data":"    \"libggml-cpu-piledriver.so\",\n"}
+,{"stream_name":"stdout","time":790.077625475,"data":"    \"libggml-cpu-sandybridge.so\",\n"}
+,{"stream_name":"stdout","time":790.077627671,"data":"    \"libggml-cpu-sapphirerapids.so\",\n"}
+,{"stream_name":"stdout","time":790.077629878,"data":"    \"libggml-cpu-skylakex.so\",\n"}
+,{"stream_name":"stdout","time":790.077632066,"data":"    \"libggml-cpu-sse42.so\",\n"}
+,{"stream_name":"stdout","time":790.077634243,"data":"    \"libggml-cpu-ssse3.so\",\n"}
+,{"stream_name":"stdout","time":790.077636416,"data":"    \"libggml-cpu-x64.so\",\n"}
+,{"stream_name":"stdout","time":790.077638586,"data":"    \"libggml-cpu-zen4.so\",\n"}
+,{"stream_name":"stdout","time":790.07764078,"data":"    \"libggml-cuda.so\",\n"}
+,{"stream_name":"stdout","time":790.077642944,"data":"    \"libggml-rpc.so\",\n"}
+,{"stream_name":"stdout","time":790.077645131,"data":"    \"libggml.so\",\n"}
+,{"stream_name":"stdout","time":790.077647313,"data":"    \"libggml.so.0\",\n"}
+,{"stream_name":"stdout","time":790.077649481,"data":"    \"libggml.so.0.21.0\",\n"}
+,{"stream_name":"stdout","time":790.077651686,"data":"    \"libllama-batched-bench-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077653913,"data":"    \"libllama-bench-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077656094,"data":"    \"libllama-cli-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077658302,"data":"    \"libllama-common.so\",\n"}
+,{"stream_name":"stdout","time":790.077660469,"data":"    \"libllama-common.so.0\",\n"}
+,{"stream_name":"stdout","time":790.077662641,"data":"    \"libllama-common.so.0.2.0\",\n"}
+,{"stream_name":"stdout","time":790.077664838,"data":"    \"libllama-completion-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077667033,"data":"    \"libllama-fit-params-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077669235,"data":"    \"libllama-perplexity-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077671421,"data":"    \"libllama-quantize-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077673611,"data":"    \"libllama-server-impl.so\",\n"}
+,{"stream_name":"stdout","time":790.077675823,"data":"    \"libllama.so\",\n"}
+,{"stream_name":"stdout","time":790.077678006,"data":"    \"libllama.so.0\",\n"}
+,{"stream_name":"stdout","time":790.077680166,"data":"    \"libllama.so.0.2.0\",\n"}
+,{"stream_name":"stdout","time":790.07768234,"data":"    \"libmtmd.so\",\n"}
+,{"stream_name":"stdout","time":790.077684477,"data":"    \"libmtmd.so.0\",\n"}
+,{"stream_name":"stdout","time":790.077686645,"data":"    \"libmtmd.so.0.2.0\",\n"}
+,{"stream_name":"stdout","time":790.077690945,"data":"    \"llama\",\n"}
+,{"stream_name":"stdout","time":790.077693173,"data":"    \"llama-batched\",\n"}
+,{"stream_name":"stdout","time":790.077695453,"data":"    \"llama-batched-bench\",\n"}
+,{"stream_name":"stdout","time":790.07769766,"data":"    \"llama-bench\",\n"}
+,{"stream_name":"stdout","time":790.077699833,"data":"    \"llama-cli\",\n"}
+,{"stream_name":"stdout","time":790.077701985,"data":"    \"llama-completion\",\n"}
+,{"stream_name":"stdout","time":790.077704154,"data":"    \"llama-debug\",\n"}
+,{"stream_name":"stdout","time":790.077706301,"data":"    \"llama-diffusion-cli\",\n"}
+,{"stream_name":"stdout","time":790.077708491,"data":"    \"llama-embedding\",\n"}
+,{"stream_name":"stdout","time":790.077710655,"data":"    \"llama-eval-callback\",\n"}
+,{"stream_name":"stdout","time":790.077712846,"data":"    \"llama-finetune\",\n"}
+,{"stream_name":"stdout","time":790.077715001,"data":"    \"llama-fit-params\",\n"}
+,{"stream_name":"stdout","time":790.077717192,"data":"    \"llama-gemma3-cli\",\n"}
+,{"stream_name":"stdout","time":790.077721416,"data":"    \"llama-gen-docs\",\n"}
+,{"stream_name":"stdout","time":790.077723678,"data":"    \"llama-gguf\",\n"}
+,{"stream_name":"stdout","time":790.0777258,"data":"    \"llama-gguf-hash\",\n"}
+,{"stream_name":"stdout","time":790.077727946,"data":"    \"llama-gguf-split\",\n"}
+,{"stream_name":"stdout","time":790.077730065,"data":"    \"llama-idle\",\n"}
+,{"stream_name":"stdout","time":790.077732316,"data":"    \"llama-imatrix\",\n"}
+,{"stream_name":"stdout","time":790.077734455,"data":"    \"llama-kv-mean-center\",\n"}
+,{"stream_name":"stdout","time":790.077736969,"data":"    \"llama-llava-cli\",\n"}
+,{"stream_name":"stdout","time":790.077739111,"data":"    \"llama-lookahead\",\n"}
+,{"stream_name":"stdout","time":790.0777413,"data":"    \"llama-lookup\",\n"}
+,{"stream_name":"stdout","time":790.077743438,"data":"    \"llama-lookup-create\",\n"}
+,{"stream_name":"stdout","time":790.077745628,"data":"    \"llama-lookup-merge\",\n"}
+,{"stream_name":"stdout","time":790.077747768,"data":"    \"llama-lookup-stats\",\n"}
+,{"stream_name":"stdout","time":790.077749955,"data":"    \"llama-minicpmv-cli\",\n"}
+,{"stream_name":"stdout","time":790.077752101,"data":"    \"llama-mtmd-cli\",\n"}
+,{"stream_name":"stdout","time":790.077754311,"data":"    \"llama-mtmd-debug\",\n"}
+,{"stream_name":"stdout","time":790.077756606,"data":"    \"llama-parallel\",\n"}
+,{"stream_name":"stdout","time":790.077758861,"data":"    \"llama-passkey\",\n"}
+,{"stream_name":"stdout","time":790.077760994,"data":"    \"llama-perplexity\",\n"}
+,{"stream_name":"stdout","time":790.077763136,"data":"    \"llama-quantize\",\n"}
+,{"stream_name":"stdout","time":790.07776528,"data":"    \"llama-qwen2vl-cli\",\n"}
+,{"stream_name":"stdout","time":790.077767504,"data":"    \"llama-results\",\n"}
+,{"stream_name":"stdout","time":790.077769715,"data":"    \"llama-retrieval\",\n"}
+,{"stream_name":"stdout","time":790.077771857,"data":"    \"llama-rs-rollback\",\n"}
+,{"stream_name":"stdout","time":790.077781943,"data":"    \"llama-rs-rollback-multi\",\n"}
+,{"stream_name":"stdout","time":790.077784397,"data":"    \"llama-server\",\n"}
+,{"stream_name":"stdout","time":790.077786546,"data":"    \"llama-simple\",\n"}
+,{"stream_name":"stdout","time":790.077788681,"data":"    \"llama-simple-chat\",\n"}
+,{"stream_name":"stdout","time":790.077790848,"data":"    \"llama-speculative\",\n"}
+,{"stream_name":"stdout","time":790.077793153,"data":"    \"llama-speculative-simple\",\n"}
+,{"stream_name":"stdout","time":790.077797773,"data":"    \"llama-tokenize\",\n"}
+,{"stream_name":"stdout","time":790.077800089,"data":"    \"llama-tts\"\n"}
+,{"stream_name":"stdout","time":790.077802291,"data":"  ],\n"}
+,{"stream_name":"stdout","time":790.077805068,"data":"  \"bench_version\": \"usage: /tmp/llama/llama-bench [options]\\n\\noptions:\\n  -h, --help\\n  --numa \u003cdistribute|isolate|numactl\u003e         numa mode (default: disabled)\\n  -r, --repetitions \u003cn\u003e                       number of times\",\n"}
+,{"stream_name":"stdout","time":790.077808386,"data":"  \"success\": true,\n"}
+,{"stream_name":"stdout","time":790.077810643,"data":"  \"total_s\": 789.0\n"}
+,{"stream_name":"stdout","time":790.077812887,"data":"}\n"}
+,{"stream_name":"stderr","time":792.895249427,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":792.895305547,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":793.263478661,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":793.263499788,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":795.071535115,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":796.448392748,"data":"[NbConvertApp] Writing 325525 bytes to __results__.html\n"}
+]

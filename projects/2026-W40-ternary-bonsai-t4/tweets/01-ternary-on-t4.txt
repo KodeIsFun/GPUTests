@@ -1,0 +1,13 @@
+Everyone benchmarks the ternary Bonsai on Macs. Nobody had published it on the free NVIDIA card — so I did. First finding: stock llama.cpp can't even load it.
+
+The second-generation ternary Bonsai is a 27B-class reasoning model packed into 5.95-7.21 GB. Its custom ternary packings are rejected by mainline llama.cpp (the upstream feature request is still open), so this ran on the makers' own fork — which ships prebuilt CUDA binaries, no compiling.
+
+Speed on a free T4, all layers on GPU, pp512 prompts / tg128 generations:
+
+• PQ2 packing: 21.56 tokens per second generation, 294.66 prompt processing
+• the denser PTQ1 packing (5.95 GB): 17.77 tokens per second
+• the conventional IQ2_XXS quant at the same size: 11.86 tokens per second
+
+Same card. Same footprint. The ternary kernels nearly double the conventional quant's generation speed — on a GPU that costs nothing.
+
+Public kernel, every number traceable: https://www.kaggle.com/code/emdadh/ternary-bonsai-2-27b-on-t4
