@@ -1,0 +1,105 @@
+{
+  "run": "zimage-turbo-vs-qwen-t4-v7b-warm",
+  "surface": "colab",
+  "surface_proof": {
+    "KAGGLE_KERNEL_RUN_TYPE": null,
+    "COLAB_GPU": "1"
+  },
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "note": "warm-repeat pair per stack at 768x768, same sign prompt, seeds 43/44 (distinct graphs): seed43 pays stack load/encode after boot, seed44 is the encode-cached pure warm render. Completes timings_v7_zimage.json.",
+  "rows": [
+    {
+      "key": "z_bf16_sign_768_seed43_load",
+      "ok": true,
+      "wall_s": 105.1,
+      "note": "ok",
+      "files": [
+        "v7bz43_00001_.png"
+      ],
+      "stack": "z_image",
+      "seed": 43,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7bz43",
+      "saved": "v7bz43__v7bz43_00001_.png",
+      "s_per_step": "1.69",
+      "executed_s": "104.74",
+      "vram_free_gb": 2.1
+    },
+    {
+      "key": "z_bf16_sign_768_seed44_warm",
+      "ok": true,
+      "wall_s": 18.0,
+      "note": "ok",
+      "files": [
+        "v7bz44_00001_.png"
+      ],
+      "stack": "z_image",
+      "seed": 44,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7bz44",
+      "saved": "v7bz44__v7bz44_00001_.png",
+      "s_per_step": "1.78",
+      "executed_s": "15.95",
+      "vram_free_gb": 2.7
+    },
+    {
+      "key": "qwen_sign_768_seed43_load",
+      "ok": true,
+      "wall_s": 84.1,
+      "note": "ok",
+      "files": [
+        "v7bq43_00001_.png"
+      ],
+      "stack": "qwen_viggle",
+      "seed": 43,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7bq43",
+      "saved": "v7bq43__v7bq43_00001_.png",
+      "s_per_step": "3.36",
+      "executed_s": "82.09",
+      "vram_free_gb": 1.67
+    },
+    {
+      "key": "qwen_sign_768_seed44_warm",
+      "ok": true,
+      "wall_s": 27.0,
+      "note": "ok",
+      "files": [
+        "v7bq44_00001_.png"
+      ],
+      "stack": "qwen_viggle",
+      "seed": 44,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7bq44",
+      "saved": "v7bq44__v7bq44_00001_.png",
+      "s_per_step": "3.80",
+      "executed_s": "25.06",
+      "vram_free_gb": 1.84
+    }
+  ],
+  "total_s": 743.7,
+  "success": true
+}

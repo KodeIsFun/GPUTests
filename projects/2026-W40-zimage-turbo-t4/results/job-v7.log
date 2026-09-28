@@ -1,0 +1,220 @@
+[     0.0s] === setup: ComfyUI + both stacks (skipped if present) ===
+[     0.3s] cached: z_image_turbo_bf16.safetensors
+[    47.0s] download z_image_turbo_int8_convrot.safetensors 6.20 GB in 46.5s (attempt 1)
+[    47.2s] cached: qwen_3_4b.safetensors
+[    47.4s] cached: ae.safetensors
+[    47.8s] cached: qwen-image-2.1-Q4_K_M.gguf
+[    48.1s] cached: qwen3vl_8b_int8_convrot.safetensors
+[    48.4s] cached: qwen_image_2.1_vae_bf16.safetensors
+[    48.6s] cached: Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors
+[    48.6s] booting server with ['--force-fp16', '--disable-comfy-compiler']
+[   174.6s] z_bf16_cat_864x576_cold: ok=True 102.1s (ok)
+[   216.7s] z_bf16_sign_768x768_warm: ok=True 42.0s (ok)
+[   255.8s] z_bf16_sign_1024x1024_warm: ok=True 39.0s (ok)
+[   315.8s] z_int8_sign_768x768_warm: ok=True 60.0s (ok)
+[   399.9s] qwen_r256_cat_864x576_cold: ok=True 84.1s (ok)
+[   429.9s] qwen_r256_sign_768x768_6s_warm: ok=True 30.0s (ok)
+[   472.0s] qwen_r256_sign_1024x1024_6s_warm: ok=True 42.0s (ok)
+[   472.7s] === DONE success=True total=472.7s ===
+=== TIMINGS_V7_JSON ===
+{
+  "run": "zimage-turbo-vs-qwen-t4-v7",
+  "surface": "colab",
+  "surface_proof": {
+    "KAGGLE_KERNEL_RUN_TYPE": null,
+    "COLAB_GPU": "1"
+  },
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "seed": 42,
+  "z_image": {
+    "repo": "Comfy-Org/z_image_turbo (from Tongyi-MAI/Z-Image-Turbo, apache-2.0)",
+    "recipe": "official t2i template: lumina2 clip + AuraFlow shift=3 + 8 steps cfg1 res_multistep/simple",
+    "n_params_b": 6
+  },
+  "qwen": {
+    "repo": "unsloth GGUF Q4_K_M + abenzerps TE/VAE + Viggle r256 hook (v6 recipe verbatim)"
+  },
+  "matrix_note": "both stacks in one session; rows 1-4 Z-Image (bf16 cold, 768 warm, 1K, int8), rows 5-7 qwen r256 (cat cold, 768/1K warm) = in-session anchors. All rows distinct graphs (v6 cache lesson), seed 42, same two canary prompts as v4-v6.",
+  "rows": [
+    {
+      "key": "z_bf16_cat_864x576_cold",
+      "ok": true,
+      "wall_s": 102.1,
+      "note": "ok",
+      "files": [
+        "v7zbf16cat_00001_.png"
+      ],
+      "stack": "z_image",
+      "model": "z_image_turbo_bf16.safetensors",
+      "steps": 8,
+      "width": 864,
+      "height": 576,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7zbf16cat",
+      "saved": "v7zbf16cat__v7zbf16cat_00001_.png",
+      "s_per_step": "1.42",
+      "executed_s": "100.73",
+      "vram_free_gb": 1.83,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "z_bf16_sign_768x768_warm",
+      "ok": true,
+      "wall_s": 42.0,
+      "note": "ok",
+      "files": [
+        "v7zbf16sign_00001_.png"
+      ],
+      "stack": "z_image",
+      "model": "z_image_turbo_bf16.safetensors",
+      "steps": 8,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7zbf16sign",
+      "saved": "v7zbf16sign__v7zbf16sign_00001_.png",
+      "s_per_step": "1.91",
+      "executed_s": "41.07",
+      "vram_free_gb": 1.96,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "z_bf16_sign_1024x1024_warm",
+      "ok": true,
+      "wall_s": 39.0,
+      "note": "ok",
+      "files": [
+        "v7zbf16sign1k_00001_.png"
+      ],
+      "stack": "z_image",
+      "model": "z_image_turbo_bf16.safetensors",
+      "steps": 8,
+      "width": 1024,
+      "height": 1024,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7zbf16sign1k",
+      "saved": "v7zbf16sign1k__v7zbf16sign1k_00001_.png",
+      "s_per_step": "4.04",
+      "executed_s": "36.04",
+      "vram_free_gb": 3.88,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "z_int8_sign_768x768_warm",
+      "ok": true,
+      "wall_s": 60.0,
+      "note": "ok",
+      "files": [
+        "v7zint8sign_00001_.png"
+      ],
+      "stack": "z_image",
+      "model": "z_image_turbo_int8_convrot.safetensors",
+      "steps": 8,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7zint8sign",
+      "saved": "v7zint8sign__v7zint8sign_00001_.png",
+      "s_per_step": "4.14",
+      "executed_s": "58.61",
+      "vram_free_gb": 8.97,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "qwen_r256_cat_864x576_cold",
+      "ok": true,
+      "wall_s": 84.1,
+      "note": "ok",
+      "files": [
+        "v7qwcat_00001_.png"
+      ],
+      "stack": "qwen_viggle",
+      "model": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "steps": 6,
+      "width": 864,
+      "height": 576,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7qwcat",
+      "saved": "v7qwcat__v7qwcat_00001_.png",
+      "s_per_step": "3.50",
+      "executed_s": "82.75",
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "qwen_r256_sign_768x768_6s_warm",
+      "ok": true,
+      "wall_s": 30.0,
+      "note": "ok",
+      "files": [
+        "v7qwsign_00001_.png"
+      ],
+      "stack": "qwen_viggle",
+      "model": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "steps": 6,
+      "width": 768,
+      "height": 768,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7qwsign",
+      "saved": "v7qwsign__v7qwsign_00001_.png",
+      "s_per_step": "3.82",
+      "executed_s": "28.75",
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64
+    },
+    {
+      "key": "qwen_r256_sign_1024x1024_6s_warm",
+      "ok": true,
+      "wall_s": 42.0,
+      "note": "ok",
+      "files": [
+        "v7qwsign1k_00001_.png"
+      ],
+      "stack": "qwen_viggle",
+      "model": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "steps": 6,
+      "width": 1024,
+      "height": 1024,
+      "flags": [
+        "--force-fp16",
+        "--disable-comfy-compiler"
+      ],
+      "prefix": "v7qwsign1k",
+      "saved": "v7qwsign1k__v7qwsign1k_00001_.png",
+      "s_per_step": "6.24",
+      "executed_s": "40.61",
+      "vram_free_gb": 2.21,
+      "vram_total_gb": 15.64
+    }
+  ],
+  "downloads": [
+    {
+      "file": "z_image_turbo_int8_convrot.safetensors",
+      "download_s": 46.5,
+      "size_gb": 6.2
+    }
+  ],
+  "total_s": 472.7,
+  "success": true
+}

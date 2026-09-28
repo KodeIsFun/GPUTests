@@ -1,0 +1,11 @@
+The first free-T4 image table: Z-Image-Turbo vs Qwen-Image turbo, same free Google GPU, same neon-sign test, same seed, every number re-runnable.
+
+Once warm, Z-Image-Turbo is the fastest thing I've measured on a free GPU: 18.0 s per 768x768 image vs 27.0 s for Qwen's turbo. At square 1024x1024: 39.0 s vs 42.0 s.
+
+The catch is memory. Z-Image's full model barely fits a free card, so a new prompt costs a reload: first render with fresh text, 42.0 s, while Qwen holds 30.0 s regardless. First image of a session, load included: 102.1 s vs 84.1 s.
+
+Text quality: both spell "FREE GPU LAB" perfectly, every letter. Z-Image's smaller variant draws the same picture but slower: 60.0 s.
+
+Both free, both worth your clicks — pick by workload: batches of variations = Z-Image (also the Apache-licensed one), mixed prompts = Qwen.
+
+The free notebook recipe that runs both: https://github.com/KodeIsFun/run-qwen-image-on-free-colab
