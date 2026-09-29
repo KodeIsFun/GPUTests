@@ -1,0 +1,12 @@
+You can now run a 27B-class AI reasoning model on a free GPU.
+
+The same brain as Qwen's 27B open model, shrunk two different ways — and I raced them on the free T4 GPU that comes with a Google Kaggle account:
+
+• the new "ternary" way (every number inside the model stored as just three values): fits in a 5.95 GB file, writes 21.56 tokens per second
+• the usual 2-bit squeeze at the same size: only 11.86 tokens per second
+
+Same card. Same size. The ternary way is nearly twice as fast — on hardware that costs nothing.
+
+One catch: the standard AI software refuses to even open these files (the compression is that new). The makers' special build comes ready-made though — no installing, no compiling — and my public notebook runs the whole race so you can reproduce every number:
+
+https://www.kaggle.com/code/emdadh/ternary-bonsai-2-27b-on-t4
