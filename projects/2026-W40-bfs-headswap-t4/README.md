@@ -26,13 +26,20 @@ settings, and its identity numbers come with a twist.**
   photographic. At the template's 1408² latent, identity transfer *fails*
   (scene hair kept) and the whole frame takes the posterized/HDR hit the
   workflow's own Note warns about — 1024² is the T4 sweet spot.
-- **Identity twist:** the no-BFS anchor scores *higher* ArcFace similarity to
-  the reference head (0.867) than the BFS rows (0.640 @1024, 0.429 @1408) —
-  matching the BFS guide's own admission that the base model already
-  approximates head-pasting. BFS's value on this pair is the *coherent*
-  replacement (hair+face move together; the anchor keeps blonde hair), not
-  raw face-likeness. Background fidelity costs nothing (SSIM vs scene 0.39–0.42
-  for every row incl. the anchor; unrelated-image floor 0.083).
+- **Identity twist (corrected 2026-09-30 on visual re-review):** with the
+  two-image conditioning working, the no-BFS anchor *also* swaps the head —
+  red curly hair included — and scores *higher* ArcFace similarity to the
+  reference (0.867) than the BFS rows (0.640 @1024, 0.429 @1408). That
+  strongly confirms the BFS guide's own admission that the base model
+  "already approximates pasting the reference head". What BFS measurably adds
+  on this pair is **scene coherence**: it is the only row that keeps the scene
+  person's beret (the anchor pastes a bare head and drops the hat), at the
+  cost of face likeness; and at the template's 1408² the BFS row loses
+  identity outright (scene hair kept) while taking the posterized hit.
+  (An earlier draft of this README wrongly wrote the anchor "keeps blonde
+  hair" — R4's PNG shows otherwise.) Background fidelity costs nothing
+  (SSIM vs scene 0.39–0.42 for every row incl. the anchor; unrelated-image
+  floor 0.083).
 
 ## Headline numbers (all in `results/timings_bfs.json`)
 

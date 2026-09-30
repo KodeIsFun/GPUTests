@@ -2,4 +2,4 @@ The face-swap LoRA everyone's downloading runs on a free Colab GPU — but not a
 
 At the template's own resolution, one image crawls at 258.84 s/step (give up your afternoon). Shrink the two reference photos first: same swap, 96.1 s, background and neon sign untouched.
 
-Funniest finding: turn the LoRA off and the face is arguably MORE like the target (0.867 vs 0.6399). What you actually pay for is the hair.
+Funniest finding: turn the LoRA off and it still swaps the head, hair and all — and the face is arguably MORE like the target (0.867 vs 0.6399). What BFS actually adds: it keeps her hat.
