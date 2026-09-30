@@ -1,0 +1,216 @@
+[32m[INFO][0m setup plugin alembic.autogenerate.schemas
+[32m[INFO][0m setup plugin alembic.autogenerate.tables
+[32m[INFO][0m setup plugin alembic.autogenerate.types
+[32m[INFO][0m setup plugin alembic.autogenerate.constraints
+[32m[INFO][0m setup plugin alembic.autogenerate.defaults
+[32m[INFO][0m setup plugin alembic.autogenerate.comments
+[32m[INFO][0m setup plugin alembic.ext.checkconstraint_byname
+[1m[33m[WARNING][0m WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
+WARNING WARNING WARNING
+If you are on nvidia 20 series and above it is required that you update your pytorch to cu130 or higher.
+
+[32m[INFO][0m Found comfy_kitchen backend ascend: {'available': False, 'disabled': False, 'unavailable_reason': "torch-npu is not installed: No module named 'torch_npu'", 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend cuda: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_embedding', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Found comfy_kitchen backend hip: {'available': False, 'disabled': False, 'unavailable_reason': 'PyTorch ROCm/HIP runtime not available', 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend triton: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'int8_linear', 'na3d', 'quantize_and_rotate_rowwise', 'quantize_int8_rowwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'w4a8_int8_linear']}
+[32m[INFO][0m Checkpoint files will always be loaded safely.
+[32m[INFO][0m Total VRAM 14913 MB, total RAM 12976 MB
+[32m[INFO][0m pytorch version: 2.11.0+cu128
+[32m[INFO][0m Set vram state to: NORMAL_VRAM
+[32m[INFO][0m Device: cuda:0 Tesla T4 : cudaMallocAsync
+[32m[INFO][0m Using async weight offloading with 2 streams
+[32m[INFO][0m Enabled pinned memory 5190.0
+[32m[INFO][0m Using pytorch attention
+[32m[INFO][0m aimdo: /project/src/control.c:283:INFO:comfy-aimdo inited for GPU: Tesla T4 (VRAM: 14912 MB)
+[32m[INFO][0m DynamicVRAM support detected and enabled
+[32m[INFO][0m Python version: 3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]
+[32m[INFO][0m ComfyUI version: 0.38.0
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[32m[INFO][0m comfyui-frontend-package version: 1.53.6
+[32m[INFO][0m comfyui-workflow-templates version: 0.11.70
+[32m[INFO][0m comfyui-embedded-docs version: 0.5.13
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m [Prompt Server] web root: /usr/local/lib/python3.13/dist-packages/comfyui_frontend_package/static
+[32m[INFO][0m Asset seeder disabled
+[32m[INFO][0m No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+[32m[INFO][0m Using pytorch attention
+[[31mR[37mES[31m4[37mLY[31mF[0m] Init
+[[31mR[37mES[31m4[37mLY[31mF[0m] Importing beta samplers.
+[[31mR[37mES[31m4[37mLY[31mF[0m] Importing legacy samplers.
+[32m[INFO][0m ComfyUI-GGUF: Allowing full torch compile
+[32m[INFO][0m 
+Import times for custom nodes:
+[32m[INFO][0m    0.0 seconds: /content/ComfyUI/custom_nodes/websocket_image_save.py
+[32m[INFO][0m    0.0 seconds: /content/ComfyUI/custom_nodes/viggle_turbo.py
+[32m[INFO][0m    0.1 seconds: /content/ComfyUI/custom_nodes/ComfyUI-GGUF
+[32m[INFO][0m    1.1 seconds: /content/ComfyUI/custom_nodes/RES4LYF
+[32m[INFO][0m 
+[32m[INFO][0m Context impl SQLiteImpl.
+[32m[INFO][0m Will assume non-transactional DDL.
+[32m[INFO][0m Using RAM pressure cache.
+[32m[INFO][0m Starting server
+
+[32m[INFO][0m To see the GUI go to: http://127.0.0.1:8188
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=False paths=['/content/ComfyUI/models/vae/qwen_image_2.1_vae_bf16.safetensors']
+[32m[INFO][0m Using pytorch attention in VAE
+[32m[INFO][0m Using pytorch attention in VAE
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=False paths=['/content/ComfyUI/models/text_encoders/qwen3vl_8b_int8_convrot.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load QwenImage21TEModel_
+[32m[INFO][0m Model QwenImage21TEModel_ prepared for dynamic VRAM loading. 8916MB Staged. 0 patches attached. Force pre-loaded 255 weights: 849 KB.
+[32m[INFO][0m Model QwenImage21TEModel_ prepared for dynamic VRAM loading. 8916MB Staged. 0 patches attached. Force pre-loaded 255 weights: 849 KB.
+[1m[33m[WARNING][0m Warning: This gguf model file is loaded in compatibility mode 'sd.cpp' [arch:qwen_image21]
+[32m[INFO][0m gguf qtypes: BF16 (4), Q5_K (28), F32 (65), Q8_0 (4), Q4_K (163), Q6_K (1)
+[32m[INFO][0m model weight dtype torch.float16, manual cast: None
+[32m[INFO][0m model_type FLUX
+[32m[INFO][0m Model storage policy: fast_disk=False paths=[]
+[32m[INFO][0m Requested to load QwenImage21
+[32m[INFO][0m loaded completely; 6291.41 MB usable, 4197.00 MB loaded, full load: True
+[[31mR[37mES[31m4[37mLY[31mF[0m] rk_type: deis_2m
+  0%|          | 0/8 [00:00<?, ?it/s][1m[31m[ERROR][0m !!! Exception during processing !!! QwenImage21Transformer2DModel has no attribute `diffusion_model`
+[1m[31m[ERROR][0m Traceback (most recent call last):
+  File "/content/ComfyUI/execution.py", line 547, in execute
+    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/execution.py", line 352, in get_output_data
+    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/execution.py", line 326, in _async_map_node_over_list
+    await process_inputs(input_dict, i)
+  File "/content/ComfyUI/execution.py", line 314, in process_inputs
+    result = f(**inputs)
+  File "/content/ComfyUI/nodes.py", line 1632, in sample
+    return common_ksampler(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=denoise)
+  File "/content/ComfyUI/nodes.py", line 1596, in common_ksampler
+    samples = comfy.sample.sample(model, noise, steps, cfg, sampler_name, scheduler, positive, negative, latent_image,
+                                  denoise=denoise, disable_noise=disable_noise, start_step=start_step, last_step=last_step,
+                                  force_full_denoise=force_full_denoise, noise_mask=noise_mask, callback=callback, disable_pbar=disable_pbar, seed=seed)
+  File "/content/ComfyUI/comfy/sample.py", line 82, in sample
+    samples = sampler.sample(noise, positive, negative, cfg=cfg, latent_image=latent_image, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, denoise_mask=noise_mask, sigmas=sigmas, callback=callback, disable_pbar=disable_pbar, seed=seed)
+  File "/content/ComfyUI/comfy/samplers.py", line 1463, in sample
+    return sample(self.model, noise, positive, negative, cfg, self.device, sampler, sigmas, self.model_options, latent_image=latent_image, denoise_mask=denoise_mask, callback=callback, disable_pbar=disable_pbar, seed=seed)
+  File "/content/ComfyUI/comfy/samplers.py", line 1353, in sample
+    return cfg_guider.sample(noise, latent_image, sampler, sigmas, denoise_mask, callback, disable_pbar, seed)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 1335, in sample
+    output = executor.execute(noise, latent_image, sampler, sigmas, denoise_mask, callback, disable_pbar, seed, latent_shapes=latent_shapes)
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 113, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 1262, in outer_sample
+    output = self.inner_sample(noise, latent_image, device, sampler, sigmas, denoise_mask, callback, disable_pbar, seed, latent_shapes=latent_shapes)
+  File "/content/ComfyUI/comfy/samplers.py", line 1237, in inner_sample
+    samples = executor.execute(self, sigmas, extra_args, callback, noise, latent_image, denoise_mask, disable_pbar)
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 113, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 1005, in sample
+    samples = self.sampler_function(model_k, noise, sigmas, extra_args=extra_args, callback=k_callback, disable=disable_pbar, **self.extra_options)
+  File "/content/ComfyUI/custom_nodes/RES4LYF/beta/__init__.py", line 195, in sample_deis_2m
+    return rk_sampler_beta.sample_rk_beta(model, x, sigmas, None, extra_args, callback, disable, rk_type="deis_2m",)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/content/ComfyUI/custom_nodes/RES4LYF/beta/rk_sampler_beta.py", line 1758, in sample_rk_beta
+    eps_[row], data_[row] = RK(x_tmp, s_tmp, x_0, sigma, transformer_options={'row': row, 'x_tmp': x_tmp, 'sigma_next': sigma_next})
+                            ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/RES4LYF/beta/rk_method_beta.py", line 1095, in __call__
+    denoised = self.model_denoised(x.to(self.model_device), sub_sigma.to(self.model_device), **self.extra_args).to(sigma.device)
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/RES4LYF/beta/rk_method_beta.py", line 276, in model_denoised
+    denoised = self.model(x, sigma * s_in, **extra_args)
+  File "/content/ComfyUI/comfy/samplers.py", line 640, in __call__
+    out = self.inner_model(x, sigma, model_options=model_options, seed=seed)
+  File "/content/ComfyUI/comfy/samplers.py", line 1208, in __call__
+    return self.outer_predict_noise(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 1215, in outer_predict_noise
+    ).execute(x, timestep, model_options, seed)
+      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 113, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 1218, in predict_noise
+    return sampling_function(self.inner_model, x, timestep, self.conds.get("negative", None), self.conds.get("positive", None), self.cfg, model_options=model_options, seed=seed)
+  File "/content/ComfyUI/comfy/samplers.py", line 620, in sampling_function
+    out = calc_cond_batch(model, conds, x, timestep, model_options)
+  File "/content/ComfyUI/comfy/samplers.py", line 211, in calc_cond_batch
+    return _calc_cond_batch_outer(model, conds, x_in, timestep, model_options)
+  File "/content/ComfyUI/comfy/samplers.py", line 219, in _calc_cond_batch_outer
+    return executor.execute(model, conds, x_in, timestep, model_options)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 113, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/samplers.py", line 335, in _calc_cond_batch
+    output = model.apply_model(input_x, timestep_, **c).chunk(batch_chunks)
+             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/model_base.py", line 210, in apply_model
+    return comfy.patcher_extension.WrapperExecutor.new_class_executor(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ...<2 lines>...
+        comfy.patcher_extension.get_all_wrappers(comfy.patcher_extension.WrappersMP.APPLY_MODEL, transformer_options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ).execute(x, t, c_concat, c_crossattn, control, transformer_options, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 113, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/model_base.py", line 254, in _apply_model
+    model_output = self.diffusion_model(xc, t, context=context, control=control, transformer_options=transformer_options, **extra_conds)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/content/ComfyUI/comfy/ldm/qwen_image21/model.py", line 331, in forward
+    return comfy.patcher_extension.WrapperExecutor.new_class_executor(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ...<2 lines>...
+        comfy.patcher_extension.get_all_wrappers(comfy.patcher_extension.WrappersMP.DIFFUSION_MODEL, transformer_options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ).execute(x, timestep, context, ref_latents, image_slots, transformer_options, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 114, in execute
+    return self.wrappers[self.idx](self, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/viggle_turbo.py", line 115, in <lambda>
+    lambda executor, *a, **kw: run_with_lora(lora, executor, *a, **kw))
+                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/viggle_turbo.py", line 85, in run_with_lora
+    return executor(*args, **kwargs)
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 106, in __call__
+    return new_executor.execute(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/comfy/patcher_extension.py", line 114, in execute
+    return self.wrappers[self.idx](self, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/viggle_turbo.py", line 115, in <lambda>
+    lambda executor, *a, **kw: run_with_lora(lora, executor, *a, **kw))
+                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/ComfyUI/custom_nodes/viggle_turbo.py", line 80, in run_with_lora
+    if not getattr(dm.get_submodule(parent), "fused", False):
+                   ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 729, in get_submodule
+    raise AttributeError(
+        mod._get_name() + " has no attribute `" + item + "`"
+    )
+AttributeError: QwenImage21Transformer2DModel has no attribute `diffusion_model`
+
+[32m[INFO][0m [32mPrompt executed in 56.89 seconds[0m
+  0%|          | 0/8 [00:02<?, ?it/s]
+[32m[INFO][0m got prompt
+[32m[INFO][0m Requested to load QwenImage21
+[32m[INFO][0m loaded completely; 6483.41 MB usable, 4197.00 MB loaded, full load: True
+[[31mR[37mES[31m4[37mLY[31mF[0m] rk_type: deis_2m
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:15<01:50, 15.82s/it] 25%|██▌       | 2/8 [00:29<01:26, 14.37s/it] 38%|███▊      | 3/8 [00:42<01:09, 13.92s/it] 50%|█████     | 4/8 [00:49<00:43, 10.99s/it] 62%|██████▎   | 5/8 [00:55<00:28,  9.35s/it] 75%|███████▌  | 6/8 [01:01<00:16,  8.32s/it] 88%|████████▊ | 7/8 [01:08<00:07,  7.68s/it]100%|██████████| 8/8 [01:14<00:00,  7.25s/it]100%|██████████| 8/8 [01:14<00:00,  9.32s/it]
+[32m[INFO][0m Requested to load WanVAE
+[32m[INFO][0m Model WanVAE prepared for dynamic VRAM loading. 644MB Staged. 0 patches attached. Force pre-loaded 68 weights: 102 KB.
+[32m[INFO][0m [32mPrompt executed in 83.79 seconds[0m

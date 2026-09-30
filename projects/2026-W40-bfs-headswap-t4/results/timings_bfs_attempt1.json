@@ -1,0 +1,385 @@
+=== TIMINGS_BFS_JSON ===
+{
+  "run": "bfs-qwen21-t4",
+  "surface": "colab",
+  "surface_proof": {
+    "COLAB_GPU": "1",
+    "KAGGLE_KERNEL_RUN_TYPE": null,
+    "isdir_kaggle": true,
+    "isdir_content": true
+  },
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "seed": 42,
+  "bfs_repo": "Alissonerdx/BFS-Best-Face-Swap",
+  "prompt_head": "head_swap: start with <image1> as the base image, keeping its lighting, environment, and background. remove the head from <image1> completely and replace it with the head from <image2>, strictly preserving the hair, eye color, nose structure from <image2>. copy the direction of the eye, head rotation, micro expressions from <image1>, high quality, sharp details, 4k",
+  "prompt_body": "body_swap: start with <image1> as the base image, keeping its lighting, environment, and background. replace the body from <image1> with the body from <image2>, strictly preserving the clothing, body shape and proportions from <image2>. copy the pose, direction of the eye, head rotation, micro expressions from <image1>",
+  "sampler_ladder": [
+    "deis_2m",
+    "res_2m",
+    "deis",
+    "res_multistep"
+  ],
+  "rows": [
+    {
+      "key": "gen_in_scene",
+      "graph_md5": "2a8c7f53b10eb76a71a3b76788f6b353",
+      "meta": {},
+      "ram_used_gb": 2.03,
+      "vram_free_gb": 3.35,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 126.1,
+      "note": "ok",
+      "files": [
+        "bfsin_in_scene_00001_.png"
+      ],
+      "saved": [
+        "bfsin_in_scene_00001_.png"
+      ],
+      "s_per_step": "10.50",
+      "executed_s": "124.58",
+      "ram_used_gb_after": 7.19,
+      "sha256": {
+        "bfsin_in_scene_00001_.png": "27dd8b011bbadf41"
+      }
+    },
+    {
+      "key": "gen_in_head",
+      "graph_md5": "2599a9cde68e6f9278ed6f89bff056ee",
+      "meta": {},
+      "ram_used_gb": 7.19,
+      "vram_free_gb": 2.68,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 45.0,
+      "note": "ok",
+      "files": [
+        "bfsin_in_head_00001_.png"
+      ],
+      "saved": [
+        "bfsin_in_head_00001_.png"
+      ],
+      "s_per_step": "5.56",
+      "executed_s": "43.62",
+      "ram_used_gb_after": 6.51,
+      "sha256": {
+        "bfsin_in_head_00001_.png": "4d4d2db6d047ba55"
+      }
+    },
+    {
+      "key": "gen_in_person",
+      "graph_md5": "fd591beff97005d8315a16990217f956",
+      "meta": {},
+      "ram_used_gb": 6.51,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 24.3,
+      "note": "ok",
+      "files": [
+        "bfsin_in_person_00001_.png"
+      ],
+      "saved": [
+        "bfsin_in_person_00001_.png"
+      ],
+      "s_per_step": "3.15",
+      "executed_s": "23.93",
+      "ram_used_gb_after": 6.41,
+      "sha256": {
+        "bfsin_in_person_00001_.png": "e574a7438fe1d318"
+      }
+    },
+    {
+      "key": "R1_head_official_1408_cold",
+      "graph_md5": "0da88015df6bade5f755392c484086ae",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          1408,
+          1408
+        ]
+      },
+      "ram_used_gb": 6.41,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 0.0,
+      "note": "submit: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"22\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"device\", \"extra_info\": {\"input_name\": \"device\"}}, {\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"dtype\", \"extra_info\": {\"input_name\": \"dtype\"}}], \"dependent_outputs\": [\"34\"], \"class_type\": \"QwenImage21Cache\"}}}"
+    },
+    {
+      "key": "R2_head_official_1408_warm",
+      "graph_md5": "3374dd2c4827a91b53873b9b99494467",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          1408,
+          1408
+        ],
+        "warm": true
+      },
+      "ram_used_gb": 6.41,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 0.0,
+      "note": "submit: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"22\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"device\", \"extra_info\": {\"input_name\": \"device\"}}, {\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"dtype\", \"extra_info\": {\"input_name\": \"dtype\"}}], \"dependent_outputs\": [\"34\"], \"class_type\": \"QwenImage21Cache\"}}}"
+    },
+    {
+      "key": "R3_head_official_1024",
+      "graph_md5": "d04084f1782728fd426268321214578e",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ]
+      },
+      "ram_used_gb": 6.41,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 0.0,
+      "note": "submit: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"22\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"device\", \"extra_info\": {\"input_name\": \"device\"}}, {\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"dtype\", \"extra_info\": {\"input_name\": \"dtype\"}}], \"dependent_outputs\": [\"34\"], \"class_type\": \"QwenImage21Cache\"}}}"
+    },
+    {
+      "key": "R4_anchor_nobfs_1024",
+      "graph_md5": "ec87860b57f8251733d4c090d8ae2b6f",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ],
+        "note": "no-BFS anchor"
+      },
+      "ram_used_gb": 6.41,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 0.0,
+      "note": "submit: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"21\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"device\", \"extra_info\": {\"input_name\": \"device\"}}, {\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"dtype\", \"extra_info\": {\"input_name\": \"dtype\"}}], \"dependent_outputs\": [\"34\"], \"class_type\": \"QwenImage21Cache\"}}}"
+    },
+    {
+      "key": "R7_body_swap_1408",
+      "graph_md5": "d610a8670b69689d755a7b090253fd71",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_body_swap_v1.0_qwen_2.1.safetensors"
+        ],
+        "latent": "te_latent(scene-sized)",
+        "refs": [
+          1408,
+          768
+        ],
+        "prompt": "body_swap"
+      },
+      "ram_used_gb": 6.41,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 0.0,
+      "note": "submit: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"22\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"device\", \"extra_info\": {\"input_name\": \"device\"}}, {\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"dtype\", \"extra_info\": {\"input_name\": \"dtype\"}}], \"dependent_outputs\": [\"34\"], \"class_type\": \"QwenImage21Cache\"}}}"
+    },
+    {
+      "key": "R5_head_gguf_hook_1024",
+      "graph_md5": "375aa652934ccd089eb8aa63354a4f91",
+      "meta": {
+        "dit": "gguf",
+        "loader": "viggle_hook",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ],
+        "note": "cache node dropped on GGUF path"
+      },
+      "ram_used_gb": 1.99,
+      "vram_free_gb": 15.53,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 57.1,
+      "note": "comfy error: [[\"execution_start\", {\"prompt_id\": \"1b3905bf-270d-455e-b832-cd823c04b4ca\", \"timestamp\": 1790745964622}], [\"execution_cached\", {\"nodes\": [], \"prompt_id\": \"1b3905bf-270d-455e-b832-cd823c04b4ca\", \"timestamp\": 1790745964652}], [\"execution_error\", {\"prompt_id\": \"1b3905bf-270d-455e-b832-cd823c04b4ca\", \"node_id\": \"32\", \"node_type\": \"KSampler\", \"executed\": [\"2\", \"1\", \"3\", \"20\", \"30\", \"31\", \"21\"], \"excepti",
+      "files": []
+    },
+    {
+      "key": "R6_head_gguf_merge_1024",
+      "graph_md5": "48555a7bd2e7e961d2d9a88056de194b",
+      "meta": {
+        "dit": "gguf",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ]
+      },
+      "ram_used_gb": 6.57,
+      "vram_free_gb": 5.35,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 84.1,
+      "note": "ok",
+      "files": [
+        "bfsR6_ggufmerge_00001_.png"
+      ],
+      "saved": [
+        "bfsR6_ggufmerge_00001_.png"
+      ],
+      "s_per_step": "9.28",
+      "executed_s": "83.11",
+      "ram_used_gb_after": 7.28,
+      "sha256": {
+        "bfsR6_ggufmerge_00001_.png": "6436227e371508d0"
+      }
+    }
+  ],
+  "downloads": [
+    {
+      "file": "Qwen-Image-2.1-viggle-turbo-v0.2.1-6step-lora-r256.safetensors",
+      "download_s": 16.5,
+      "size_gb": 1.36
+    }
+  ],
+  "preflight": {
+    "missing_nodes": [],
+    "n_classes": 1271,
+    "clip_types": [
+      "stable_diffusion",
+      "stable_cascade",
+      "sd3",
+      "stable_audio",
+      "mochi",
+      "ltxv",
+      "pixart",
+      "cosmos",
+      "lumina2",
+      "wan",
+      "hidream",
+      "chroma",
+      "ace",
+      "omnigen2",
+      "qwen_image",
+      "hunyuan_image",
+      "flux2",
+      "ovis",
+      "longcat_image",
+      "cogvideox",
+      "lens",
+      "pixeldit",
+      "ideogram4",
+      "boogu",
+      "krea2",
+      "joyimage",
+      "mage",
+      "minimax",
+      "yue2"
+    ],
+    "sampler_available": [
+      "deis_2m",
+      "res_2m",
+      "deis",
+      "res_multistep"
+    ],
+    "te_outputs": [
+      "CONDITIONING",
+      "CONDITIONING",
+      "LATENT"
+    ],
+    "te_output_names": [
+      "positive",
+      "negative",
+      "latent"
+    ],
+    "te_inputs": [
+      "clip",
+      "images",
+      "negative_prompt",
+      "prompt",
+      "resolution",
+      "vae"
+    ],
+    "cache_inputs": {
+      "model": [
+        "MODEL",
+        {}
+      ],
+      "device": [
+        "COMBO",
+        {
+          "tooltip": "auto uses spare VRAM, then RAM. cpu (RAM) is prefetched behind compute and costs little speed. off recomputes the prefix every step, which is slower but is the one way to rule the cache out.",
+          "default": "auto",
+          "multiselect": false,
+          "options": [
+            "auto",
+            "gpu",
+            "cpu",
+            "off"
+          ]
+        }
+      ],
+      "dtype": [
+        "COMBO",
+        {
+          "tooltip": "Storage precision. default is lossless. int8 halves the cache at about bf16 accuracy, int4 quarters it but roughly doubles the per-step error.",
+          "default": "default",
+          "multiselect": false,
+          "options": [
+            "default",
+            "int8",
+            "int4"
+          ]
+        }
+      ]
+    },
+    "imagescale_inputs": [
+      "crop",
+      "height",
+      "image",
+      "upscale_method",
+      "width"
+    ]
+  },
+  "eval": {},
+  "boot1_s": 159.0,
+  "boot2_s": 373.3,
+  "total_s": 514.7,
+  "success": true
+}
+

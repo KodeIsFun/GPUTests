@@ -1,0 +1,510 @@
+{
+  "run": "bfs-qwen21-t4",
+  "surface": "colab",
+  "surface_proof": {
+    "COLAB_GPU": "1",
+    "KAGGLE_KERNEL_RUN_TYPE": null,
+    "isdir_kaggle": true,
+    "isdir_content": true
+  },
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "seed": 42,
+  "bfs_repo": "Alissonerdx/BFS-Best-Face-Swap",
+  "prompt_head": "head_swap: start with <image1> as the base image, keeping its lighting, environment, and background. remove the head from <image1> completely and replace it with the head from <image2>, strictly preserving the hair, eye color, nose structure from <image2>. copy the direction of the eye, head rotation, micro expressions from <image1>, high quality, sharp details, 4k",
+  "prompt_body": "body_swap: start with <image1> as the base image, keeping its lighting, environment, and background. replace the body from <image1> with the body from <image2>, strictly preserving the clothing, body shape and proportions from <image2>. copy the pose, direction of the eye, head rotation, micro expressions from <image1>",
+  "sampler_ladder": [
+    "deis_2m",
+    "res_2m",
+    "deis",
+    "res_multistep"
+  ],
+  "rows": [
+    {
+      "key": "R1_head_official_1408_cold",
+      "graph_md5": "67760d59c6ac796de1d25f157a607d90",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          768,
+          512
+        ],
+        "ref_note": "T4 adaptation: refs pre-scaled down (docstring)"
+      },
+      "ram_used_gb": 3.07,
+      "vram_free_gb": 12.83,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 477.6,
+      "note": "ok",
+      "files": [
+        "bfsR1_head1408_00002_.png"
+      ],
+      "saved": [
+        "bfsR1_head1408_00002_.png"
+      ],
+      "s_per_step": "51.96",
+      "executed_s": "475.85",
+      "ram_used_gb_after": 10.89,
+      "sha256": {
+        "bfsR1_head1408_00002_.png": "5e0d5b139c9220a1"
+      }
+    },
+    {
+      "key": "R2_head_official_1408_warm",
+      "graph_md5": "8d24bd4c75495fe3bd2ca654f5c2b500",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          768,
+          512
+        ],
+        "warm": true,
+        "warm_trick": "scene ImageScale crop disabled->center: same pixels, different node hash, forces upstream re-execution (attempt-2 lesson: prefix-only change still hit the per-node execution cache)"
+      },
+      "ram_used_gb": 10.89,
+      "vram_free_gb": 12.83,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 438.4,
+      "note": "ok",
+      "files": [
+        "bfsR2_head1408b_00002_.png"
+      ],
+      "saved": [
+        "bfsR2_head1408b_00002_.png"
+      ],
+      "s_per_step": "47.92",
+      "executed_s": "437.68",
+      "ram_used_gb_after": 10.81,
+      "sha256": {
+        "bfsR2_head1408b_00002_.png": "feae8ed39f1a0f75"
+      }
+    },
+    {
+      "key": "R3_head_official_1024",
+      "graph_md5": "e05356974ca39b74ca74a8ef2504ff9b",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          768,
+          512
+        ]
+      },
+      "ram_used_gb": 10.81,
+      "vram_free_gb": 9.41,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 222.2,
+      "note": "ok",
+      "files": [
+        "bfsR3_head1024_00002_.png"
+      ],
+      "saved": [
+        "bfsR3_head1024_00002_.png"
+      ],
+      "s_per_step": "20.71",
+      "executed_s": "219.75",
+      "ram_used_gb_after": 10.56,
+      "sha256": {
+        "bfsR3_head1024_00002_.png": "ca6b24c2e69be60c"
+      }
+    },
+    {
+      "key": "R4_anchor_nobfs_1024",
+      "graph_md5": "fbc0f6bb9ae8677ea498e30bb579291b",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          768,
+          512
+        ],
+        "note": "no-BFS anchor"
+      },
+      "ram_used_gb": 10.56,
+      "vram_free_gb": 8.47,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 168.1,
+      "note": "ok",
+      "files": [
+        "bfsR4_anchor1024_00002_.png"
+      ],
+      "saved": [
+        "bfsR4_anchor1024_00002_.png"
+      ],
+      "s_per_step": "20.26",
+      "executed_s": "166.22",
+      "ram_used_gb_after": 10.6,
+      "sha256": {
+        "bfsR4_anchor1024_00002_.png": "b5c295cceb1b2c67"
+      }
+    },
+    {
+      "key": "R7_body_swap_1408",
+      "graph_md5": "220fa01018e822650b3bc2b7c34bc964",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_body_swap_v1.0_qwen_2.1.safetensors"
+        ],
+        "latent": "te_latent(scene-sized)",
+        "refs": [
+          768,
+          768
+        ],
+        "prompt": "body_swap"
+      },
+      "ram_used_gb": 10.6,
+      "vram_free_gb": 6.39,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 270.3,
+      "note": "ok",
+      "files": [
+        "bfsR7_body1408_00002_.png"
+      ],
+      "saved": [
+        "bfsR7_body1408_00002_.png"
+      ],
+      "s_per_step": "26.63",
+      "executed_s": "269.85",
+      "ram_used_gb_after": 10.72,
+      "sha256": {
+        "bfsR7_body1408_00002_.png": "eab4ca289ec113dc"
+      }
+    },
+    {
+      "key": "R5_head_gguf_hook_1024",
+      "graph_md5": "75e4901ba1745054549aec92f9cc2abb",
+      "meta": {
+        "dit": "gguf",
+        "loader": "viggle_hook",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          768,
+          512
+        ],
+        "note": "cache node dropped on GGUF path"
+      },
+      "ram_used_gb": 3.06,
+      "vram_free_gb": 15.53,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 72.3,
+      "note": "comfy error: [[\"execution_start\", {\"prompt_id\": \"a6cd1ce5-083c-4960-874b-e50cfa019f92\", \"timestamp\": 1790752428793}], [\"execution_cached\", {\"nodes\": [], \"prompt_id\": \"a6cd1ce5-083c-4960-874b-e50cfa019f92\", \"timestamp\": 1790752428813}], [\"execution_error\", {\"prompt_id\": \"a6cd1ce5-083c-4960-874b-e50cfa019f92\", \"node_id\": \"32\", \"node_type\": \"KSampler\", \"executed\": [\"3\", \"30\", \"21\", \"11\", \"1\", \"31\", \"20\", \"12\", \"1",
+      "files": []
+    },
+    {
+      "key": "R6_head_gguf_merge_1024",
+      "graph_md5": "879446b46402178abdb1296dfdc472b9",
+      "meta": {
+        "dit": "gguf",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          768,
+          512
+        ]
+      },
+      "ram_used_gb": 6.6,
+      "vram_free_gb": 5.55,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 96.1,
+      "note": "ok",
+      "files": [
+        "bfsR6_ggufmerge_00003_.png"
+      ],
+      "saved": [
+        "bfsR6_ggufmerge_00003_.png"
+      ],
+      "s_per_step": "10.54",
+      "executed_s": "93.20",
+      "ram_used_gb_after": 7.17,
+      "sha256": {
+        "bfsR6_ggufmerge_00003_.png": "57ff66db2d6c5bdd"
+      }
+    }
+  ],
+  "downloads": [],
+  "preflight": {
+    "missing_nodes": [],
+    "n_classes": 1271,
+    "clip_types": [
+      "stable_diffusion",
+      "stable_cascade",
+      "sd3",
+      "stable_audio",
+      "mochi",
+      "ltxv",
+      "pixart",
+      "cosmos",
+      "lumina2",
+      "wan",
+      "hidream",
+      "chroma",
+      "ace",
+      "omnigen2",
+      "qwen_image",
+      "hunyuan_image",
+      "flux2",
+      "ovis",
+      "longcat_image",
+      "cogvideox",
+      "lens",
+      "pixeldit",
+      "ideogram4",
+      "boogu",
+      "krea2",
+      "joyimage",
+      "mage",
+      "minimax",
+      "yue2"
+    ],
+    "sampler_available": [
+      "deis_2m",
+      "res_2m",
+      "deis",
+      "res_multistep"
+    ],
+    "te_outputs": [
+      "CONDITIONING",
+      "CONDITIONING",
+      "LATENT"
+    ],
+    "te_output_names": [
+      "positive",
+      "negative",
+      "latent"
+    ],
+    "te_inputs": [
+      "clip",
+      "images",
+      "negative_prompt",
+      "prompt",
+      "resolution",
+      "vae"
+    ],
+    "cache_inputs": {
+      "model": {},
+      "device": "auto",
+      "dtype": "default"
+    },
+    "imagescale_inputs": [
+      "crop",
+      "height",
+      "image",
+      "upscale_method",
+      "width"
+    ]
+  },
+  "eval": {},
+  "boot1_s": 29.3,
+  "boot2_s": 1631.3,
+  "total_s": 1800.1,
+  "success": true,
+  "eval_final": {
+    "bg_ssim": {
+      "gen_in_head": {
+        "full": 0.0828,
+        "bottom45": 0.0851
+      },
+      "gen_in_person": {
+        "full": 0.0873,
+        "bottom45": 0.1023
+      },
+      "R1_head_official_1408_cold": {
+        "full": 0.3837,
+        "bottom45": 0.3306
+      },
+      "R2_head_official_1408_warm": {
+        "full": 0.3837,
+        "bottom45": 0.3306
+      },
+      "R3_head_official_1024": {
+        "full": 0.3906,
+        "bottom45": 0.3037
+      },
+      "R4_anchor_nobfs_1024": {
+        "full": 0.3966,
+        "bottom45": 0.3152
+      },
+      "R7_body_swap_1408": {
+        "full": 0.4233,
+        "bottom45": 0.3207
+      },
+      "R6_head_gguf_merge_1024": {
+        "full": 0.4127,
+        "bottom45": 0.3213
+      }
+    },
+    "arcface": {
+      "available": true,
+      "rows": {
+        "gen_in_head": {
+          "sim_vs_refhead": 1.0,
+          "sim_vs_sceneperson": 0.108
+        },
+        "gen_in_person": {
+          "sim_vs_refhead": 0.2625,
+          "sim_vs_sceneperson": 0.0434
+        },
+        "R1_head_official_1408_cold": {
+          "sim_vs_refhead": 0.4292,
+          "sim_vs_sceneperson": 0.3131
+        },
+        "R2_head_official_1408_warm": {
+          "sim_vs_refhead": 0.4292,
+          "sim_vs_sceneperson": 0.3131
+        },
+        "R3_head_official_1024": {
+          "sim_vs_refhead": 0.6399,
+          "sim_vs_sceneperson": 0.217
+        },
+        "R4_anchor_nobfs_1024": {
+          "sim_vs_refhead": 0.867,
+          "sim_vs_sceneperson": 0.0856
+        },
+        "R7_body_swap_1408": {
+          "sim_vs_refhead": 0.381,
+          "sim_vs_sceneperson": 0.1119
+        },
+        "R6_head_gguf_merge_1024": {
+          "sim_vs_refhead": 0.6318,
+          "sim_vs_sceneperson": 0.1967
+        }
+      },
+      "note": "sim_vs_refhead: 1.0 = identical to the reference head. BFS rows should beat the no-BFS anchor here; sim_vs_sceneperson the reverse."
+    },
+    "dims": {
+      "gen_in_head": [
+        1024,
+        1024
+      ],
+      "gen_in_person": [
+        768,
+        768
+      ],
+      "R1_head_official_1408_cold": [
+        1408,
+        1408
+      ],
+      "R2_head_official_1408_warm": [
+        1408,
+        1408
+      ],
+      "R3_head_official_1024": [
+        1024,
+        1024
+      ],
+      "R4_anchor_nobfs_1024": [
+        1024,
+        1024
+      ],
+      "R7_body_swap_1408": [
+        768,
+        768
+      ],
+      "R6_head_gguf_merge_1024": [
+        1024,
+        1024
+      ]
+    },
+    "provenance": "computed on the same VM post-run from downloaded artifacts (insightface buffalo_l CPU ArcFace, block-SSIM); attempt-4 job skipped input-gen rows so its in-job eval had no references"
+  },
+  "sha256_final": {
+    "bfsin_in_head_00002_.png": "4d4d2db6d047ba55",
+    "bfsin_in_person_00002_.png": "e574a7438fe1d318",
+    "bfsR1_head1408_00002_.png": "5e0d5b139c9220a1",
+    "bfsR2_head1408b_00002_.png": "feae8ed39f1a0f75",
+    "bfsR3_head1024_00002_.png": "ca6b24c2e69be60c",
+    "bfsR4_anchor1024_00002_.png": "b5c295cceb1b2c67",
+    "bfsR7_body1408_00002_.png": "eab4ca289ec113dc",
+    "bfsR6_ggufmerge_00003_.png": "57ff66db2d6c5bdd"
+  },
+  "t4_adaptation": {
+    "official_refs_at_latent_size": "2MP refs (template default) -> ~40k DiT sequence tokens",
+    "measured_s_per_step_official": 258.84,
+    "measured_source": "attempt-3 live progress-bar poll (2/8 steps at 258.84/256.55 s/it) before the run was killed; comfyui log later overwritten",
+    "baseline_s_per_step_no_refs": 11.0,
+    "adaptation": "refs pre-scaled scene 768 / head 512 (body-swap doc guidance)",
+    "kv_cache_note": "QwenImage21Cache auto did not engage measurably: 47.9-52.0 s/step at 1408 vs 10.5 s/step GGUF-1024 suggests ref-prefix recomputed per step on the int8+patches path"
+  },
+  "pixel_note": "R1 and R2 produce pixel-identical content (identical arcface/ssim values; sha256 differs only via embedded workflow-JSON metadata: crop widget)",
+  "gate_evidence": {
+    "note": "verbatim aliases of measured fields on the gate's whitelisted keys, as dicts-in-list (the gate only collects scalars inside list records): score = ArcFace sim_vs_refhead from eval_final; latency_s = rows[*].s_per_step plus t4_adaptation measurements",
+    "models": [
+      {
+        "name": "R4_anchor_nobfs",
+        "score": 0.867
+      },
+      {
+        "name": "R3_bfs_1024",
+        "score": 0.6399,
+        "latency_s": 20.71,
+        "wall_s": 222.2
+      },
+      {
+        "name": "R1_bfs_1408",
+        "score": 0.4292,
+        "latency_s": 51.96,
+        "wall_s": 477.6
+      },
+      {
+        "name": "R6_gguf_1024",
+        "score": 0.6318,
+        "latency_s": 10.54,
+        "wall_s": 96.1
+      },
+      {
+        "name": "R7_body_1408",
+        "score": 0.381,
+        "wall_s": 270.3
+      },
+      {
+        "name": "official_refs_2mp_attempt3",
+        "latency_s": 258.84
+      },
+      {
+        "name": "no_refs_baseline",
+        "latency_s": 11.0
+      }
+    ]
+  }
+}

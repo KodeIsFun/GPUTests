@@ -1,0 +1,120 @@
+{
+  "eval_final": {
+    "bg_ssim": {
+      "gen_in_head": {
+        "full": 0.0828,
+        "bottom45": 0.0851
+      },
+      "gen_in_person": {
+        "full": 0.0873,
+        "bottom45": 0.1023
+      },
+      "R1_head_official_1408_cold": {
+        "full": 0.3837,
+        "bottom45": 0.3306
+      },
+      "R2_head_official_1408_warm": {
+        "full": 0.3837,
+        "bottom45": 0.3306
+      },
+      "R3_head_official_1024": {
+        "full": 0.3906,
+        "bottom45": 0.3037
+      },
+      "R4_anchor_nobfs_1024": {
+        "full": 0.3966,
+        "bottom45": 0.3152
+      },
+      "R7_body_swap_1408": {
+        "full": 0.4233,
+        "bottom45": 0.3207
+      },
+      "R6_head_gguf_merge_1024": {
+        "full": 0.4127,
+        "bottom45": 0.3213
+      }
+    },
+    "arcface": {
+      "available": true,
+      "rows": {
+        "gen_in_head": {
+          "sim_vs_refhead": 1.0,
+          "sim_vs_sceneperson": 0.108
+        },
+        "gen_in_person": {
+          "sim_vs_refhead": 0.2625,
+          "sim_vs_sceneperson": 0.0434
+        },
+        "R1_head_official_1408_cold": {
+          "sim_vs_refhead": 0.4292,
+          "sim_vs_sceneperson": 0.3131
+        },
+        "R2_head_official_1408_warm": {
+          "sim_vs_refhead": 0.4292,
+          "sim_vs_sceneperson": 0.3131
+        },
+        "R3_head_official_1024": {
+          "sim_vs_refhead": 0.6399,
+          "sim_vs_sceneperson": 0.217
+        },
+        "R4_anchor_nobfs_1024": {
+          "sim_vs_refhead": 0.867,
+          "sim_vs_sceneperson": 0.0856
+        },
+        "R7_body_swap_1408": {
+          "sim_vs_refhead": 0.381,
+          "sim_vs_sceneperson": 0.1119
+        },
+        "R6_head_gguf_merge_1024": {
+          "sim_vs_refhead": 0.6318,
+          "sim_vs_sceneperson": 0.1967
+        }
+      },
+      "note": "sim_vs_refhead: 1.0 = identical to the reference head. BFS rows should beat the no-BFS anchor here; sim_vs_sceneperson the reverse."
+    },
+    "dims": {
+      "gen_in_head": [
+        1024,
+        1024
+      ],
+      "gen_in_person": [
+        768,
+        768
+      ],
+      "R1_head_official_1408_cold": [
+        1408,
+        1408
+      ],
+      "R2_head_official_1408_warm": [
+        1408,
+        1408
+      ],
+      "R3_head_official_1024": [
+        1024,
+        1024
+      ],
+      "R4_anchor_nobfs_1024": [
+        1024,
+        1024
+      ],
+      "R7_body_swap_1408": [
+        768,
+        768
+      ],
+      "R6_head_gguf_merge_1024": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "sha256_final": {
+    "bfsin_in_head_00002_.png": "4d4d2db6d047ba55",
+    "bfsin_in_person_00002_.png": "e574a7438fe1d318",
+    "bfsR1_head1408_00002_.png": "5e0d5b139c9220a1",
+    "bfsR2_head1408b_00002_.png": "feae8ed39f1a0f75",
+    "bfsR3_head1024_00002_.png": "ca6b24c2e69be60c",
+    "bfsR4_anchor1024_00002_.png": "b5c295cceb1b2c67",
+    "bfsR7_body1408_00002_.png": "eab4ca289ec113dc",
+    "bfsR6_ggufmerge_00003_.png": "57ff66db2d6c5bdd"
+  }
+}

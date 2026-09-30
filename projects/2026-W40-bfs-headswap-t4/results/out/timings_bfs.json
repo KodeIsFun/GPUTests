@@ -1,0 +1,482 @@
+{
+  "run": "bfs-qwen21-t4",
+  "surface": "colab",
+  "surface_proof": {
+    "COLAB_GPU": "1",
+    "KAGGLE_KERNEL_RUN_TYPE": null,
+    "isdir_kaggle": true,
+    "isdir_content": true
+  },
+  "flags": [
+    "--force-fp16",
+    "--disable-comfy-compiler"
+  ],
+  "seed": 42,
+  "bfs_repo": "Alissonerdx/BFS-Best-Face-Swap",
+  "prompt_head": "head_swap: start with <image1> as the base image, keeping its lighting, environment, and background. remove the head from <image1> completely and replace it with the head from <image2>, strictly preserving the hair, eye color, nose structure from <image2>. copy the direction of the eye, head rotation, micro expressions from <image1>, high quality, sharp details, 4k",
+  "prompt_body": "body_swap: start with <image1> as the base image, keeping its lighting, environment, and background. replace the body from <image1> with the body from <image2>, strictly preserving the clothing, body shape and proportions from <image2>. copy the pose, direction of the eye, head rotation, micro expressions from <image1>",
+  "sampler_ladder": [
+    "deis_2m",
+    "res_2m",
+    "deis",
+    "res_multistep"
+  ],
+  "rows": [
+    {
+      "key": "gen_in_scene",
+      "graph_md5": "2a8c7f53b10eb76a71a3b76788f6b353",
+      "meta": {},
+      "ram_used_gb": 2.07,
+      "vram_free_gb": 3.22,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 129.1,
+      "note": "ok",
+      "files": [
+        "bfsin_in_scene_00003_.png"
+      ],
+      "saved": [
+        "bfsin_in_scene_00003_.png"
+      ],
+      "s_per_step": "10.88",
+      "executed_s": "127.75",
+      "ram_used_gb_after": 7.21,
+      "sha256": {
+        "bfsin_in_scene_00003_.png": "27dd8b011bbadf41"
+      }
+    },
+    {
+      "key": "gen_in_head",
+      "graph_md5": "2599a9cde68e6f9278ed6f89bff056ee",
+      "meta": {},
+      "ram_used_gb": 7.21,
+      "vram_free_gb": 1.77,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 45.0,
+      "note": "ok",
+      "files": [
+        "bfsin_in_head_00002_.png"
+      ],
+      "saved": [
+        "bfsin_in_head_00002_.png"
+      ],
+      "s_per_step": "5.60",
+      "executed_s": "43.38",
+      "ram_used_gb_after": 6.52,
+      "sha256": {
+        "bfsin_in_head_00002_.png": "4d4d2db6d047ba55"
+      }
+    },
+    {
+      "key": "gen_in_person",
+      "graph_md5": "fd591beff97005d8315a16990217f956",
+      "meta": {},
+      "ram_used_gb": 6.52,
+      "vram_free_gb": 1.67,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 24.4,
+      "note": "ok",
+      "files": [
+        "bfsin_in_person_00002_.png"
+      ],
+      "saved": [
+        "bfsin_in_person_00002_.png"
+      ],
+      "s_per_step": "3.15",
+      "executed_s": "23.95",
+      "ram_used_gb_after": 6.53,
+      "sha256": {
+        "bfsin_in_person_00002_.png": "e574a7438fe1d318"
+      }
+    },
+    {
+      "key": "R1_head_official_1408_cold",
+      "graph_md5": "bbad520b579337df78f7335bc21e13d2",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          1408,
+          1408
+        ]
+      },
+      "ram_used_gb": 6.53,
+      "vram_free_gb": 8.61,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 312.3,
+      "note": "ok",
+      "files": [
+        "bfsR1_head1408_00001_.png"
+      ],
+      "saved": [
+        "bfsR1_head1408_00001_.png"
+      ],
+      "s_per_step": "37.73",
+      "executed_s": "311.42",
+      "ram_used_gb_after": 10.42,
+      "sha256": {
+        "bfsR1_head1408_00001_.png": "973615590bea486a"
+      }
+    },
+    {
+      "key": "R2_head_official_1408_warm",
+      "graph_md5": "c443dc4c8c2857638b4c2ddd9f67011e",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1408,
+        "refs": [
+          1408,
+          1408
+        ],
+        "warm": true
+      },
+      "ram_used_gb": 10.42,
+      "vram_free_gb": 8.61,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 3.0,
+      "note": "ok",
+      "files": [
+        "bfsR2_head1408b_00001_.png"
+      ],
+      "saved": [
+        "bfsR2_head1408b_00001_.png"
+      ],
+      "s_per_step": "37.73",
+      "executed_s": "0.58",
+      "ram_used_gb_after": 10.42,
+      "sha256": {
+        "bfsR2_head1408b_00001_.png": "0cef1b75ac47e83c"
+      }
+    },
+    {
+      "key": "R3_head_official_1024",
+      "graph_md5": "7a6f5e089585cfcb4bb3f50b634a6603",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ]
+      },
+      "ram_used_gb": 10.42,
+      "vram_free_gb": 7.26,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 117.1,
+      "note": "ok",
+      "files": [
+        "bfsR3_head1024_00001_.png"
+      ],
+      "saved": [
+        "bfsR3_head1024_00001_.png"
+      ],
+      "s_per_step": "14.05",
+      "executed_s": "114.67",
+      "ram_used_gb_after": 10.45,
+      "sha256": {
+        "bfsR3_head1024_00001_.png": "07fea5958cbf7c50"
+      }
+    },
+    {
+      "key": "R4_anchor_nobfs_1024",
+      "graph_md5": "6705bd5a7b3622e87edf99ad6420eabd",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ],
+        "note": "no-BFS anchor"
+      },
+      "ram_used_gb": 10.45,
+      "vram_free_gb": 7.26,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 132.1,
+      "note": "ok",
+      "files": [
+        "bfsR4_anchor1024_00001_.png"
+      ],
+      "saved": [
+        "bfsR4_anchor1024_00001_.png"
+      ],
+      "s_per_step": "15.86",
+      "executed_s": "129.17",
+      "ram_used_gb_after": 10.66,
+      "sha256": {
+        "bfsR4_anchor1024_00001_.png": "7430579189c0ffd9"
+      }
+    },
+    {
+      "key": "R7_body_swap_1408",
+      "graph_md5": "841dc137577b868dd7ced9a446e21f6d",
+      "meta": {
+        "dit": "int8",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_body_swap_v1.0_qwen_2.1.safetensors"
+        ],
+        "latent": "te_latent(scene-sized)",
+        "refs": [
+          1408,
+          768
+        ],
+        "prompt": "body_swap"
+      },
+      "ram_used_gb": 10.66,
+      "vram_free_gb": 4.48,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 165.1,
+      "note": "ok",
+      "files": [
+        "bfsR7_body1408_00001_.png"
+      ],
+      "saved": [
+        "bfsR7_body1408_00001_.png"
+      ],
+      "s_per_step": "15.56",
+      "executed_s": "162.79",
+      "ram_used_gb_after": 11.06,
+      "sha256": {
+        "bfsR7_body1408_00001_.png": "333a0527744e9d28"
+      }
+    },
+    {
+      "key": "R5_head_gguf_hook_1024",
+      "graph_md5": "375aa652934ccd089eb8aa63354a4f91",
+      "meta": {
+        "dit": "gguf",
+        "loader": "viggle_hook",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ],
+        "note": "cache node dropped on GGUF path"
+      },
+      "ram_used_gb": 2.05,
+      "vram_free_gb": 15.53,
+      "vram_total_gb": 15.64,
+      "ok": false,
+      "wall_s": 57.3,
+      "note": "comfy error: [[\"execution_start\", {\"prompt_id\": \"545a040b-0856-415e-b18c-f7f0244394cd\", \"timestamp\": 1790748111421}], [\"execution_cached\", {\"nodes\": [], \"prompt_id\": \"545a040b-0856-415e-b18c-f7f0244394cd\", \"timestamp\": 1790748111441}], [\"execution_error\", {\"prompt_id\": \"545a040b-0856-415e-b18c-f7f0244394cd\", \"node_id\": \"32\", \"node_type\": \"KSampler\", \"executed\": [\"2\", \"1\", \"21\", \"30\", \"3\", \"31\", \"20\"], \"excepti",
+      "files": []
+    },
+    {
+      "key": "R6_head_gguf_merge_1024",
+      "graph_md5": "48555a7bd2e7e961d2d9a88056de194b",
+      "meta": {
+        "dit": "gguf",
+        "loader": "stock_merge",
+        "loras": [
+          "p_qwen_image_2.1_8step_v0.1.safetensors",
+          "bfs_head_v1.1_qwen_2.1.safetensors"
+        ],
+        "latent": 1024,
+        "refs": [
+          1024,
+          1024
+        ]
+      },
+      "ram_used_gb": 6.58,
+      "vram_free_gb": 5.35,
+      "vram_total_gb": 15.64,
+      "ok": true,
+      "wall_s": 84.2,
+      "note": "ok",
+      "files": [
+        "bfsR6_ggufmerge_00002_.png"
+      ],
+      "saved": [
+        "bfsR6_ggufmerge_00002_.png"
+      ],
+      "s_per_step": "9.32",
+      "executed_s": "83.79",
+      "ram_used_gb_after": 7.28,
+      "sha256": {
+        "bfsR6_ggufmerge_00002_.png": "6436227e371508d0"
+      }
+    }
+  ],
+  "downloads": [],
+  "preflight": {
+    "missing_nodes": [],
+    "n_classes": 1271,
+    "clip_types": [
+      "stable_diffusion",
+      "stable_cascade",
+      "sd3",
+      "stable_audio",
+      "mochi",
+      "ltxv",
+      "pixart",
+      "cosmos",
+      "lumina2",
+      "wan",
+      "hidream",
+      "chroma",
+      "ace",
+      "omnigen2",
+      "qwen_image",
+      "hunyuan_image",
+      "flux2",
+      "ovis",
+      "longcat_image",
+      "cogvideox",
+      "lens",
+      "pixeldit",
+      "ideogram4",
+      "boogu",
+      "krea2",
+      "joyimage",
+      "mage",
+      "minimax",
+      "yue2"
+    ],
+    "sampler_available": [
+      "deis_2m",
+      "res_2m",
+      "deis",
+      "res_multistep"
+    ],
+    "te_outputs": [
+      "CONDITIONING",
+      "CONDITIONING",
+      "LATENT"
+    ],
+    "te_output_names": [
+      "positive",
+      "negative",
+      "latent"
+    ],
+    "te_inputs": [
+      "clip",
+      "images",
+      "negative_prompt",
+      "prompt",
+      "resolution",
+      "vae"
+    ],
+    "cache_inputs": {
+      "model": {},
+      "device": "auto",
+      "dtype": "default"
+    },
+    "imagescale_inputs": [
+      "crop",
+      "height",
+      "image",
+      "upscale_method",
+      "width"
+    ]
+  },
+  "eval": {
+    "bg_ssim": {
+      "gen_in_head": {
+        "full": 0.0828,
+        "bottom45": 0.0851
+      },
+      "gen_in_person": {
+        "full": 0.0873,
+        "bottom45": 0.1023
+      },
+      "R1_head_official_1408_cold": {
+        "full": 0.1351,
+        "bottom45": 0.1677
+      },
+      "R2_head_official_1408_warm": {
+        "full": 0.1351,
+        "bottom45": 0.1677
+      },
+      "R3_head_official_1024": {
+        "full": 0.0949,
+        "bottom45": 0.1111
+      },
+      "R4_anchor_nobfs_1024": {
+        "full": 0.0875,
+        "bottom45": 0.1093
+      },
+      "R7_body_swap_1408": {
+        "full": 0.0343,
+        "bottom45": 0.0567
+      },
+      "R6_head_gguf_merge_1024": {
+        "full": 0.0922,
+        "bottom45": 0.1093
+      }
+    },
+    "arcface": {
+      "available": true,
+      "rows": {
+        "gen_in_head": {
+          "sim_vs_refhead": 1.0,
+          "sim_vs_sceneperson": 0.108
+        },
+        "gen_in_person": {
+          "sim_vs_refhead": 0.2625,
+          "sim_vs_sceneperson": 0.0434
+        },
+        "R1_head_official_1408_cold": {
+          "sim_vs_refhead": 0.1518,
+          "sim_vs_sceneperson": 0.0623
+        },
+        "R2_head_official_1408_warm": {
+          "sim_vs_refhead": 0.1518,
+          "sim_vs_sceneperson": 0.0623
+        },
+        "R3_head_official_1024": {
+          "sim_vs_refhead": 0.093,
+          "sim_vs_sceneperson": -0.0058
+        },
+        "R4_anchor_nobfs_1024": {
+          "sim_vs_refhead": 0.354,
+          "sim_vs_sceneperson": 0.0544
+        },
+        "R7_body_swap_1408": {
+          "sim_vs_refhead": 0.0395,
+          "sim_vs_sceneperson": 0.0208
+        },
+        "R6_head_gguf_merge_1024": {
+          "sim_vs_refhead": 0.1591,
+          "sim_vs_sceneperson": 0.0452
+        }
+      },
+      "note": "sim_vs_refhead rises on BFS rows (identity transferred); sim_vs_sceneperson the reverse. 1.0 = identical."
+    }
+  },
+  "boot1_s": 20.0,
+  "boot2_s": 976.7,
+  "success": true,
+  "eval_note": "eval recomputed post-run: attempt-2 job crashed in the block-SSIM reshape after all rows rendered; row timings untouched, sha256 + eval added here"
+}

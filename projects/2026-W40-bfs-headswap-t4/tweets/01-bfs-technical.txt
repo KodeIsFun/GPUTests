@@ -1,0 +1,5 @@
+Full test of the BFS face/head-swap LoRA collection on a free T4, riding the lab's proven Qwen-Image DiT stack.
+
+The official template's own settings don't fly on a T4: references at 2MP = 258.84 s/step. Scale the two reference photos down and the same head swap runs 222.2 s on the official int8 weights, 96.1 s on GGUF Q4 — background and a neon "FREE GPU LAB" sign survive letter-perfect.
+
+Twist: with the LoRA OFF the face is closer to the target (0.867 vs 0.6399 ArcFace). What BFS buys is the coherent swap — hair and face move together — not identity strength.
