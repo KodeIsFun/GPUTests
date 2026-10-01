@@ -1,0 +1,13 @@
+The face-swap LoRA everyone's downloading (BFS) now runs on a free GPU — shipped as a repo with a verified notebook:
+
+github.com/KodeIsFun/run-bfs-face-swap-on-free-colab
+
+Measured on free Colab and Kaggle T4s:
+
+• Head swap in 96.1 s on the cheap GGUF weights — 222.2 s on the official int8 ones, same quality by eye
+• The template's own settings don't fly on a free card: 258.84 s/step. Shrink the two reference photos first (the author's own rule), keep the latent at the standard size
+• The "FREE GPU LAB" neon in our test scene survives letter-perfect in every swap — text canary built in
+
+And the honest twist: with the LoRA OFF, the base model already swaps the head, hair and all, and the face is closer to the target (0.867 vs 0.6399 ArcFace). What BFS adds is scene coherence — it's the only run that keeps her beret.
+
+Verified like we verify everything: the notebook executed headlessly on a fresh Colab VM cloned straight from GitHub (head swap pixel-identical to the lab run), and the same notebook ran COMPLETE as a public Kaggle kernel. Consent-free synthetic inputs, fixed seed, every number traceable to the timings JSON.
