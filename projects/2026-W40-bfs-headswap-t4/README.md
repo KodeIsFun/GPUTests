@@ -123,3 +123,14 @@ inputs.
 - 2048² output (the workflow Note claims it mitigates the whole-image effect) —
   needs the ref-prefix KV cache to actually engage; at 52 s/step it is a
   40-minute image on a T4.
+
+---
+
+**Shipped 2026-10-01:** this recipe is now a public, independently verified
+repo — [run-bfs-face-swap-on-free-colab](https://github.com/KodeIsFun/run-bfs-face-swap-on-free-colab)
+(notebook, Kaggle kernel [emdadh/run-bfs-faceswap-t4](https://www.kaggle.com/code/emdadh/run-bfs-faceswap-t4),
+stdlib client `clients/headswap.py`, workflow JSONs, consistency gate). The
+actual notebook was executed headlessly on a fresh Colab T4 from a GitHub
+clone (NBEXIT 0; fresh head swap pixel-identical to this project's GGUF row)
+and ran COMPLETE as a public Kaggle kernel (head 132 s, body 90 s). Repo
+commit 19ef486.
