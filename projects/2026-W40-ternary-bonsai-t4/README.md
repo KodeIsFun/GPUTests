@@ -107,3 +107,18 @@ Everything lives in `~/ternary-local/`: `run-vulkan.sh` (wrapper exporting the
 LD_LIBRARY_PATH and pinning `-ngl 99`), `llama-prism-b10743-adfffbe/` (prebuilt),
 `vulkan-usr/` (the extracted loader). Smoke generation: the reasoning trace
 (`[Start thinking] ... Final: Paris.`) renders on the GPU with exit-0 semantics.
+
+### OpenAI-compatible server on the same GPU (2026-10-12, later)
+
+The same prebuilt ships `llama-server`, so the local lane is now an
+**OpenAI-API server** (`~/ternary-local/serve-bonsai.sh start|stop`,
+`http://127.0.0.1:8080/v1`, model id `ternary-bonsai-2-27b`, ctx 8192,
+`-fa auto`, alias set). Verified: `GET /v1/models`; non-streaming
+`POST /v1/chat/completions` (clean `choices[0].message.content`,
+`usage` block, `finish_reason: stop`); streaming SSE chunks with
+`reasoning_content` deltas carrying the `[Start thinking]` trace
+separately from the answer. Footprint while serving: **7.65 GB VRAM,
+system RAM at desktop baseline (~5 GB), CPU idle** — fully offloaded
+(-ngl 99), flash-attn auto. Point any OpenAI-format client at:
+
+    base_url = http://127.0.0.1:8080/v1    api_key = any-string    model = ternary-bonsai-2-27b
