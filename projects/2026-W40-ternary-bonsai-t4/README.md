@@ -122,3 +122,28 @@ system RAM at desktop baseline (~5 GB), CPU idle** — fully offloaded
 (-ngl 99), flash-attn auto. Point any OpenAI-format client at:
 
     base_url = http://127.0.0.1:8080/v1    api_key = any-string    model = ternary-bonsai-2-27b
+
+### Prefill-speed sweep (2026-10-12): the 39 tok/s pp512 is the hardware ceiling
+
+Question: can prompt processing improve? Measured sweep (pp512, -ngl 99, empty
+VRAM, 2-3 reps each) across tuning flags AND the two-weeks-newer fork release:
+
+| config | pp512 |
+|---|---|
+| b10772 (2026-10-10 build), fa auto | 39.64 |
+| flash-attention on | 39.25 |
+| ubatch 1024 | 38.71 |
+| q8_0 quantized KV (both builds) | 38.77–39.10 |
+| pinned b10743 baseline | 39.25 |
+
+All within ~2%: **no software lever moves prefill on NAVI14.** The T4's ~330
+tok/s comes from tensor cores + mature CUDA mmq kernels; RADV on RDNA1 exposes
+no cooperative matrices (Vulkan init: "matrix cores: none"), so prefill runs
+on plain shaders. What DOES help in practice: llama-server's automatic prompt
+prefix caching (repeated system prompts / multi-turn only re-process the new
+tail), and keeping prompts short (retrieval instead of stuffing). q8_0 KV is
+still useful — it halves KV memory (≈16K context) at unchanged speed.
+Server-restart hygiene learned the hard way: benching with the server loaded
+poisons every number (VRAM spill through system RAM, 20x slower) — stop the
+server before benchmarking. The `pkill` on this box is shadowed by the ZCode
+AppImage; kill bench processes by PID.
