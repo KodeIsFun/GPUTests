@@ -66,3 +66,44 @@ raw tok/s, which is what this table measures.
   `models: 2`)
 - `results/kernel-v2.log` — full kernel log
 - `tweets/01-ternary-on-t4.txt` — gate PASS against the results JSON
+
+---
+
+## Local lane (2026-10-12): the SAME ternary model runs on the owner's AMD RX 5500 XT — faster than the T4 at generation
+
+The owner's desktop (Ryzen 5 5600, 31 GB RAM, **AMD Radeon RX 5500 XT 8 GB**, no NVIDIA)
+can run this exact workload 100% on GPU — the PrismML fork ships **Vulkan kernels**
+for the ternary types (`dequant_pq2_0.comp`, `mul_mat_vecq_ptq1_0.comp` in
+`ggml-vulkan/vulkan-shaders/`), so no CUDA is needed. Verified end-to-end with the
+fork's **prebuilt `ubuntu-vulkan-x64` binaries** (pinned release `prism-b10743-adfffbe`,
+no compiler, no sudo) against `Ternary-Bonsai-2-27B-PTQ1_0.gguf` (5.95 GB, HEAD-verified)
+placed in the ollama models dir on the data drive.
+
+| test | local RX 5500 XT (Vulkan, ngl 99) | free Kaggle T4 (CUDA) |
+|---|---|---|
+| tg128 | **18.57 ± 0.03 tok/s** | 17.77 tok/s |
+| pp512 | 39.25 ± 0.13 tok/s | ~330 tok/s (CUDA tensor cores) |
+
+Generation is **slightly faster than the free T4** while the CPU (12 threads) and
+31 GB RAM stay completely free; prefill is ~8x slower (RADV NAVI14 reports
+"matrix cores: none" — T4 tensor cores win prompt processing by a mile). The
+PQ2_0 headline quant (7.21 GB) does not fit in 8 GB VRAM and stays a T4 lane.
+
+**The setup recipe (all user-space, reproducible)** — three mismatches were paid for:
+
+1. The box has no CUDA; Ollama's GPU use is its own bundled ROCm (irrelevant here).
+   The ternary fork does not support ROCm on RDNA1 — **Vulkan is the only GPU lane**
+   for this card, via Mesa RADV (already installed, `mesa-vulkan-drivers` 26.0.4).
+2. The Mesa PPA (`ernstp/mesarc`) half-upgraded the stack: RADV 26 needs
+   `wl_fixes_interface` from libwayland 1.25 (installed via
+   `sudo apt install -y libwayland-client0`), but an old `/opt/amdgpu/lib` copy
+   shadowed it — fixed with `LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu` prefix.
+3. The system Vulkan loader (jammy, 1.3.204/2022) rejects the new RADV
+   (`VK_EXT_layer_settings` unknown), and Ubuntu 24.04's loader deb needs a newer
+   glibc than jammy has — the working loader is LunarG's **jammy-built**
+   `libvulkan1_1.4.313.0~rc1-1lunarg22.04` deb, extracted with `dpkg -x` (no install).
+
+Everything lives in `~/ternary-local/`: `run-vulkan.sh` (wrapper exporting the
+LD_LIBRARY_PATH and pinning `-ngl 99`), `llama-prism-b10743-adfffbe/` (prebuilt),
+`vulkan-usr/` (the extracted loader). Smoke generation: the reasoning trace
+(`[Start thinking] ... Final: Paris.`) renders on the GPU with exit-0 semantics.
